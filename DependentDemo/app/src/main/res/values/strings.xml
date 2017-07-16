@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">DependentDemo</string>
+    <string name="from">from app</string>
+</resources>

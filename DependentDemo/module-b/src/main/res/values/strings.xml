@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">module-b</string>
+    <string name="from">from module-b</string>
+    <string name="from_2">from module-b</string>
+</resources>
