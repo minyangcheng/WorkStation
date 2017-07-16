@@ -1,0 +1,4 @@
+rootProject.name = 'Distribute'
+include 'server'
+include 'client'
+

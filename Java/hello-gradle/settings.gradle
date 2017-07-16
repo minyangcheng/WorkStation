@@ -1,0 +1,4 @@
+rootProject.name = 'hello-gradle'
+include 'child-one'
+include 'child-two'
+

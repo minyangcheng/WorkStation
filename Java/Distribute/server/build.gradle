@@ -1,0 +1,20 @@
+group 'com.min.distribute'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.5
+
+repositories {
+    maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile 'com.weibo:motan-core:0.3.0'
+    compile 'com.weibo:motan-transport-netty:0.3.0'
+    compile 'com.weibo:motan-springsupport:0.3.0'
+    compile 'com.weibo:motan-registry-zookeeper:0.3.0'
+    compile 'org.springframework:spring-context:4.2.4.RELEASE'
+    compile 'org.slf4j:slf4j-log4j12:1.7.6'
+}

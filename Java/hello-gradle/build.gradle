@@ -1,0 +1,10 @@
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+ext {
+    versionCode = 34
+    versionName = "v2.6.1"
+}

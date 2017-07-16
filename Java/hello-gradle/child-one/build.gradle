@@ -1,0 +1,55 @@
+group 'com.min.gradle'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.5
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.min.gradle.App'
+    }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+task getRootProjectExtValues << {
+    println "versionCode=${rootProject.ext.versionCode}"
+    println "versionName=${rootProject.ext.versionName}"
+}
+
+task getRootProjectProperites << {
+    println RELEASE_STORE_FILE
+}
+
+task copyResultPackageToDestDir << {
+    def sourceFile=getLastModifyFileInDir('E:\\IdeaProjects\\hello-gradle\\child-one\\build\\libs')
+    if(sourceFile){
+        def dst = new File("F:\\test_dir\\dest\\${sourceFile.getName()}")
+        dst << sourceFile.bytes
+        Process p = "cmd /c start call F:\\test_dir\\commit.bat".execute()
+//        println "${p.text}"
+    }
+}
+
+def getLastModifyFileInDir(dirPath){
+    def srcDirFile = new File(dirPath)
+    if(srcDirFile.isDirectory()){
+        def fileArr=srcDirFile.listFiles()
+        def sortFileArr=fileArr.sort { a,b ->
+            b.lastModified()-a.lastModified()
+        }
+//        sortFileArr.each {
+//            println it.getAbsolutePath()
+//        }
+        return sortFileArr[0]
+    }
+    return null
+}
+
+int getVersionCodeByName(String versionName){
+    def arr=versionName.split('\\.')
+    return Integer.parseInt(arr[0])*10*10+Integer.parseInt(arr[1])*10+Integer.parseInt(arr[2])
+}
