@@ -1,0 +1,9 @@
+
+1. 运用DexClassLoader动态加载apk中类文件日志：
+
+07-20 14:13:31.402 14549-14549/com.min.main D/dalvikvm: dvmJarFileOpen: /storage/emulated/0/Test.apk
+07-20 14:13:31.405 14549-14549/com.min.main D/dalvikvm: open_cached_dex_file : /storage/emulated/0/Test.apk /data/data/com.min.main/files/plugin/opts/Test.dex
+07-20 14:13:31.476 14549-14549/com.min.main D/dalvikvm: DexOpt: --- BEGIN 'Test.apk' (bootstrap=0) ---
+07-20 14:13:32.190 14549-14549/com.min.main D/dalvikvm: DexOpt: --- END 'Test.apk' (success) ---
+07-20 14:13:32.190 14549-14549/com.min.main D/dalvikvm: DEX prep '/storage/emulated/0/Test.apk': unzip in 71ms, rewrite 714ms
+07-20 14:13:32.191 14549-14549/com.min.main D/MainActivity: mess=i am from plugin
