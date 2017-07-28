@@ -1,18 +1,23 @@
 package com.min.auto.api.util;
 
-import com.min.auto.api.domain.Result;
+import com.min.auto.api.bean.Result;
+import com.min.auto.api.enums.ResultEnum;
 
-/**
- * Created by 廖师兄
- * 2017-01-21 13:39
- */
 public class ResultUtil {
 
     public static Result success(Object object) {
         Result result = new Result();
-        result.setCode(0);
-        result.setMsg("成功");
-        result.setData(object);
+        result.setCode(ResultEnum.SUCCESS.getCode())
+                .setMessage(ResultEnum.SUCCESS.getMessage())
+                .setData(object);
+        return result;
+    }
+
+    public static Result success(String message,Object object) {
+        Result result = new Result();
+        result.setCode(ResultEnum.SUCCESS.getCode())
+                .setMessage(message)
+                .setData(object);
         return result;
     }
 
@@ -20,10 +25,17 @@ public class ResultUtil {
         return success(null);
     }
 
-    public static Result error(Integer code, String msg) {
+    public static Result error() {
         Result result = new Result();
-        result.setCode(code);
-        result.setMsg(msg);
+        result.setCode(ResultEnum.FAIL.getCode())
+                .setMessage(ResultEnum.FAIL.getMessage());
+        return result;
+    }
+
+    public static Result error(int code, String message) {
+        Result result = new Result();
+        result.setCode(code)
+                .setMessage(message);
         return result;
     }
 }

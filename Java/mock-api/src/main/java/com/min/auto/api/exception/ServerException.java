@@ -2,17 +2,18 @@ package com.min.auto.api.exception;
 
 import com.min.auto.api.enums.ResultEnum;
 
-/**
- * Created by 廖师兄
- * 2017-01-21 14:05
- */
 public class ServerException extends RuntimeException{
 
-    private Integer code;
+    private int code;
 
     public ServerException(ResultEnum resultEnum) {
-        super(resultEnum.getMsg());
+        super(resultEnum.getMessage());
         this.code = resultEnum.getCode();
+    }
+
+    public ServerException(int code,String message){
+        super(message);
+        this.code=code;
     }
 
     public Integer getCode() {

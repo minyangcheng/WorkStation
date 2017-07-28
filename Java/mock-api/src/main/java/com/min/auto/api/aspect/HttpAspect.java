@@ -10,18 +10,14 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 
-/**
- * Created by 廖师兄
- * 2017-01-15 12:31
- */
 @Aspect
 @Component
 public class HttpAspect {
 
-    private final static Logger logger = LoggerFactory.getLogger(HttpAspect.class);
+    private final Logger logger = LoggerFactory.getLogger(HttpAspect.class);
 
 
-    @Pointcut("execution(public * com.min.auto.api.controller.GirlController.*(..))")
+    @Pointcut("execution(public * com.min.auto.api.controller.MockApiController.*(..))")
     public void log() {
     }
 
@@ -29,7 +25,7 @@ public class HttpAspect {
     public void doBefore(JoinPoint joinPoint) {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
-
+        logger.info("-----请求-------:");
         //url
         logger.info("url={}", request.getRequestURL());
 
@@ -48,11 +44,11 @@ public class HttpAspect {
 
     @After("log()")
     public void doAfter() {
-        logger.info("222222222222");
     }
 
     @AfterReturning(returning = "object", pointcut = "log()")
     public void doAfterReturning(Object object) {
+        logger.info("----响应-------:");
         logger.info("response={}", object.toString());
     }
 

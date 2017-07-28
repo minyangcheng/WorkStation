@@ -1,6 +1,6 @@
 package com.min.auto.api;
 
-import com.min.auto.api.domain.Girl;
+import com.min.auto.api.bean.Girl;
 import com.min.auto.api.service.GirlService;
 import org.junit.Assert;
 import org.junit.Test;

@@ -1,6 +1,6 @@
 package com.min.auto.api.controller;
 
-import com.min.auto.api.properties.GirlProperties;
+import com.min.auto.api.config.GirlProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

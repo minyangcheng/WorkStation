@@ -1,7 +1,7 @@
 package com.min.auto.api.controller;
 
-import com.min.auto.api.domain.Girl;
-import com.min.auto.api.domain.Result;
+import com.min.auto.api.bean.Girl;
+import com.min.auto.api.bean.Result;
 import com.min.auto.api.repository.GirlRepository;
 import com.min.auto.api.service.GirlService;
 import com.min.auto.api.util.ResultUtil;

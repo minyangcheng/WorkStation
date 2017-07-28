@@ -1,4 +1,4 @@
-package com.min.auto.api.domain;
+package com.min.auto.api.bean;
 
 import org.hibernate.validator.constraints.NotBlank;
 

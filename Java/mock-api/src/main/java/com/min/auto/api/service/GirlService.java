@@ -1,6 +1,6 @@
 package com.min.auto.api.service;
 
-import com.min.auto.api.domain.Girl;
+import com.min.auto.api.bean.Girl;
 import com.min.auto.api.enums.ResultEnum;
 import com.min.auto.api.exception.ServerException;
 import com.min.auto.api.repository.GirlRepository;
@@ -23,12 +23,14 @@ public class GirlService {
         Girl girlA = new Girl();
         girlA.setCupSize("A");
         girlA.setAge(18);
+        girlA.setMoney(1.2);
         girlRepository.save(girlA);
 
 
         Girl girlB = new Girl();
         girlB.setCupSize("BBBB");
-        girlB.setAge(19);
+        girlB.setAge(11);
+        girlB.setMoney(1.2);
         girlRepository.save(girlB);
     }
 
