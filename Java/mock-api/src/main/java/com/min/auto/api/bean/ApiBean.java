@@ -14,19 +14,29 @@ public class ApiBean {
 
     @Id
     @GeneratedValue
-    private long id;
+    private Integer id;
     private String path;
     @Column(length = 5000)
     private String reqData;
     @Column(length = 5000)
     private String respData;
     private Date time;
+    private int flag;
 
-    public long getId() {
+    public ApiBean(){}
+
+    public ApiBean(String path,String reqData,String respData){
+        this.path=path;
+        this.reqData=reqData;
+        this.respData=respData;
+        this.time=new Date();
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -60,5 +70,13 @@ public class ApiBean {
 
     public void setTime(Date time) {
         this.time = time;
+    }
+
+    public int getFlag() {
+        return flag;
+    }
+
+    public void setFlag(int flag) {
+        this.flag = flag;
     }
 }

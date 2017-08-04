@@ -1,7 +1,5 @@
 package com.min.auto.api.controller;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.min.auto.api.bean.Result;
 import com.min.auto.api.service.MockApiService;
 import com.min.auto.api.util.ResultUtil;
@@ -24,8 +22,7 @@ public class MockApiController {
     @RequestMapping("/**/*")
     public Result mock(HttpServletRequest request, HttpServletResponse response){
         String respData=mockApiService.getRespData(request,response);
-        JsonObject jsonObject = new JsonParser().parse(respData).getAsJsonObject();
-        return ResultUtil.success(jsonObject.toString());
+        return ResultUtil.success(respData);
     }
 
 }
