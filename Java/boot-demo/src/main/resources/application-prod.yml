@@ -1,0 +1,17 @@
+#spring:
+#  datasource:
+#    driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://192.168.229.1:3306/test_db?useUnicode=true&characterEncoding=UTF8&useSSL=false
+#    username: root
+#    password: minych
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    show-sql: true
+server:
+  port: 8081
+logging:
+  path: /opt/logs
+  level:
+    root: INFO
+    com.min: INFO
