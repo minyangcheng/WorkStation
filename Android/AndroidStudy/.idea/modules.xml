@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/AndroidStudy.iml" filepath="$PROJECT_DIR$/AndroidStudy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FragmentPower/FragmentPower.iml" filepath="$PROJECT_DIR$/FragmentPower/FragmentPower.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GradleStudy/GradleStudy.iml" filepath="$PROJECT_DIR$/GradleStudy/GradleStudy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RecyclerViewStudy/RecyclerViewStudy.iml" filepath="$PROJECT_DIR$/RecyclerViewStudy/RecyclerViewStudy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RxStudy/RxStudy.iml" filepath="$PROJECT_DIR$/RxStudy/RxStudy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SaveStateStudy/SaveStateStudy.iml" filepath="$PROJECT_DIR$/SaveStateStudy/SaveStateStudy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ScreenAdaptStudy/ScreenAdaptStudy.iml" filepath="$PROJECT_DIR$/ScreenAdaptStudy/ScreenAdaptStudy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ViewStudy/ViewStudy.iml" filepath="$PROJECT_DIR$/ViewStudy/ViewStudy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/WebViewStudy/WebViewStudy.iml" filepath="$PROJECT_DIR$/WebViewStudy/WebViewStudy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/coordinatorstudy/coordinatorstudy.iml" filepath="$PROJECT_DIR$/coordinatorstudy/coordinatorstudy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/framework/framework.iml" filepath="$PROJECT_DIR$/framework/framework.iml" />
+      <module fileurl="file://$PROJECT_DIR$/j2se/j2se.iml" filepath="$PROJECT_DIR$/j2se/j2se.iml" />
+      <module fileurl="file://$PROJECT_DIR$/testexample/testexample.iml" filepath="$PROJECT_DIR$/testexample/testexample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/utilcode/utilcode.iml" filepath="$PROJECT_DIR$/utilcode/utilcode.iml" />
+    </modules>
+  </component>
+</project>

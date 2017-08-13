@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="tabTextArr">
+        <item>首页</item>
+        <item>车源</item>
+        <item>服务</item>
+        <item>我</item>
+    </string-array>
+
+    <string-array name="tabUnSelectImageArr">
+        <item>@mipmap/ic_tab_one_n</item>
+        <item>@mipmap/ic_tab_two_n</item>
+        <item>@mipmap/ic_tab_three_n</item>
+        <item>@mipmap/ic_tab_four_n</item>
+    </string-array>
+    <string-array name="tabSelectImageArr">
+        <item>@mipmap/ic_tab_one_f</item>
+        <item>@mipmap/ic_tab_two_f</item>
+        <item>@mipmap/ic_tab_three_f</item>
+        <item>@mipmap/ic_tab_four_f</item>
+    </string-array>
+</resources>

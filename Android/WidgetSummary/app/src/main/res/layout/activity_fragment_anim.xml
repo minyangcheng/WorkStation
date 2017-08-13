@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#FFF8DC"/>
+
+    <Button
+        android:id="@+id/btn_look"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="look"/>
+
+    <Button
+        android:id="@+id/btn_pop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="pop"/>
+
+    <Button
+        android:id="@+id/btn_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="add"/>
+
+    <Button
+        android:id="@+id/btn_remove"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="remove"/>
+
+</LinearLayout>

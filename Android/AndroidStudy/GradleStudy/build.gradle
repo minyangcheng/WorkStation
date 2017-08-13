@@ -1,0 +1,132 @@
+apply plugin: 'com.android.application'
+
+//配置打包输出名称
+def appNameSuffix="vip"
+def buildTime() {
+    return new Date().format("yyyyMMddHHmm")
+}
+
+def hostName() {
+    return System.getProperty("user.name") + "@" + InetAddress.localHost.hostName
+}
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    //配置签名
+    signingConfigs {
+        release {
+            keyAlias RELEASE_KEY_ALIAS
+            keyPassword RELEASE_KEY_PASSWORD
+            storeFile file(RELEASE_STORE_FILE)
+            storePassword RELEASE_STORE_PASSWORD
+        }
+    }
+
+    defaultConfig {
+        applicationId "com.min.gs"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+        //需要跟manifest的package中保持一致
+        resValue "string", "build_config_package", "com.min.gs"
+        resValue "string", "build_time", buildTime()
+        resValue "string", "build_host", hostName()
+
+        //参数配置
+        buildConfigField 'String', 'API_SERVER_URL', '"http://10.10.13.117:8081/"'
+        manifestPlaceholders = ['UMENG_APPKEY'     : '57e1df4467e58e38250030c0',
+                                'APP_NAME'     : '@string/app_name',
+                                'PUSH_PERMISSION'         : 'test']
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            debuggable false
+            minifyEnabled false
+            zipAlignEnabled true
+            shrinkResources true
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    //配置渠道包
+    productFlavors {
+        beta_in{}
+        official {}
+        wandoujia{}
+    }
+
+    //自动将每个渠道包名称放入UMENG_CHANNEL_VALUE值中
+    productFlavors.all { flavor ->
+        manifestPlaceholders.put("UMENG_CHANNEL_VALUE", name)
+
+        //此处可以更改指定渠道号的包名
+        if (name.contentEquals("beta_in")) {
+//            applicationId 'com.cgw360.ws'
+            //会覆盖掉之前的设置
+            buildConfigField 'String', 'API_SERVER_URL', '"http://10.10.13.117:8081/"'
+            manifestPlaceholders.put("UMENG_APPKEY", "test")
+        }
+    }
+
+    // rename the apk with the version name
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.endsWith('.apk') && 'release'.equals(variant.buildType.name)) {
+                //最好只设置release版本才在文件名中添加时间戳，因为添加时间戳后，as就不能安装生成的apk文件了
+                output.outputFile = new File(
+                        output.outputFile.parent + "/${variant.buildType.name}",
+                        "${appNameSuffix}-${buildTime()}-${variant.buildType.name}-${variant.versionName}-${variant.productFlavors[0].name}.apk".toLowerCase())
+            }else{
+                output.outputFile = new File(
+                        output.outputFile.parent + "/${variant.buildType.name}",
+                        "${appNameSuffix}-${variant.buildType.name}-${variant.versionName}-${variant.productFlavors[0].name}.apk".toLowerCase())
+            }
+        }
+    }
+
+    //指定so库可以放在libs中
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/LICENSE.txt'
+    }
+    //配置忽略错误
+    lintOptions {
+        disable 'MissingTranslation'
+        abortOnError false
+    }
+
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'com.android.support:support-v4:23.4.0'
+    compile 'com.android.support:recyclerview-v7:23.0.0'
+    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.1'
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+}

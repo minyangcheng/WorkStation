@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--xxhdpi中的图片在xhdpi的手机上显示的图片像素会放大-->
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/lufei_hdpi" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/lufei_xhdpi" />
+
+    <!--xxhdpi中的图片在xhdpi的手机上显示的图片像素会缩小-->
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/lufei_xxhdpi" />
+
+    <!--需找跟当前手机dpi匹配的drawable文件夹下的图片，如果没有则从xxhdpi-xhdpi-hdpi中依次需找  -->
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/hzw" />
+
+</LinearLayout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="BaseAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primaryDark</item>
+        <item name="colorAccent">@color/color_accent</item>
+
+        <item name="android:textColor">@color/color_de000000</item>
+        <item name="android:background">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@color/windowBackground</item>
+
+        <item name="stateLayoutDefStyle">@style/StatelayoutStyle</item>
+    </style>
+
+    <style name="BaseAppThemeWithAnim" parent="BaseAppTheme">
+        <!-- 通过style指定activity进入和退出动画 -->
+        <item name="android:windowAnimationStyle">@style/FadeActivityAnim</item>
+    </style>
+
+    <style name="SlidingOutActivityAnim" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/in_from_left</item>
+        <item name="android:activityOpenExitAnimation">@anim/out_from_right</item>
+        <item name="android:activityCloseEnterAnimation">@anim/in_from_right</item>
+        <item name="android:activityCloseExitAnimation">@anim/out_from_left</item>
+    </style>
+
+    <style name="FadeActivityAnim" parent="@android:style/Animation.Translucent">
+        <item name="android:windowEnterAnimation">@anim/fade_scale_in</item>
+        <item name="android:windowExitAnimation">@anim/fade_scale_out</item>
+    </style>
+
+    <style name="StatelayoutStyle">
+        <item name="loading_layout">@layout/layout_load_ing</item>
+        <item name="empty_layout">@layout/layout_load_empty</item>
+        <item name="error_layout">@layout/layout_load_error</item>
+    </style>
+
+    <style name="ToolbarStyle">
+        <item name="theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="titleTextAppearance">@style/Toolbar_TextAppearance_White</item>
+        <item name="android:background">?attr/colorPrimary</item>
+    </style>
+
+    <style name="Toolbar_TextAppearance_White">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+</resources>

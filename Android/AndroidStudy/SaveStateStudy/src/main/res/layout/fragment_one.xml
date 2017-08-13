@@ -1,0 +1,69 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.min.savestate.demo.widget.CustomView
+            android:id="@+id/cv"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@android:color/holo_blue_light"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@android:color/holo_red_light"
+            android:layout_margin="10dp"
+            android:text="one fragment" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@android:color/holo_red_light"
+            android:layout_margin="10dp"
+            android:text="one fragment" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@android:color/holo_red_light"
+            android:layout_margin="10dp"
+            android:text="one fragment" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@android:color/holo_red_light"
+            android:layout_margin="10dp"
+            android:text="one fragment" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@android:color/holo_red_light"
+            android:layout_margin="10dp"
+            android:text="one fragment" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@android:color/holo_red_light"
+            android:layout_margin="10dp"
+            android:text="one fragment" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@android:color/holo_red_light"
+            android:layout_margin="10dp"
+            android:text="one fragment" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@android:color/holo_red_light"
+            android:layout_margin="10dp"
+            android:text="one fragment" />
+    </LinearLayout>
+
+</ScrollView>

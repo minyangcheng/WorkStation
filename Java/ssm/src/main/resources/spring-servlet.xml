@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- DispatcherServlet上下文， 只管理@Controller类型的bean， 忽略其他型的bean, 如@Service -->
+    <context:component-scan base-package="com.min.api" >
+        <context:include-filter type="annotation"
+                                expression="org.springframework.stereotype.Controller" />
+    </context:component-scan>
+
+    <!-- 添加mvc注解支持 -->
+    <mvc:annotation-driven />
+
+    <!-- 添加对静态文件的访问支持 -->
+    <mvc:default-servlet-handler/>
+
+    <!-- 对某些静态资源，如css,图片等进行过滤 ,有引用 "/resources/**" 的路径引用转到工程的/resources/目录取资源 -->
+    <mvc:resources mapping="/resources/**" location="/images/" />
+
+    <!-- 配置视图解析器  -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name = "prefix" value="/WEB-INF/views/"></property>
+        <property name = "suffix" value = ".jsp"></property>
+    </bean>
+
+    <!-- 文件上传 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8" />
+        <!-- 设置最大允许的大小(字节)。-1表示没有限制(默认) 1024*1024*10=10MB -->
+        <property name="maxUploadSize" value="104857600000" />
+        <!--被允许的最大的内存的大小，Default is 10240 bytes -->
+        <property name="maxInMemorySize" value="20480" />
+        <!-- 一个类似懒加载的属性.可以定义该属性.让解析文件的时候再抛异常,然后Controller中定义异常处理的方法 -->
+        <property name="resolveLazily" value="true" />
+    </bean>
+
+    <mvc:interceptors>
+        <!-- 使用bean定义一个Interceptor，直接定义在mvc:interceptors根下面的Interceptor将拦截所有的请求 -->
+        <bean class="com.min.api.interceptor.GoalHandlerInterceptor"/>
+        <mvc:interceptor>
+            <mvc:mapping path="/mobile/hello"/>
+            <!-- 定义在mvc:interceptor下面的表示是对特定的请求才进行拦截的 -->
+            <bean class="com.min.api.interceptor.HelloInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+</beans>

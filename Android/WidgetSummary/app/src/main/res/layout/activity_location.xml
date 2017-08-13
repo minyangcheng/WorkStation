@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fl_content">
+
+    <ImageView
+        android:id="@+id/iv_start"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/lufei_1"
+        android:layout_marginTop="100dp"
+        android:layout_gravity="right"
+        android:alpha="0.5"/>
+
+    <Button
+        android:id="@+id/btn_fly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="开始飞"
+        android:layout_gravity="center"/>
+
+    <ImageView
+        android:id="@+id/iv_end"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="fitXY"
+        android:background="#FFAEB9"
+        android:layout_gravity="bottom|left"
+        android:layout_margin="5dp"
+        android:alpha="0.5"/>
+
+</FrameLayout>

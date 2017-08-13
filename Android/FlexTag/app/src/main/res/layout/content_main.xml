@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:orientation="vertical">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="setPreOption"
+        android:text="设置预选项"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="getSelectOption"
+        android:text="得到选择项"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="updateData"
+        android:text="更新数据"/>
+
+    <com.min.flexboxdemo.view.tag.TagViewLayout
+        android:id="@+id/view_tag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></com.min.flexboxdemo.view.tag.TagViewLayout>
+
+</LinearLayout>

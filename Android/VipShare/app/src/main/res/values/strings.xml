@@ -1,0 +1,9 @@
+<resources>
+
+    <string name="app_name">VipShare</string>
+    <string name="app_name_debug">VipShare_测试</string>
+    <string name="username_format">用户名:%s</string>
+    <string name="password_format">密码:%s</string>
+    <string name="copy_title">请选择复制内容</string>
+    <string name="title_activity_main">MainActivity</string>
+</resources>

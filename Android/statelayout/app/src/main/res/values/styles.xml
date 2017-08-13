@@ -1,0 +1,19 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="studentNameColor">@color/green_dark</item>
+        <item name="stateLayoutDefStyle">@style/statelayoutThemeStyle</item>
+    </style>
+
+    <style name="statelayoutThemeStyle">
+        <item name="loading_layout">@layout/status_loading</item>
+        <item name="empty_layout">@layout/status_empty</item>
+        <item name="error_layout">@layout/status_error</item>
+    </style>
+
+    <color name="green_dark">@android:color/holo_green_dark</color>
+    <color name="red_dark">@android:color/holo_red_dark</color>
+</resources>

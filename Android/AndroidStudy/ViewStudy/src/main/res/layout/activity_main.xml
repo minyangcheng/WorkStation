@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_event_study"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:textAllCaps="false"
+        android:text="event_study"/>
+
+    <Button
+        android:id="@+id/btn_canvas_study"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:textAllCaps="false"
+        android:text="canvas_save_restore_study"/>
+
+    <Button
+        android:id="@+id/btn_ruler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:textAllCaps="false"
+        android:text="尺子"/>
+
+    <Button
+        android:id="@+id/btn_multi_touch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:textAllCaps="false"
+        android:text="多点触控"/>
+
+    <Button
+        android:id="@+id/btn_image_scale"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:textAllCaps="false"
+        android:text="图片缩放"/>
+
+    <Button
+        android:id="@+id/btn_view_anim"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:textAllCaps="false"
+        android:text="自定义view加动画"/>
+
+</LinearLayout>

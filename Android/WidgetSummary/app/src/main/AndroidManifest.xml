@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.min.ws">
+
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".base.App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="${app_label}"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="UMENG_CHANNEL_VALUE"
+            android:value="${UMENG_CHANNEL_VALUE}" />
+
+        <activity
+            android:name=".activity.SplashActivity"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.TabActivity" />
+        <activity android:name=".activity.TabViewPagerActivity" />
+        <activity android:name=".activity.SlidingTabActivity" />
+        <activity android:name=".activity.PagerIndicatorActivity" />
+        <activity android:name=".activity.MsgViewActivity" />
+        <activity
+            android:name=".activity.ObservableScrollActivity"
+            android:theme="@style/AppNoBarTheme" />
+        <activity
+            android:name=".activity.ObservableRecyclerViewActivity"
+            android:theme="@style/AppNoBarTheme" />
+        <activity android:name=".activity.TintImageViewActivity" />
+        <activity android:name=".activity.GifActivity" />
+        <activity android:name=".activity.FragmentAnimActivity" />
+        <activity android:name=".activity.PowerManagerActivity" />
+        <activity android:name=".activity.PreferenceActTemplateActivity" />
+        <activity
+            android:name=".activity.ToolbarActivity"
+            android:theme="@style/AppNoBarTheme" />
+        <activity android:name=".activity.LocationActivity" />
+        <activity android:name=".activity.RecycleViewBannerActivity" />
+        <activity
+            android:name=".activity.EditTextActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".activity.PhotoViewActivity" />
+        <activity android:name=".activity.NormalWidgetActivity"></activity>
+    </application>
+
+</manifest>

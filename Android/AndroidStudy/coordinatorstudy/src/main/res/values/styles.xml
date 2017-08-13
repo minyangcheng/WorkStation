@@ -1,0 +1,36 @@
+<resources>
+
+    <style name="NormalTheme" parent="BaseAppTheme">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="themeTextColor">#DA70D6</item>
+        <item name="themeTextSize">16sp</item>
+        <item name="themeName">@string/normal_theme</item>
+        <item name="btnBg">@drawable/shape_btn_blue</item>
+    </style>
+
+    <style name="DayLightTheme" parent="BaseAppTheme">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="themeTextColor">#000000</item>
+        <item name="themeTextSize">18sp</item>
+        <item name="themeName">@string/day_lignt</item>
+        <item name="btnBg">@drawable/shape_btn_cyan</item>
+    </style>
+
+    <style name="DayNightTheme" parent="BaseAppTheme">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/black</item>
+        <item name="themeTextColor">#E0FFFF</item>
+        <item name="themeTextSize">20sp</item>
+        <item name="themeName">@string/day_night</item>
+        <item name="btnBg">@drawable/shape_btn_yellow</item>
+    </style>
+
+</resources>

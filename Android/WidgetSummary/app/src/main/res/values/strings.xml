@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">WidgetSummary</string>
+    <string name="app_name_debug">WidgetSummary</string>
+    <string name="app_name_preview">WidgetSummary</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="digits_rule">0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,.+-*/%()?!</string>
+
+    <string name="color_test"><Data><![CDATA[<font color="#FF0000">其他颜色-</font>默认颜色:%1$s]]></Data></string>
+
+</resources>

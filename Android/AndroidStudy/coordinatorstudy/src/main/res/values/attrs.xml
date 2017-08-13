@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="themeTextColor" format="color|reference"/>
+    <attr name="themeTextSize" format="dimension|reference"/>
+    <attr name="themeName" format="string|reference"/>
+    <attr name="btnBg" format="reference"/>
+
+</resources>

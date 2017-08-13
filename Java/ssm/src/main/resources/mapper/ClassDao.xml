@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.min.api.dao.ClassDao">
+
+    <resultMap type="com.min.api.bean.ClassBean" id="classBeanReslut">
+        <id column="c_id" property="id"/>
+        <result column="c_name" property="name"/>
+        <collection property="studentList" ofType="com.min.api.bean.StudentBean" column="c_id">
+            <id column="s_id" property="id"/>
+            <result column="s_name" property="name"/>
+            <result column="s_age" property="age"/>
+        </collection>
+    </resultMap>
+
+    <select id="queryAll" resultType="com.min.api.bean.ClassBean">
+        SELECT
+          id,
+          name
+        FROM
+          class
+    </select>
+
+    <select id="queryByName" resultMap="classBeanReslut">
+		SELECT
+            c.id c_id,
+            c.name c_name,
+            s.id s_id,
+            s.name s_name,
+            s.age s_age
+        FROM
+            class c
+        INNER JOIN student s ON c.id = s.c_id
+        WHERE c.name = #{name}
+	</select>
+
+	<insert id="add">
+        INSERT INTO class (name) VALUES (#{name})
+    </insert>
+
+    <select id="queryClassIdByName" resultType="int">
+        SELECT
+          id
+        FROM
+          class
+        WHERE name=#{name}
+    </select>
+
+</mapper>

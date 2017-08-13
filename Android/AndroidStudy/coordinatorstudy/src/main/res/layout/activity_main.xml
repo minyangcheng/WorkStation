@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/view_content">
+
+    <com.min.framework.widget.CenterTitleToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        style="@style/ToolbarStyle"
+        app:title="@string/app_name"/>
+
+    <Button
+        android:id="@+id/btn_snackbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="snackbar" />
+
+    <Button
+        android:id="@+id/btn_scrollflag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="scrollflag" />
+
+    <Button
+        android:id="@+id/btn_collapsingtoolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CollapsingToolbar" />
+
+    <Button
+        android:id="@+id/btn_tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="tab" />
+
+    <Button
+        android:id="@+id/btn_behavior"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="BehaviorActivity" />
+
+    <Button
+        android:id="@+id/btn_theme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ThemeControlActivity" />
+
+</LinearLayout>

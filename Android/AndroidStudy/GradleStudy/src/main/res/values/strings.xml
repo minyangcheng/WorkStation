@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">GradleStudy</string>
+    <string name="app_name_debug">测试包GradleStudy</string>
+    <string name="app_name_preview">预览包GradleStudy</string>
+</resources>
