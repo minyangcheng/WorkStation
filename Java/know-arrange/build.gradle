@@ -1,0 +1,21 @@
+group 'com.min'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+jar {
+    baseName = 'auto-api'
+    version = '1.0.0'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile 'com.google.code.gson:gson:2.8.0'
+}
