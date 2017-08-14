@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>app开放接口调试</title>
+    <style type="text/css">
+        button{
+            width: 100%;
+            height: 25px;
+            margin-bottom: 10px;
+            display: block;
+        }
+    </style>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+    <script>
+        function showAlert(msg) {
+            alert(msg);
+        }
+        function showConfirm(msg) {
+            var b=confirm(msg);
+            alert(b);
+        }
+        function getUserid() {
+            alert(cgwapp.getUserid());
+        }
+        function showAlertMsg() {
+            cgwapp.showAlertMsg("this is title","this is message");
+        }
+        function showPictures() {
+            var urlArr= [
+                "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491467640047&di=056ac15e415d57f9d09c0505744e2ac1&imgtype=0&src=http%3A%2F%2Fwww.6pv.cn%2Fuploads%2F2017%2F03%2F10%2F2_161222151824_1.jpg"
+                ,
+                "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491467640164&di=10f38c70d66489148e8df6068f790542&imgtype=0&src=http%3A%2F%2Fimage.kejixun.com%2F2016%2F0527%2F20160527051158741.jpg"
+                ,
+                "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491467640163&di=2469fce96dc599534a5cb3476a09452b&imgtype=0&src=http%3A%2F%2Fcnews.chinadaily.com.cn%2Fimg%2Fattachement%2Fjpg%2Fsite1%2F20170214%2Fa41f726b05111a0cfdfa5e.jpg"
+            ];
+            cgwapp.showPictures(JSON.stringify(urlArr),1);
+        }
+        function shareClick() {
+            var param={"topyq": "true",
+                "title":"更多车主分期新产品，尽在车国",
+                "desc":"轻松分期，任您选择",
+                "link":"http://weixin.cgw360.com/companycarinsurance/installmentAgain",
+                "imgUrl":"http://weixin.cgw360.com/images/mob-logo.png"
+            };
+            cgwapp.share(JSON.stringify(param));
+        }
+        function finish() {
+            cgwapp.finish();
+        }
+        function takePic() {
+            cgwapp.takePicture("takePictureCallback");
+        }
+        function takePictureCallback(json) {
+            alert(JSON.stringify(json));
+        }
+        function toastMsg() {
+            cgwapp.toastMsg("吐司一下");
+        }
+        function showRightButton() {
+          cgwapp.showRightButton("right","showRightButtonCallback");
+        }
+        function showRightButtonCallback() {
+            alert("showRightButtonCallback");
+        }
+        function hideToolbar() {
+          cgwapp.hideToolbar();
+        }
+        function userLocation() {
+          cgwapp.userLocation("userLocationCallback");
+        }
+        function userLocationCallback() {
+          alert("userLocationCallback");
+        }
+        function sharewxpyq() {
+          var param={"topyq": "true",
+            "title":"更多车主分期新产品，尽在车国",
+            "desc":"轻松分期，任您选择",
+            "link":"http://weixin.cgw360.com/companycarinsurance/installmentAgain",
+            "imgUrl":"http://weixin.cgw360.com/images/mob-logo.png"
+          };
+          cgwapp.sharewxpyq(JSON.stringify(param));
+        }
+        function goToAndroidPage() {
+            var data={order_asset_code:"CL01-AH-20173-00023",order_car_state_type:0,canonicalName:"com.cgw360.cheguob.ui.activity.order.OrderDetailActivity",ppp:22};
+            cgwapp.openView(JSON.stringify(data));
+        }
+    </script>
+</head>
+<body>
+  <div id="shareData" style="display: none">
+      {"topyq": "true",
+      "title":"更多车主分期新产品，尽在车国",
+      "desc":"轻松分期，任您选择",
+      "link":"http://weixin.cgw360.com/companycarinsurance/installmentAgain",
+      "imgUrl":"http://weixin.cgw360.com/images/mob-logo.png"
+      }
+  </div>
+  <button onclick="showAlert('你好吗')">测试alert弹出对话框</button>
+  <button onclick="showConfirm('你好吗')">测试alert弹出对话框</button>
+  <button onclick="getUserid()">getUserid</button>
+  <button onclick="showAlertMsg()">showAlertMsg</button>
+  <button onclick="showPictures()">showPictures</button>
+  <button onclick="shareClick()">shareClick</button>
+  <button onclick="finish()">close</button>
+  <button onclick="takePic()">takePic</button>
+  <button onclick="toastMsg()">toastMsg</button>
+  <button onclick="goToAndroidPage()">goToAndroidPage</button>
+  <button onclick="showRightButton()">showRightButton</button>
+  <button onclick="hideToolbar()">hideToolbar</button>
+  <button onclick="userLocation()">userLocation</button>
+  <button onclick="sharewxpyq()">sharewxpyq</button>
+</body>
+</html>

@@ -5,7 +5,7 @@ import com.min.know.util.L;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-public class MyClass {
+public class Main {
 
     private static final String HEX_STRING = "0123456789ABCDEF";
 

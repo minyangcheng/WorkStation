@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>test popup</title>
+  <style type="text/css">
+    *{
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+    }
+    html,body{
+      width: 100%;
+      height: 100%;
+    }
+    #containerId{
+      position: relative;
+      width: 100%;
+      height: 500px;
+      background: rebeccapurple;
+    }
+    #contentId{
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background: red;
+      top:0;
+    }
+    button{
+      display: block;
+      width: 90%;
+      height: 30px;
+      margin: 5px auto;
+    }
+  </style>
+  <script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+</head>
+<body>
+  <div id="containerId">
+    <div id="contentId">
+    </div>
+  </div>
+  <button id="startId">开始</button>
+  <button id="stopId">停止</button>
+  <script>
+    var maxTop=$("#containerId").innerHeight()-$("#contentId").innerHeight();
+    var intervalId;
+    $("#startId").click(function () {
+      intervalId=setInterval(function () {
+        var top=$("#contentId").css('top').replace('px','');
+        console.log(top+'  '+maxTop);
+        if(top>=maxTop){
+          clearInterval(intervalId);
+        }else{
+          top=Number(top)+3;
+          console.log("now top="+top);
+          $("#contentId").css('top',top+'px');
+        }
+      },50);
+    });
+    $("#stopId").click(function () {
+      if(intervalId){
+        clearInterval(intervalId);
+      }
+    });
+  </script>
+</body>
+</html>
