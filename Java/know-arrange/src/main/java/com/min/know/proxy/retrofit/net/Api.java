@@ -9,6 +9,6 @@ import com.min.know.proxy.retrofit.annotation.POST;
 public interface Api {
 
     @POST("http://10.10.13.12:8080/dealer/login.json")
-    BaseBean<UserInfo> login(@Field("username") String userName, @Field("userpwd") String userPass);
+    BaseBean<UserInfo<String>> login(@Field("username") String userName, @Field("userpwd") String userPass);
 
 }

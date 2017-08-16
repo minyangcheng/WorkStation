@@ -3,8 +3,8 @@ package com.min.know.proxy.retrofit;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
-import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by minyangcheng on 2017/8/11.
@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class EasyRetrofit {
 
-    private final Map<Method, ServiceMethod> serviceMethodCache = new LinkedHashMap<>();
+    private final Map<Method, ServiceMethod> serviceMethodCache = new ConcurrentHashMap<>();
 
     public <T> T create(final Class<T> service) {
         return (T) Proxy.newProxyInstance(service.getClassLoader(), new Class<?>[]{service},

@@ -3,6 +3,7 @@ package com.min.framework.util;
 import android.Manifest;
 import android.app.Activity;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.tbruyelle.rxpermissions.RxPermissions;
 
 import rx.functions.Action1;
@@ -116,7 +117,7 @@ public class PermissionUtil {
         public abstract void grantSuccess();
 
         public void grantFail() {
-//            ToastUtil.showShortToast(msg);
+            ToastUtils.showShort(msg);
         }
 
     }
