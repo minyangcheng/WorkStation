@@ -6,6 +6,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.2'
+        classpath'me.tatarka:gradle-retrolambda:3.2.5'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -20,4 +21,22 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+ext {
+    compileSdkVersion = 25
+    buildToolsVersion = "25.0.3"
+    minSdkVersion = 15
+    targetSdkVersion = 25
+    versionCode = 1
+    versionName = "1.0.0"
+
+    keyAlias="minych"
+    keyPassword="123456"
+    storeFile="../keystores/minych.jks"
+    storePassword="123456"
+
+    SUPPORT_LIBRARY_VERSION = "25.3.1"
+    ESPRESSO_VERSION = '2.2.2'
+    JUNIT_VERSION = '4.12'
 }

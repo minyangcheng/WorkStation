@@ -1,30 +1,118 @@
 apply plugin: 'com.android.application'
-apply from: '../config/quality/quality.gradle'
+//apply from: '../config/quality/quality.gradle'
+
+def appNameSuffix = "seed"
+
+def buildTime() {
+    return new Date().format("yyyyMMddHHmm")
+}
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    signingConfigs {
+        release {
+            keyAlias rootProject.ext.keyAlias
+            keyPassword rootProject.ext.keyPassword
+            storeFile file(rootProject.ext.storeFile)
+            storePassword rootProject.ext.storePassword
+        }
+    }
+
     defaultConfig {
         applicationId "com.min.seed"
-        minSdkVersion 15
-        targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        resValue "string", "build_config_package", "com.min.seed"
+
+        buildConfigField 'String', 'API_SERVER_URL', '"http://api.cheguo.com"'
+        buildConfigField 'String', 'API_UPDATE_URL', '"http://version.cgw360.com"'
+        buildConfigField 'String', 'WEB_URL', '"http://trailer.cheguo.com"'
+        buildConfigField 'String', 'SOURCE', '"ef198dc1d2c84b3dbc5774fe9b4085d5"'
+        buildConfigField 'String', 'APP_SECRET', '"70be7175c2ef4dcf9c06e3471a5e5633"'
+        manifestPlaceholders = ['UMENG_APPKEY'   : '57e1df4467e58e38250030c0',
+                                'APP_NAME'       : '@string/app_name',
+                                'PUSH_PERMISSION': 'test']
     }
+
     buildTypes {
-        release {
+        debug {
+            debuggable true
             minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            debuggable false
+            minifyEnabled false
+            zipAlignEnabled true
+            shrinkResources false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    productFlavors {
+        beta_in {}
+        official {}
+    }
+
+    productFlavors.all { flavor ->
+        manifestPlaceholders.put("UMENG_CHANNEL_VALUE", name)
+        if (name.contentEquals("beta_in")) {
+            manifestPlaceholders.put("UMENG_APPKEY", "test")
+
+            buildConfigField 'String', 'API_SERVER_URL', '"http://10.10.13.12:8080"'
+            buildConfigField 'String', 'API_UPDATE_URL', '"http://10.10.13.7:2531"'
+            buildConfigField 'String', 'SOURCE', '"123456"'
+            buildConfigField 'String', 'APP_SECRET', '"1234567890"'
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.endsWith('.apk') && 'release'.equals(variant.buildType.name)) {
+                output.outputFile = new File(output.outputFile.parent,
+                        "${appNameSuffix}-${buildTime()}-${variant.buildType.name}-${variant.versionName}-${variant.productFlavors[0].name}.apk".toLowerCase())
+            }
+        }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'LICENSE.txt'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE'
+    }
+
+    lintOptions {
+        warning 'InvalidPackage'
+        disable 'MissingTranslation'
+        abortOnError false
+    }
+
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile("com.android.support.test.espresso:espresso-core:${rootProject.ext.ESPRESSO_VERSION}", {
         exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.google.code.findbugs'
     })
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    testCompile 'junit:junit:4.12'
+    testCompile "junit:junit:${rootProject.ext.JUNIT_VERSION}"
+    compile project(':framework')
 }
