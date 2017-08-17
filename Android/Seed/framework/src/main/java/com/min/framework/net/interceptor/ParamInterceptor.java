@@ -5,7 +5,6 @@ import android.text.TextUtils;
 import com.blankj.utilcode.util.EncryptUtils;
 import com.min.framework.ConfigConstants;
 import com.min.framework.util.GsonUtil;
-import com.min.framework.util.L;
 
 import java.io.IOException;
 import java.net.URLDecoder;
@@ -20,10 +19,9 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okio.Buffer;
+import timber.log.Timber;
 
 public class ParamInterceptor implements Interceptor {
-
-    private static final String TAG = "ParamInterceptor";
 
     public static final String FORM = "application/x-www-form-urlencoded";
 
@@ -36,7 +34,7 @@ public class ParamInterceptor implements Interceptor {
 
         RequestBody requestBody = request.body();
         if (request.method().equalsIgnoreCase("GET") || !isFormUrlEncoded(requestBody)) {
-            L.d(ConfigConstants.HTTP_LOG, "request=  %s", request.url().toString());
+            Timber.tag(ConfigConstants.HTTP_LOG).d("request=  %s", request.url().toString());
             return chain.proceed(request);
         }
 
@@ -57,7 +55,7 @@ public class ParamInterceptor implements Interceptor {
 
         //http log
         map.put("api", request.url().toString());
-        L.d(ConfigConstants.HTTP_LOG, "request=  %s", GsonUtil.toPrettyJson(map));
+        Timber.tag(ConfigConstants.HTTP_LOG).d("request=  %s", GsonUtil.toPrettyJson(map));
 
         Response response = chain.proceed(request);
         return response;
@@ -73,7 +71,7 @@ public class ParamInterceptor implements Interceptor {
             head.time = mDateFormat.format(new Date());
 
             jsonString = GsonUtil.toJson(head);
-            L.d(TAG, jsonString);
+            Timber.d(jsonString);
         } catch (Exception ex) {
             ex.printStackTrace();
         }

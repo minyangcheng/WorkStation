@@ -2,7 +2,7 @@ package com.min.framework.util;
 
 import android.text.TextUtils;
 
-import com.blankj.utilcode.util.FileUtils;
+import com.blankj.utilcode.util.FileIOUtils;
 
 import java.io.File;
 import java.io.InputStream;
@@ -33,7 +33,7 @@ public class AmountLimitCache {
         deleteFilesWhenArriveMaxCount();
 
         File file = getFile(fileName);
-        return FileUtils.writeFile(file, is);
+        return FileIOUtils.writeFileFromIS(file, is);
     }
 
     public void clear() {

@@ -12,23 +12,24 @@ import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
+import timber.log.Timber;
 
 public class RxTransformsHelper {
 
-    public static <T> Observable.Transformer<BaseBean<T>,T> handleServerResult(){
+    public static <T> Observable.Transformer<BaseBean<T>, T> handleServerResult() {
         return handleServerResult(true);
     }
 
-    public static <T> Observable.Transformer<BaseBean<T>,T> handleServerResult_(){
+    public static <T> Observable.Transformer<BaseBean<T>, T> handleServerResult_() {
         return handleServerResult(false);
     }
 
-    private static <T> Observable.Transformer<BaseBean<T>,T> handleServerResult(final boolean isUIThread){
+    private static <T> Observable.Transformer<BaseBean<T>, T> handleServerResult(final boolean isUIThread) {
         return new Observable.Transformer<BaseBean<T>, T>() {
             @Override
             public Observable<T> call(Observable<BaseBean<T>> tObservable) {
-                if(isUIThread){
-                    tObservable=tObservable.subscribeOn(Schedulers.io())
+                if (isUIThread) {
+                    tObservable = tObservable.subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread());
                 }
                 return tObservable.lift(new Observable.Operator<T, BaseBean<T>>() {
@@ -49,7 +50,7 @@ public class RxTransformsHelper {
                                     return;
                                 }
                                 //http请求返回
-                                L.d(ConfigConstants.HTTP_LOG, "response=  %s", Log.getStackTraceString(e));
+                                Timber.tag(ConfigConstants.HTTP_LOG).d("response=  %s", Log.getStackTraceString(e));
                                 if (e instanceof SocketTimeoutException) {
                                     subscriber.onError(new ServerApiException(-1, e.getMessage()));
                                 } else {
@@ -63,7 +64,7 @@ public class RxTransformsHelper {
                                     return;
                                 }
                                 //http请求返回
-                                L.d(ConfigConstants.HTTP_LOG, "response=  %s", GsonUtil.toPrettyJson(tBaseBean));
+                                Timber.tag(ConfigConstants.HTTP_LOG).d("response=  %s", GsonUtil.toPrettyJson(tBaseBean));
                                 if (tBaseBean.isSuccess()) {
                                     subscriber.onNext(tBaseBean.data);
                                 } else if (tBaseBean.isSignOut()) {
@@ -80,8 +81,8 @@ public class RxTransformsHelper {
         };
     }
 
-    public static <T> Observable.Transformer<T,T> io_main(){
-        return new Observable.Transformer<T,T>(){
+    public static <T> Observable.Transformer<T, T> io_main() {
+        return new Observable.Transformer<T, T>() {
             @Override
             public Observable<T> call(Observable<T> tObservable) {
                 return tObservable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
