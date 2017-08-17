@@ -32,7 +32,7 @@ public final class CrashUtils {
     private static String  versionName;
     private static int     versionCode;
 
-    private static final String FILE_SEP = System.getProperty("file.separator");
+    private static final String FILE_SEP = "/";
     private static final Format FORMAT   = new SimpleDateFormat("MM-dd HH-mm-ss", Locale.getDefault());
 
     private static final String CRASH_HEAD;

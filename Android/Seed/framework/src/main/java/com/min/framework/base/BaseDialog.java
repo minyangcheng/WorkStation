@@ -18,7 +18,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
-import com.min.framework.util.L;
 import com.min.framework.util.StatusBarUtils;
 
 import butterknife.ButterKnife;
@@ -39,29 +38,29 @@ public abstract class BaseDialog extends Dialog {
     private int mMaxWidth;
 
     private boolean mIsAutoDismiss;
-    private int mAutoDismissDelay=3000;
+    private int mAutoDismissDelay = 3000;
 
-    private boolean mIsOutsideDismiss=true;
+    private boolean mIsOutsideDismiss = true;
 
     private LinearLayout mTopView;
     private View mContentView;
 
-    private int mContentGravity=Gravity.CENTER;
+    private int mContentGravity = Gravity.CENTER;
 
-    private Handler mHandler=new Handler(Looper.myLooper());
+    private Handler mHandler = new Handler(Looper.myLooper());
 
     public BaseDialog(Context context) {
         super(context);
-        mContext=context;
-        tag =this.getClass().getSimpleName();
+        mContext = context;
+        tag = this.getClass().getSimpleName();
         setDialogTheme();
         initMaxHeightAndWidth(context);
     }
 
-    private void initMaxHeightAndWidth(Context context){
-        DisplayMetrics dm=context.getResources().getDisplayMetrics();
-        mMaxHeight=dm.heightPixels- StatusBarUtils.getHeight(context);
-        mMaxWidth=dm.widthPixels;
+    private void initMaxHeightAndWidth(Context context) {
+        DisplayMetrics dm = context.getResources().getDisplayMetrics();
+        mMaxHeight = dm.heightPixels - StatusBarUtils.getHeight(context);
+        mMaxWidth = dm.widthPixels;
     }
 
     private void setDialogTheme() {
@@ -70,37 +69,37 @@ public abstract class BaseDialog extends Dialog {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
     }
 
-    protected void setParam(){}
+    protected void setParam() {
+    }
 
-    protected View onCreateView(){
-        if(getLayoutId()>0){
-            View view= LayoutInflater.from(mContext).inflate(getLayoutId(),null);
-            ButterKnife.bind(this,view);
+    protected View onCreateView() {
+        if (getLayoutId() > 0) {
+            View view = LayoutInflater.from(mContext).inflate(getLayoutId(), null);
+            ButterKnife.bind(this, view);
             return view;
         }
         return null;
     }
 
-    protected void onViewCreate(View contentView){}
+    protected void onViewCreate(View contentView) {
+    }
 
     protected abstract int getLayoutId();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        L.d(tag, "onCreate");
         setParam();
-        mContentView =onCreateView();
+        mContentView = onCreateView();
         onViewCreate(mContentView);
 
-        mTopView=new LinearLayout(mContext);
+        mTopView = new LinearLayout(mContext);
         mTopView.setGravity(mContentGravity);
         mTopView.addView(mContentView);
         mTopView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mIsOutsideDismiss) {
-                    L.d(tag,"mTopView be click");
                     dismiss();
                 }
             }
@@ -111,7 +110,6 @@ public abstract class BaseDialog extends Dialog {
     @Override
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
-        L.d(tag, "onAttachedToWindow");
         setTopViewSize();
         setContentViewSize();
 
@@ -125,12 +123,12 @@ public abstract class BaseDialog extends Dialog {
         });
     }
 
-    private void startEnterAnim(){
-        if(mShowAnim!=null&& mContentView !=null&&!mIsShowingAnim){
+    private void startEnterAnim() {
+        if (mShowAnim != null && mContentView != null && !mIsShowingAnim) {
             mShowAnim.listener(new Animator.AnimatorListener() {
                 @Override
                 public void onAnimationStart(Animator animator) {
-                    mIsShowingAnim=true;
+                    mIsShowingAnim = true;
                 }
 
                 @Override
@@ -140,32 +138,30 @@ public abstract class BaseDialog extends Dialog {
 
                 @Override
                 public void onAnimationEnd(Animator animator) {
-                    mIsShowingAnim=false;
+                    mIsShowingAnim = false;
                     autoDismiss();
                 }
 
                 @Override
                 public void onAnimationCancel(Animator animator) {
-                    mIsShowingAnim=false;
+                    mIsShowingAnim = false;
                 }
             }).playOn(mContentView);
-        }else{
+        } else {
             autoDismiss();
         }
     }
 
     @Override
     public void setCanceledOnTouchOutside(boolean cancel) {
-        L.d(tag, "setCanceledOnTouchOutside");
         super.setCanceledOnTouchOutside(cancel);
-        mIsOutsideDismiss=cancel;
+        mIsOutsideDismiss = cancel;
     }
 
     @Override
     public void dismiss() {
-        L.d(tag, "dismiss");
-        if(mdismissAnim!=null&& mContentView !=null){
-            if(mIsDissmissAnim) return;
+        if (mdismissAnim != null && mContentView != null) {
+            if (mIsDissmissAnim) return;
 
             mdismissAnim.listener(new Animator.AnimatorListener() {
                 @Override
@@ -189,7 +185,7 @@ public abstract class BaseDialog extends Dialog {
                     mIsDissmissAnim = false;
                 }
             }).playOn(mContentView);
-        }else{
+        } else {
             superDismiss();
         }
     }
@@ -203,13 +199,13 @@ public abstract class BaseDialog extends Dialog {
         return this;
     }
 
-    public BaseDialog setDimAmount(float value){
+    public BaseDialog setDimAmount(float value) {
         getWindow().setDimAmount(value);
         return this;
     }
 
-    private void autoDismiss(){
-        if(mIsAutoDismiss&&mAutoDismissDelay>0){
+    private void autoDismiss() {
+        if (mIsAutoDismiss && mAutoDismissDelay > 0) {
             mHandler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -219,46 +215,46 @@ public abstract class BaseDialog extends Dialog {
         }
     }
 
-    public BaseDialog showAnim(BaseAnimatorSet showAnim){
-        mShowAnim=showAnim;
+    public BaseDialog showAnim(BaseAnimatorSet showAnim) {
+        mShowAnim = showAnim;
         return this;
     }
 
-    public BaseDialog dismissAnim(BaseAnimatorSet dismissAnim){
-        mdismissAnim=dismissAnim;
+    public BaseDialog dismissAnim(BaseAnimatorSet dismissAnim) {
+        mdismissAnim = dismissAnim;
         return this;
     }
 
-    public BaseDialog setWidthScale(float scale){
-        mWidthScale=scale;
+    public BaseDialog setWidthScale(float scale) {
+        mWidthScale = scale;
         return this;
     }
 
-    public BaseDialog setHeightScale(float scale){
-        mHeightScale=scale;
+    public BaseDialog setHeightScale(float scale) {
+        mHeightScale = scale;
         return this;
     }
 
-    public BaseDialog autoDismiss(boolean autoDismiss){
-        mIsAutoDismiss=autoDismiss;
+    public BaseDialog autoDismiss(boolean autoDismiss) {
+        mIsAutoDismiss = autoDismiss;
         return this;
     }
 
-    public void superShow(){
+    public void superShow() {
         super.show();
     }
 
-    public BaseDialog gravity(int gravity){
-        if(gravity!=Gravity.CENTER||gravity!=Gravity.CENTER_HORIZONTAL){
-            gravity=gravity|Gravity.CENTER_HORIZONTAL;
+    public BaseDialog gravity(int gravity) {
+        if (gravity != Gravity.CENTER || gravity != Gravity.CENTER_HORIZONTAL) {
+            gravity = gravity | Gravity.CENTER_HORIZONTAL;
         }
-        mContentGravity=gravity;
+        mContentGravity = gravity;
         return this;
     }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        if(mIsShowingAnim||mIsDissmissAnim||mIsAutoDismiss){
+        if (mIsShowingAnim || mIsDissmissAnim || mIsAutoDismiss) {
             return true;
         }
         return super.dispatchTouchEvent(ev);
@@ -266,41 +262,40 @@ public abstract class BaseDialog extends Dialog {
 
     @Override
     public void onBackPressed() {
-        L.d(tag, "onBackPressed");
-        if(mIsShowingAnim||mIsDissmissAnim||mIsAutoDismiss){
+        if (mIsShowingAnim || mIsDissmissAnim || mIsAutoDismiss) {
             return;
         }
         super.onBackPressed();
     }
 
-    public void superDismiss(){
+    public void superDismiss() {
         super.dismiss();
     }
 
-    private void setTopViewSize(){
+    private void setTopViewSize() {
         WindowManager.LayoutParams lp = getWindow().getAttributes();
-        lp.width=WindowManager.LayoutParams.MATCH_PARENT;
-        lp.height=WindowManager.LayoutParams.MATCH_PARENT;
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
         getWindow().setAttributes(lp);
     }
 
-    private void setContentViewSize(){
-        LinearLayout.LayoutParams lp=new LinearLayout.LayoutParams(getScaleValue(mMaxWidth,mWidthScale)
-                                            ,getScaleValue(mMaxHeight,mHeightScale));
+    private void setContentViewSize() {
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(getScaleValue(mMaxWidth, mWidthScale)
+                , getScaleValue(mMaxHeight, mHeightScale));
         mContentView.setLayoutParams(lp);
     }
 
-    private int getScaleValue(int max,float scale){
-        if(scale<0||scale>1f){
+    private int getScaleValue(int max, float scale) {
+        if (scale < 0 || scale > 1f) {
             throw new IllegalArgumentException("mWidthScale or mHeightScale must be 0 to 1");
         }
-        int value=0;
-        if(scale==0){
-            value=LinearLayout.LayoutParams.WRAP_CONTENT;
-        }else if(scale==1){
-            value=LinearLayout.LayoutParams.MATCH_PARENT;
-        }else{
-            value= (int) (max*scale);
+        int value = 0;
+        if (scale == 0) {
+            value = LinearLayout.LayoutParams.WRAP_CONTENT;
+        } else if (scale == 1) {
+            value = LinearLayout.LayoutParams.MATCH_PARENT;
+        } else {
+            value = (int) (max * scale);
         }
         return value;
     }

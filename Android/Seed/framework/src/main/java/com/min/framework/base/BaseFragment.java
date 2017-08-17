@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import com.min.framework.util.L;
 import com.trello.rxlifecycle.components.support.RxFragment;
 
 public class BaseFragment extends RxFragment {
@@ -56,13 +55,13 @@ public class BaseFragment extends RxFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        L.d(tag, this.getClass().getSimpleName() + "  onCreate");
+        Log.d(tag, this.getClass().getSimpleName() + "  onCreate");
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        L.d(tag, this.getClass().getSimpleName() + "  onViewCreated");
+        Log.d(tag, this.getClass().getSimpleName() + "  onViewCreated");
         mIsPrepared = true;
         judgeLoad();
     }
@@ -76,7 +75,7 @@ public class BaseFragment extends RxFragment {
     @Override
     public void onPause() {
         super.onPause();
-        L.d(tag, this.getClass().getSimpleName() + "  onPause");
+        Log.d(tag, this.getClass().getSimpleName() + "  onPause");
     }
 
     @Override
@@ -89,7 +88,7 @@ public class BaseFragment extends RxFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        L.d(tag, this.getClass().getSimpleName() + "  onDestroy");
+        Log.d(tag, this.getClass().getSimpleName() + "  onDestroy");
     }
 
 }

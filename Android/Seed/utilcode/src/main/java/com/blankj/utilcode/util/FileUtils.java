@@ -31,7 +31,7 @@ public final class FileUtils {
         throw new UnsupportedOperationException("u can't instantiate me...");
     }
 
-    private static final String LINE_SEP = System.getProperty("line.separator");
+    private static final String LINE_SEP = "\n";
 
     /**
      * 根据文件路径获取文件

@@ -34,8 +34,8 @@ public class MainActivity extends BaseActivity {
 
     @OnClick(R.id.btn_timer)
     void clickTimer() {
-        Timber.d("name=%s,age=%s","min",12);
-        Timber.d(new RuntimeException("ji"),"name=%s,age=%s","min",12);
+        Timber.d("name=%s,age=%s", "min", 12);
+        Timber.d(new RuntimeException("ji"), "name=%s,age=%s", "min", 12);
         Timber.tag("MyTest").d("this is mytest");
         Timber.d("this is test");
     }

@@ -2,6 +2,7 @@ package com.blankj.utilcode.util;
 
 import android.os.Environment;
 import android.support.annotation.IntDef;
+import android.text.TextUtils;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -77,8 +78,8 @@ public final class LogUtils {
     private static int     sFileFilter        = V;    // log文件过滤器
 
     private static final Config CONFIG        = new Config();
-    private static final String FILE_SEP      = System.getProperty("file.separator");
-    private static final String LINE_SEP      = System.getProperty("line.separator");
+    private static final String FILE_SEP      = "/";
+    private static final String LINE_SEP      = "\n";
     private static final String TOP_BORDER    = "╔═══════════════════════════════════════════════════════════════════════════════════════════════════";
     private static final String LEFT_BORDER   = "║ ";
     private static final String BOTTOM_BORDER = "╚═══════════════════════════════════════════════════════════════════════════════════════════════════";
@@ -103,6 +104,14 @@ public final class LogUtils {
 
     public static void v(final String tag, final Object... contents) {
         log(V, tag, contents);
+    }
+
+    public static void d(String tag,String message,Object... objects){
+        if(TextUtils.isEmpty(tag)||TextUtils.isEmpty(message)) return;
+        if(objects!=null&&objects.length>0){
+            message=String.format(message,objects);
+        }
+        d(message);
     }
 
     public static void d(final Object contents) {

@@ -7,15 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.min.framework.R;
-import com.min.framework.util.L;
 
 public class PageLoader extends RecyclerView.OnScrollListener {
 
-    private static final String TAG=PageLoader.class.getSimpleName();
+    private static final String TAG = PageLoader.class.getSimpleName();
 
-    private static final int TYPE_LOADING=1;
-    private static final int TYPE_LOAD_FIAL=2;
-    private static final int TYPE_END=3;
+    private static final int TYPE_LOADING = 1;
+    private static final int TYPE_LOAD_FIAL = 2;
+    private static final int TYPE_END = 3;
 
     private Context mContext;
     private LinearLayoutManager mLayoutManager;
@@ -27,27 +26,27 @@ public class PageLoader extends RecyclerView.OnScrollListener {
     private FooterHolder mHolder;
 
     private boolean mIsLoading;
-    private boolean mEnable=true;
+    private boolean mEnable = true;
 
     private boolean mShouldShowFinishFooter;
 
-    public PageLoader(RecyclerView recyclerView){
-        if(recyclerView==null){
+    public PageLoader(RecyclerView recyclerView) {
+        if (recyclerView == null) {
             throw new RuntimeException("recycleView must not be null in pageloader");
         }
-        mContext =recyclerView.getContext();
-        mLayoutManager= (LinearLayoutManager) recyclerView.getLayoutManager();
-        if(mLayoutManager==null){
+        mContext = recyclerView.getContext();
+        mLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+        if (mLayoutManager == null) {
             throw new RuntimeException("must set layoutManager before init pageloader");
         }
 
-        mAdapter= (HFRecyclerViewAdapter) recyclerView.getAdapter();
-        if(mAdapter==null){
+        mAdapter = (HFRecyclerViewAdapter) recyclerView.getAdapter();
+        if (mAdapter == null) {
             throw new RuntimeException("must set adapter before init pageloader");
         }
         recyclerView.addOnScrollListener(this);
-        mFooterView = LayoutInflater.from(mContext).inflate(R.layout.item_footer_base_rl, recyclerView,false);
-        mHolder=new FooterHolder(mFooterView);
+        mFooterView = LayoutInflater.from(mContext).inflate(R.layout.item_footer_base_rl, recyclerView, false);
+        mHolder = new FooterHolder(mFooterView);
         mHolder.loadFailView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,51 +67,49 @@ public class PageLoader extends RecyclerView.OnScrollListener {
         super.onScrolled(recyclerView, dx, dy);
         int lastVisibleItem = mLayoutManager.findLastVisibleItemPosition();
         int totalItemCount = mLayoutManager.getItemCount();
-        L.i(TAG, "lastVisibleItem=%s , totalItemCount=%s ,dy=%s", lastVisibleItem, totalItemCount, dy);
-        if (mLoadListener!=null&&mEnable&&!mIsLoading&& lastVisibleItem >= totalItemCount - 1 && dy > 0) {
-            L.d(TAG, "slide to end ...");
+        if (mLoadListener != null && mEnable && !mIsLoading && lastVisibleItem >= totalItemCount - 1 && dy > 0) {
             setLoadStart();
         }
     }
 
-    public void setLoadStart(){
+    public void setLoadStart() {
         showType(TYPE_LOADING);
         mAdapter.setFooterView(mFooterView);
-        mIsLoading=true;
+        mIsLoading = true;
         mLoadListener.onLoad();
     }
 
-    public void setLoadFail(){
+    public void setLoadFail() {
         showType(TYPE_LOAD_FIAL);
     }
 
-    public void setLoadSuccess(){
+    public void setLoadSuccess() {
         mAdapter.removeFooter();
-        mIsLoading=false;
+        mIsLoading = false;
     }
 
-    public void setLoadFianlly(boolean isFinish){
-        mEnable=!isFinish;
-        if(isFinish&&mShouldShowFinishFooter){
+    public void setLoadFianlly(boolean isFinish) {
+        mEnable = !isFinish;
+        if (isFinish && mShouldShowFinishFooter) {
             showType(TYPE_END);
             mAdapter.setFooterView(mFooterView);
         }
     }
 
-    public void setShouldShowFinishFooter(boolean showFinishFooter){
-        mShouldShowFinishFooter=showFinishFooter;
+    public void setShouldShowFinishFooter(boolean showFinishFooter) {
+        mShouldShowFinishFooter = showFinishFooter;
     }
 
     public void setLoadListener(OnLoadListener loadListener) {
         mLoadListener = loadListener;
     }
 
-    public interface OnLoadListener{
+    public interface OnLoadListener {
         public void onLoad();
     }
 
-    private void showType(int type){
-        switch (type){
+    private void showType(int type) {
+        switch (type) {
             case TYPE_LOADING: //正在加载
                 mHolder.progressBar.setVisibility(View.VISIBLE);
                 mHolder.loadingView.setVisibility(View.VISIBLE);
@@ -140,18 +137,18 @@ public class PageLoader extends RecyclerView.OnScrollListener {
         }
     }
 
-    public class FooterHolder{
+    public class FooterHolder {
 
         View progressBar;
         View loadingView;
         View loadFailView;
         View endView;
 
-        public FooterHolder(View view){
-            progressBar=view.findViewById(R.id.pb_bar);
-            loadingView=view.findViewById(R.id.tv_loading);
-            loadFailView=view.findViewById(R.id.tv_fail);
-            endView=view.findViewById(R.id.tv_end);
+        public FooterHolder(View view) {
+            progressBar = view.findViewById(R.id.pb_bar);
+            loadingView = view.findViewById(R.id.tv_loading);
+            loadFailView = view.findViewById(R.id.tv_fail);
+            endView = view.findViewById(R.id.tv_end);
         }
 
     }

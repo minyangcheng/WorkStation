@@ -33,7 +33,7 @@ public final class FileIOUtils {
         throw new UnsupportedOperationException("u can't instantiate me...");
     }
 
-    private static final String LINE_SEP = System.getProperty("line.separator");
+    private static final String LINE_SEP = "\n";
 
     private static int sBufferSize = 8192;
 

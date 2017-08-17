@@ -1,7 +1,6 @@
 package com.blankj.utilcode.util;
 
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
@@ -10,7 +9,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
 import android.view.View;
 
@@ -32,18 +30,18 @@ public final class FragmentUtils {
         throw new UnsupportedOperationException("u can't instantiate me...");
     }
 
-    private static final int TYPE_ADD_FRAGMENT       = 0x01;
-    private static final int TYPE_HIDE_ADD_FRAGMENT  = 0x01 << 1;
-    private static final int TYPE_REMOVE_FRAGMENT    = 0x01 << 2;
+    private static final int TYPE_ADD_FRAGMENT = 0x01;
+    private static final int TYPE_HIDE_ADD_FRAGMENT = 0x01 << 1;
+    private static final int TYPE_REMOVE_FRAGMENT = 0x01 << 2;
     private static final int TYPE_REMOVE_TO_FRAGMENT = 0x01 << 3;
-    private static final int TYPE_REPLACE_FRAGMENT   = 0x01 << 4;
-    private static final int TYPE_POP_ADD_FRAGMENT   = 0x01 << 5;
-    private static final int TYPE_HIDE_FRAGMENT      = 0x01 << 6;
-    private static final int TYPE_SHOW_FRAGMENT      = 0x01 << 7;
+    private static final int TYPE_REPLACE_FRAGMENT = 0x01 << 4;
+    private static final int TYPE_POP_ADD_FRAGMENT = 0x01 << 5;
+    private static final int TYPE_HIDE_FRAGMENT = 0x01 << 6;
+    private static final int TYPE_SHOW_FRAGMENT = 0x01 << 7;
     private static final int TYPE_HIDE_SHOW_FRAGMENT = 0x01 << 8;
 
-    private static final String ARGS_ID           = "args_id";
-    private static final String ARGS_IS_HIDE      = "args_is_hide";
+    private static final String ARGS_ID = "args_id";
+    private static final String ARGS_IS_HIDE = "args_is_hide";
     private static final String ARGS_IS_ADD_STACK = "args_is_add_stack";
 
     /**
@@ -522,7 +520,6 @@ public final class FragmentUtils {
                                             final SharedElement... sharedElements) {
         if (srcFragment == destFragment) return null;
         if (srcFragment != null && srcFragment.isRemoving()) {
-            LogUtils.e(srcFragment.getClass().getName() + " is isRemoving");
             return null;
         }
         String name = destFragment.getClass().getName();
@@ -885,7 +882,7 @@ public final class FragmentUtils {
     }
 
     static class Args {
-        int     id;
+        int id;
         boolean isHide;
         boolean isAddStack;
 
@@ -897,7 +894,7 @@ public final class FragmentUtils {
     }
 
     public static class SharedElement {
-        View   sharedElement;
+        View sharedElement;
         String name;
 
         public SharedElement(final View sharedElement, final String name) {
@@ -907,7 +904,7 @@ public final class FragmentUtils {
     }
 
     public static class FragmentNode {
-        Fragment           fragment;
+        Fragment fragment;
         List<FragmentNode> next;
 
         public FragmentNode(final Fragment fragment, final List<FragmentNode> next) {

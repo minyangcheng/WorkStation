@@ -81,7 +81,7 @@ public final class SpanUtils {
     public @interface Align {
     }
 
-    private static final String LINE_SEPARATOR = System.getProperty("line.separator");
+    private static final String LINE_SEPARATOR = "\n";
 
     private CharSequence  mText;
     private int           flag;
