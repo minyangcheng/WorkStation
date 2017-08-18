@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin:'me.tatarka.retrolambda'
+apply plugin: 'org.greenrobot.greendao'
 //apply from: '../config/quality/quality.gradle'
 
 def appNameSuffix = "seed"
@@ -114,6 +115,13 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    greendao {
+        schemaVersion 1
+        //自动生成的文件所在目录
+        daoPackage 'com.min.seed.db.dao'
+        targetGenDir 'src/main/java'
     }
 
 }

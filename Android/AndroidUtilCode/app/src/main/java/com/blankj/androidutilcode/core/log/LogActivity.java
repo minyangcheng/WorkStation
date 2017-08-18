@@ -77,6 +77,9 @@ public class LogActivity extends BaseBackActivity {
     public static void start(Context context) {
         Intent starter = new Intent(context, LogActivity.class);
         context.startActivity(starter);
+
+        LogUtils.d("nihaoma");
+        LogUtils.e(new RuntimeException("nihaoma"));
     }
 
     @Override

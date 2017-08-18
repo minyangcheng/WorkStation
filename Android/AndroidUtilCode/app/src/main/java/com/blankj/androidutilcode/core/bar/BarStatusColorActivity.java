@@ -2,6 +2,7 @@ package com.blankj.androidutilcode.core.bar;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
@@ -41,7 +42,8 @@ public class BarStatusColorActivity extends BaseActivity {
     @Override
     public void initData(Bundle bundle) {
         mRandom = new Random();
-        mColor = ContextCompat.getColor(UtilsApp.getInstance(), R.color.colorPrimary);
+//        mColor = ContextCompat.getColor(UtilsApp.getInstance(), R.color.colorPrimary);
+        mColor= Color.parseColor("#ff5a37");
         mAlpha = 112;
     }
 
@@ -102,6 +104,6 @@ public class BarStatusColorActivity extends BaseActivity {
 
     private void updateStatusBar() {
         BarUtils.setStatusBarColor(this, mColor, mAlpha);
-        BarUtils.addMarginTopEqualStatusBarHeight(mTvStatusAlpha);// 其实这个只需要调用一次即可
+        BarUtils.addMarginTopEqualStatusBarHeight(findViewById(R.id.view_content));// 其实这个只需要调用一次即可
     }
 }

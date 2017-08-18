@@ -442,6 +442,7 @@ public final class ToastUtils {
                 sToast.setView(view);
                 sToast.setDuration(duration);
                 isCustom = true;
+                sViewWeakReference=null;
             }
         }
         if (!isCustom) {

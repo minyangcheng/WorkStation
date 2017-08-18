@@ -102,6 +102,12 @@ public class ToastActivity extends BaseBackActivity {
                 break;
             case R.id.btn_show_custom_view:
                 ToastUtils.showCustomLong(R.layout.toast_custom);
+                findViewById(R.id.btn_show_custom_view).postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                      ToastUtils.showShort("nihaoma");
+                    }
+                },5000);
                 break;
             case R.id.btn_show_middle:
                 ToastUtils.setGravity(Gravity.CENTER, 0, 0);

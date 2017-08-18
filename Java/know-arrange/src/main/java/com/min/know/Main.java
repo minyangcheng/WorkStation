@@ -10,11 +10,12 @@ public class Main {
     private static final String HEX_STRING = "0123456789ABCDEF";
 
     public static void main(String args[]){
-        try {
-            L.d(callJS("aa","bb","cc"));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            L.d(callJS("aa","bb","cc"));
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+        System.out.println("6B3560D6E5E55BA206A0FC1F911C2549".toLowerCase());
     }
 
     public static String callJS(String methodName,String... args){

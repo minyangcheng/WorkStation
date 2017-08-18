@@ -33,7 +33,6 @@ android {
     buildTypes {
         debug {
             minifyEnabled false
-            testCoverageEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         release {
@@ -59,9 +58,9 @@ dependencies {
     final TRUTH_VERSION = '0.31'
     final ROBOLECTRIC_VERSION = '3.1.2'
 
-    provided "com.android.support:appcompat-v7:$SUPPORT_VERSION"
-    provided "com.android.support:support-v4:$SUPPORT_VERSION"
-    provided "com.android.support:design:$SUPPORT_VERSION"
+    compile "com.android.support:appcompat-v7:$SUPPORT_VERSION"
+    compile "com.android.support:support-v4:$SUPPORT_VERSION"
+    compile "com.android.support:design:$SUPPORT_VERSION"
 
     testCompile "junit:junit:$JUNIT_VERSION"
     testCompile "com.google.truth:truth:$TRUTH_VERSION"

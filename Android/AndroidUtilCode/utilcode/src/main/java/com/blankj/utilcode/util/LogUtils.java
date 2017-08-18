@@ -196,6 +196,7 @@ public final class LogUtils {
     private static void log(final int type, final String tag, final Object... contents) {
         if (!sLogSwitch || (!sLog2ConsoleSwitch && !sLog2FileSwitch)) return;
         int type_low = type & 0x0f, type_high = type & 0xf0;
+        Log.d("MyTest",String.format("type=%s,low=%s,high=%s",type,type_low,type_high));
         if (type_low < sConsoleFilter && type_low < sFileFilter) return;
         final String[] tagAndHead = processTagAndHead(tag);
         String body = processBody(type_high, contents);
