@@ -1,0 +1,9 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.min.seed"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        tools:replace="android:name"
+        android:name=".MyDebugApplication"/>
+
+</manifest>

@@ -13,9 +13,9 @@ import com.min.framework.util.ImageLoaderWrap;
 
 import timber.log.Timber;
 
-public class App extends Application {
+public class FrameWorkApp extends Application {
 
-    private static final String TAG = App.class.getSimpleName();
+    private static final String TAG = FrameWorkApp.class.getSimpleName();
 
     private static Context context;
 

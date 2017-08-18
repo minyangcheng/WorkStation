@@ -17,9 +17,21 @@
         android:text="list_sample"/>
 
     <Button
-        android:id="@+id/btn_timer"
+        android:id="@+id/btn_terminal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="timer"/>
+        android:text="terminal"/>
+
+    <Button
+        android:id="@+id/btn_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="location"/>
+
+    <Button
+        android:id="@+id/btn_event"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="event"/>
 
 </LinearLayout>

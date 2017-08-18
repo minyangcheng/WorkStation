@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin:'me.tatarka.retrolambda'
 //apply from: '../config/quality/quality.gradle'
 
 def appNameSuffix = "seed"
@@ -34,6 +35,7 @@ android {
         buildConfigField 'String', 'WEB_URL', '"http://trailer.cheguo.com"'
         buildConfigField 'String', 'SOURCE', '"ef198dc1d2c84b3dbc5774fe9b4085d5"'
         buildConfigField 'String', 'APP_SECRET', '"70be7175c2ef4dcf9c06e3471a5e5633"'
+        buildConfigField 'String', 'BUGLY_APPID', '"bugly_id"'
         manifestPlaceholders = ['UMENG_APPKEY'   : '57e1df4467e58e38250030c0',
                                 'APP_NAME'       : '@string/app_name',
                                 'PUSH_PERMISSION': 'test']
@@ -105,6 +107,15 @@ android {
         abortOnError false
     }
 
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
 }
 
 dependencies {
@@ -114,5 +125,9 @@ dependencies {
         exclude group: 'com.google.code.findbugs'
     })
     testCompile "junit:junit:${rootProject.ext.JUNIT_VERSION}"
+
+    compile 'com.tencent.bugly:crashreport:latest.release'
+    debugCompile 'com.facebook.stetho:stetho:1.5.0'
+
     compile project(':framework')
 }

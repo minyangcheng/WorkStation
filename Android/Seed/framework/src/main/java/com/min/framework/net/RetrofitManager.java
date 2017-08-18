@@ -1,6 +1,6 @@
 package com.min.framework.net;
 
-import com.min.framework.App;
+import com.min.framework.FrameWorkApp;
 import com.min.framework.ConfigConstants;
 import com.min.framework.net.interceptor.ParamInterceptor;
 
@@ -37,7 +37,7 @@ public class RetrofitManager {
         HttpLoggingInterceptor logInterceptor = new HttpLoggingInterceptor();
         logInterceptor.setLevel(ConfigConstants.DEBUG ? HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.NONE);
 
-        Cache cache = new Cache(new File(App.getContext().getCacheDir(), "HttpCache"),
+        Cache cache = new Cache(new File(FrameWorkApp.getContext().getCacheDir(), "HttpCache"),
                 1024 * 1024 * 30);
 
         mOkHttpClient = new OkHttpClient.Builder()
