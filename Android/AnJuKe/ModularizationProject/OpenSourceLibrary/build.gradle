@@ -1,0 +1,49 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testCompile rootProject.ext.dependencies["junit"]
+
+    compile rootProject.ext.dependencies["butterknife"]
+    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
+
+    compile rootProject.ext.dependencies["rxandroid"]
+
+    compile rootProject.ext.dependencies["retrofit"]
+    compile rootProject.ext.dependencies["adapter-rxjava"]
+
+    compile rootProject.ext.dependencies["stetho"]
+    compile rootProject.ext.dependencies["stetho-okhttp3"]
+
+    compile rootProject.ext.dependencies["okhttp3"]
+    compile rootProject.ext.dependencies["okhttp3-logging-interceptor"]
+
+    compile rootProject.ext.dependencies["fastjson"]
+    compile rootProject.ext.dependencies["ormlite-android"]
+
+    compile rootProject.ext.dependencies["retrofit2-fastjson-converter"]
+}
