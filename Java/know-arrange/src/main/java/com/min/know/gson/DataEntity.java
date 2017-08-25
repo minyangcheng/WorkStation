@@ -7,10 +7,12 @@ public class DataEntity {
 
     public String name;
     public int age;
+    public OrderStatus status;
 
-    public DataEntity(String name,int age){
-        this.name=name;
-        this.age=age;
+    public DataEntity(String name, int age, OrderStatus status) {
+        this.name = name;
+        this.age = age;
+        this.status = status;
     }
 
 }
