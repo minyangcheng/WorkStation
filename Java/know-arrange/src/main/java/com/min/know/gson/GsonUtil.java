@@ -18,17 +18,18 @@ public class GsonUtil {
 
     public static void main(String args[]) {
         BaseBean<DataEntity> baseBean = new BaseBean<>();
-        DataEntity entity = new DataEntity("minyangcheng", 123, OrderStatus.CANCEL);
+        DataEntity entity = new DataEntity("minyangcheng", 123, OrderStatus.CANCEL, Sex.MALE);
         baseBean.code = 1;
         baseBean.message = "nihaoma?";
         baseBean.t = entity;
-
         String jsonStr = gson.toJson(baseBean);
         L.d(jsonStr);
+
         Type fooType = new TypeToken<BaseBean<DataEntity>>() {
         }.getType();
         baseBean = getGson().fromJson(jsonStr, fooType);
         L.d(gson.toJson(baseBean));
+        L.d(baseBean.t.sex.getStr());
     }
 
     public static Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();

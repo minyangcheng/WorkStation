@@ -8,11 +8,13 @@ public class DataEntity {
     public String name;
     public int age;
     public OrderStatus status;
+    public Sex sex;
 
-    public DataEntity(String name, int age, OrderStatus status) {
+    public DataEntity(String name, int age, OrderStatus status, Sex sex) {
         this.name = name;
         this.age = age;
         this.status = status;
+        this.sex = sex;
     }
 
 }

@@ -27,22 +27,18 @@ public class ServiceMethod {
         this.args = args;
     }
 
-    public Class<?> getReturnType() {
-        L.d("return type=%s", method.getGenericReturnType());
-        try {
-            Type returnType = method.getGenericReturnType();// 返回类型
-            System.out.println("  " + returnType);
-            if (returnType instanceof ParameterizedType)/* 如果是泛型类型 */ {
-                Type[] types = ((ParameterizedType) returnType)
-                        .getActualTypeArguments();// 泛型类型列表
-                System.out.println("  TypeArgument: ");
-                for (Type type : types) {
-                    System.out.println("   " + type);
-                }
+    public Type getReturnType() {
+        L.d("getReturnType=%s",method.getReturnType());
+        L.d("getGenericReturnType=%s", method.getGenericReturnType());
+
+        Type returnType = method.getGenericReturnType();
+        if (returnType instanceof ParameterizedType) {
+            Type[] types = ((ParameterizedType) returnType).getActualTypeArguments();
+            for (Type type : types) {
+                System.out.println("   " + type);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
+
         return method.getReturnType();
     }
 

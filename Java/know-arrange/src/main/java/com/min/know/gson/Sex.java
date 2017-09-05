@@ -1,4 +1,4 @@
-package com.min.databind.bean;
+package com.min.know.gson;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -8,14 +8,24 @@ import com.google.gson.annotations.SerializedName;
 public enum Sex {
 
     @SerializedName("1")
-    MAIN("男"),
+    MALE(1, "男"),
     @SerializedName("2")
-    SUCCESS("女");
+    FEMALE(2, "女");
 
-    public String value;
+    private int status;
+    private String str;
 
-    private Sex(String s) {
-        this.value = s;
+    private Sex(int status, String str) {
+        this.status = status;
+        this.str = str;
+    }
+
+    public int getStatus() {
+        return this.status;
+    }
+
+    public String getStr() {
+        return this.str;
     }
 
 }
