@@ -79,4 +79,9 @@ public class MainActivity extends BaseActivity {
         Timber.d(GsonUtil.toPrettyJson(searchBeanList));
     }
 
+    @OnClick(R.id.btn_test_dialog)
+    void clickTestDialog() {
+        TestDialog.show(getSupportFragmentManager());
+    }
+
 }

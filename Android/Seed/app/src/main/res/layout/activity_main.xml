@@ -40,4 +40,10 @@
         android:layout_height="wrap_content"
         android:text="db"/>
 
+    <Button
+        android:id="@+id/btn_test_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="test_dialog"/>
+
 </LinearLayout>
