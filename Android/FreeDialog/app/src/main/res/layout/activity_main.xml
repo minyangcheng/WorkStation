@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_dialog_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="dialog fragment"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/btn_popup_window"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="popup window"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/btn_ios_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ios dialog"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/btn_anim_show"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="show anim dialog"
+        android:textAllCaps="false"/>
+
+</LinearLayout>
