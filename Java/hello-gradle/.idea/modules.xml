@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/child-one/child-one.iml" filepath="$PROJECT_DIR$/.idea/modules/child-one/child-one.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/child-two/child-two.iml" filepath="$PROJECT_DIR$/.idea/modules/child-two/child-two.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/child-one/child-one.iml" filepath="$PROJECT_DIR$/.idea/modules/child-one/child-one.iml" group="child-one" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/child-one/child-one_main.iml" filepath="$PROJECT_DIR$/.idea/modules/child-one/child-one_main.iml" group="child-one" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/child-one/child-one_test.iml" filepath="$PROJECT_DIR$/.idea/modules/child-one/child-one_test.iml" group="child-one" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/child-two/child-two.iml" filepath="$PROJECT_DIR$/.idea/modules/child-two/child-two.iml" group="child-two" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/child-two/child-two_main.iml" filepath="$PROJECT_DIR$/.idea/modules/child-two/child-two_main.iml" group="child-two" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/child-two/child-two_test.iml" filepath="$PROJECT_DIR$/.idea/modules/child-two/child-two_test.iml" group="child-two" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/hello-gradle.iml" filepath="$PROJECT_DIR$/.idea/modules/hello-gradle.iml" />
     </modules>
   </component>
