@@ -1,15 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="get message from plugin"
+        android:text="invoke method from plugin"
         android:textAllCaps="false"
-        android:onClick="getMessage"/>
+        android:onClick="invokeMethodFromPlugin"/>
 
-</RelativeLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="get res from plugin"
+        android:textAllCaps="false"
+        android:onClick="getResFromPlugin"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="go to detail activity"
+        android:textAllCaps="false"
+        android:onClick="goToDetailActivity"/>
+    
+    <ImageView
+        android:id="@+id/iv_plugin"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:scaleType="fitCenter"/>
+
+</LinearLayout>
