@@ -60,7 +60,7 @@ public class PluginManager {
     }
 
     private void initClassLoader() {
-        mDexClassLoader = new DexClassLoader(mPath, mOptimizedPath, null, getClass().getClassLoader());
+        mDexClassLoader = new DexClassLoader(mPath, mOptimizedPath, null, mContext.getClassLoader().getParent());
     }
 
     private Resources initResources() {
