@@ -25,6 +25,13 @@
         android:text="go to detail activity"
         android:textAllCaps="false"
         android:onClick="goToDetailActivity"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="go to proxy"
+        android:textAllCaps="false"
+        android:onClick="goToProxy"/>
     
     <ImageView
         android:id="@+id/iv_plugin"

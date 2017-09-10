@@ -1,14 +1,11 @@
 package com.min.main;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
-import android.view.View;
 
 import com.min.main.util.L;
+import com.min.main.util.PluginManager;
 
 import java.lang.reflect.Field;
 
@@ -35,9 +32,7 @@ public class DetailActivity extends AppCompatActivity {
         try {
             Field field = context.getClass().getDeclaredField("mResources");
             field.setAccessible(true);
-            String path = Environment.getExternalStorageDirectory() + "/Test.apk";
-            Resources resources = ResourceUtil.getResource(this, path);
-            field.set(context, resources);
+            field.set(context, PluginManager.getInstance().getResources());
         } catch (Exception e) {
             e.printStackTrace();
         }

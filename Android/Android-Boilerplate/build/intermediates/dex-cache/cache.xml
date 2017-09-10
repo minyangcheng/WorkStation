@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\logging-interceptor\3.0.0\d74fd3315b4575c1cda5e5712d061a7fcdc7d423\logging-interceptor-3.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="d74fd3315b4575c1cda5e5712d061a7fcdc7d423">
+        <dex dex="E:\GitHubProject\WorkStation\Android\Android-Boilerplate\app\build\intermediates\pre-dexed\debug\logging-interceptor-3.0.0_b3ea6d3ffc0ee38656b5a2deeb308a8f350da7b9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\GitHubProject\WorkStation\Android\Android-Boilerplate\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="5e412e954a24c5310a459c09870e4e2081aceb03">
+        <dex dex="E:\GitHubProject\WorkStation\Android\Android-Boilerplate\app\build\intermediates\pre-dexed\debug\com.android.support-cardview-v7-23.1.1_571456258ad3e2f2cbf604811380df5b749bb80d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\GitHubProject\WorkStation\Android\Android-Boilerplate\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="09c5e804bc67fc0580360043dff067df574a60d4">
+        <dex dex="E:\GitHubProject\WorkStation\Android\Android-Boilerplate\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-23.1.1_87541a52d70d42bbf83e4a5734fab56e13d21a46.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\retrofit\2.0.0-beta3\97675641051febfee098903cc0eff62f2826e34e\retrofit-2.0.0-beta3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="97675641051febfee098903cc0eff62f2826e34e">
+        <dex dex="E:\GitHubProject\WorkStation\Android\Android-Boilerplate\app\build\intermediates\pre-dexed\debug\retrofit-2.0.0-beta3_be8e6a7310d78a8e5e5fd140e6fe49d59dc485fe.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.6.0\98476622f10715998eacf9240d6b479f12c66143\okio-1.6.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="98476622f10715998eacf9240d6b479f12c66143">
+        <dex dex="E:\GitHubProject\WorkStation\Android\Android-Boilerplate\app\build\intermediates\pre-dexed\debug\okio-1.6.0_c410569bd3ae660f2a7eceb3af69efc833b46b70.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\javax.inject\javax.inject\1\6975da39a7040257bd51d21a231b76c915872d38\javax.inject-1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="6975da39a7040257bd51d21a231b76c915872d38">
+        <dex dex="E:\GitHubProject\WorkStation\Android\Android-Boilerplate\app\build\intermediates\pre-dexed\debug\javax.inject-1_273da2ba53aedc2691b5c6c4485ebe7b12b6e634.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\GitHubProject\WorkStation\Android\Android-Boilerplate\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\libs\internal_impl-23.1.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="E:\GitHubProject\WorkStation\Android\Android-Boilerplate\app\build\intermediates\pre-dexed\debug\internal_impl-23.1.1_97bf90d1904258a7ae3b5e8152316a2bfad18bd5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.google.dagger\dagger\2.0.1\1261dfca5bae89a866a2855552da26feab7f8fad\dagger-2.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="1261dfca5bae89a866a2855552da26feab7f8fad">
+        <dex dex="E:\GitHubProject\WorkStation\Android\Android-Boilerplate\app\build\intermediates\pre-dexed\debug\dagger-2.0.1_8dd97e2fb0df0f9fc3b7669f81e99c6ebb192089.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\adapter-rxjava\2.0.0-beta3\b2c9a66010be6540ee42c033de4ae43085dc7856\adapter-rxjava-2.0.0-beta3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="b2c9a66010be6540ee42c033de4ae43085dc7856">
+        <dex dex="E:\GitHubProject\WorkStation\Android\Android-Boilerplate\app\build\intermediates\pre-dexed\debug\adapter-rxjava-2.0.0-beta3_14ef86836a5d2ecac99687ecde9867d3197db977.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\io.reactivex\rxjava\1.1.0\748f0546d5c3c27f1aef07270ffea0c45f0c42a4\rxjava-1.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="748f0546d5c3c27f1aef07270ffea0c45f0c42a4">
+        <dex dex="E:\GitHubProject\WorkStation\Android\Android-Boilerplate\app\build\intermediates\pre-dexed\debug\rxjava-1.1.0_8ad53718875d263efc9f5dad95fc3130e7736adc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\AndroidWork\sdk\extras\android\m2repository\com\android\support\support-annotations\23.1.1\support-annotations-23.1.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="E:\GitHubProject\WorkStation\Android\Android-Boilerplate\app\build\intermediates\pre-dexed\debug\support-annotations-23.1.1_aa8050d340198993e13766284385647d7d3b042e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\GitHubProject\WorkStation\Android\Android-Boilerplate\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="E:\GitHubProject\WorkStation\Android\Android-Boilerplate\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.1.1_8f9af53e7d125824da1a3a46b513687594ce2458.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.4\695b63d702f505b9b916e02272e3b6381bade7f\gson-2.4.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="0695b63d702f505b9b916e02272e3b6381bade7f">
+        <dex dex="E:\GitHubProject\WorkStation\Android\Android-Boilerplate\app\build\intermediates\pre-dexed\debug\gson-2.4_6890e801880bd242164763e4b5f4086b8128ed8f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\GitHubProject\WorkStation\Android\Android-Boilerplate\app\build\intermediates\exploded-aar\io.reactivex\rxandroid\1.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="d4c4b83de2f6412072d2a29b1b7a5b03edaad5ff">
+        <dex dex="E:\GitHubProject\WorkStation\Android\Android-Boilerplate\app\build\intermediates\pre-dexed\debug\io.reactivex-rxandroid-1.1.0_16f3e211c89f728278133b32af002045e8898b31.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\GitHubProject\WorkStation\Android\Android-Boilerplate\app\build\intermediates\exploded-aar\com.jakewharton.timber\timber\4.1.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="f45a0143e9c43a459f3f331a6b3e7daf13981ef4">
+        <dex dex="E:\GitHubProject\WorkStation\Android\Android-Boilerplate\app\build\intermediates\pre-dexed\debug\com.jakewharton.timber-timber-4.1.0_f3c3502eac374181f8ef1c7ef45223b9c9ab27a0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\GitHubProject\WorkStation\Android\Android-Boilerplate\app\build\intermediates\exploded-aar\com.android.support\design\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="379471b2bd17d9737c050345c08e8c7d16589784">
+        <dex dex="E:\GitHubProject\WorkStation\Android\Android-Boilerplate\app\build\intermediates\pre-dexed\debug\com.android.support-design-23.1.1_61a9bbafcde06e23909bc9cebe1d55739ddd80c4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit2\converter-gson\2.0.0-beta3\8bff75d7360aaa3866f1e6949c877dfcc2b3d3e2\converter-gson-2.0.0-beta3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="8bff75d7360aaa3866f1e6949c877dfcc2b3d3e2">
+        <dex dex="E:\GitHubProject\WorkStation\Android\Android-Boilerplate\app\build\intermediates\pre-dexed\debug\converter-gson-2.0.0-beta3_e0d8b6678b82084c712e4f124936e3dac0ffea35.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.0.0\10924c16dba25791695468206d4bd9428d7fe8ae\okhttp-3.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="10924c16dba25791695468206d4bd9428d7fe8ae">
+        <dex dex="E:\GitHubProject\WorkStation\Android\Android-Boilerplate\app\build\intermediates\pre-dexed\debug\okhttp-3.0.0_7913b9f1aecf0ae90285664d86268326ecbdf91b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\GitHubProject\WorkStation\Android\Android-Boilerplate\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="E:\GitHubProject\WorkStation\Android\Android-Boilerplate\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.1.1_d87b63891afa8b85b735949c18294756b8719c82.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.jakewharton\butterknife\7.0.1\d5d13ea991eab0252e3710e5df3d6a9d4b21d461\butterknife-7.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="d5d13ea991eab0252e3710e5df3d6a9d4b21d461">
+        <dex dex="E:\GitHubProject\WorkStation\Android\Android-Boilerplate\app\build\intermediates\pre-dexed\debug\butterknife-7.0.1_fc861cbde294a7e4a9efd57936d766cb077b60e2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\GitHubProject\WorkStation\Android\Android-Boilerplate\app\build\intermediates\exploded-aar\de.hdodenhof\circleimageview\2.0.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="031e8b3ab2df4ab43b1017f84417d7e10dfbb8d2">
+        <dex dex="E:\GitHubProject\WorkStation\Android\Android-Boilerplate\app\build\intermediates\pre-dexed\debug\de.hdodenhof-circleimageview-2.0.0_98609b87c031932fc44f02c69babb6df3f3a220f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\glide\3.6.1\86b122e640af09b0723e1fa44083c354ba6d9089\glide-3.6.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.2"
+        sha1="86b122e640af09b0723e1fa44083c354ba6d9089">
+        <dex dex="E:\GitHubProject\WorkStation\Android\Android-Boilerplate\app\build\intermediates\pre-dexed\debug\glide-3.6.1_4020668c253519df8db009e7f815b6fcc7d18017.jar" />
+    </item>
+
+</items>
