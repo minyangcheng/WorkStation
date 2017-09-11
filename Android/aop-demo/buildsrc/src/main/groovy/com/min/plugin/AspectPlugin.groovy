@@ -13,8 +13,6 @@ public class AspectPlugin implements Plugin<Project> {
 
     @Override
     void apply(Project project) {
-        println ".......apply......."
-
         def hasApp = project.plugins.withType(AppPlugin)
         def hasLib = project.plugins.withType(LibraryPlugin)
         if (!hasApp && !hasLib) {
