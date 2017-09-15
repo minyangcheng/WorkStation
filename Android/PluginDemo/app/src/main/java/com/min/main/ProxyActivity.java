@@ -22,9 +22,9 @@ public class ProxyActivity extends AppCompatActivity {
             pluginObj = clazz.newInstance();
             onCreate = clazz.getDeclaredMethod("onCreate", new Class[]{Bundle.class});
             onCreate.setAccessible(true);
-            onStart = clazz.getDeclaredMethod("onStart");
+            onStart = clazz.getDeclaredMethod("onStart",new Class[]{});
             onStart.setAccessible(true);
-            onResume = clazz.getDeclaredMethod("onResume");
+            onResume = clazz.getDeclaredMethod("onResume",new Class[]{});
             onResume.setAccessible(true);
 
             onCreate.invoke(pluginObj, savedInstanceState);

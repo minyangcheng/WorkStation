@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import com.min.main.util.L;
 import com.min.main.util.PluginManager;
 
+import net.wequick.small.Small;
+
 import java.lang.reflect.Method;
 
 public class MainActivity extends AppCompatActivity {
@@ -49,6 +51,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToProxy(View view) {
         startActivity(new Intent(this, ProxyActivity.class));
+    }
+
+    public void goToSmall(View view) {
+        Small.setUp(this, new Small.OnCompleteListener() {
+            @Override
+            public void onComplete() {
+                Small.openUri("main", MainActivity.this);
+            }
+        });
     }
 
 }

@@ -2,7 +2,6 @@ package com.min.plugin;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.Toast;
 
 public class InnerPluginActivity extends AppCompatActivity {
@@ -17,5 +16,6 @@ public class InnerPluginActivity extends AppCompatActivity {
 //                Toast.makeText(InnerPluginActivity.this, "this is from plugin", Toast.LENGTH_SHORT).show();
 //            }
 //        });
+        Toast.makeText(this, "nihaoma?", Toast.LENGTH_SHORT).show();
     }
 }

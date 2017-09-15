@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="clickGoLeakActivity"
+        android:text="go leakactivity"
+        android:textAllCaps="false" />
+
+    <FrameLayout
+        android:id="@+id/view_fl"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"/>
+
+    <com.min.optimize.view.StrView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:exampleDimension="18dp"
+        app:exampleString="this is custom view" />
+
+</LinearLayout>

@@ -32,6 +32,13 @@
         android:text="go to proxy"
         android:textAllCaps="false"
         android:onClick="goToProxy"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="go to small"
+        android:textAllCaps="false"
+        android:onClick="goToSmall"/>
     
     <ImageView
         android:id="@+id/iv_plugin"
