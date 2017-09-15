@@ -78,24 +78,24 @@ task C << {
 B.dependsOn A
 C.dependsOn B
 
-task B1 <<{
+task B1 << {
     println "B1..."
 }
 
 B1.dependsOn B
 C.dependsOn B1
 
-task unit << {println 'Hello from unit tests'}
-task ui << {println 'Hello from UI tests'}
-task tests << {println 'Hello from all tests!'}
+task unit << { println 'Hello from unit tests' }
+task ui << { println 'Hello from UI tests' }
+task tests << { println 'Hello from all tests!' }
 
 tests.dependsOn unit
 tests.dependsOn ui
 
-task unit1 << {println 'Hello from unit tests'}
-task ui1 << {println 'Hello from UI tests'}
-task tests1 << {println 'Hello from all tests!'}
-task mergeReports1 << {println 'Merging test reports'}
+task unit1 << { println 'Hello from unit tests' }
+task ui1 << { println 'Hello from UI tests' }
+task tests1 << { println 'Hello from all tests!' }
+task mergeReports1 << { println 'Merging test reports' }
 
 tests1.dependsOn unit1
 tests1.dependsOn ui1
@@ -106,5 +106,25 @@ tests1.finalizedBy mergeReports1
 
 //===============闭包=================
 
-def myClosure = {str, num -> println "$str : $num" }
-myClosure('my string', 21)
+def myClosure = { str, num -> println "$str : $num" }
+task testClosure << {
+    myClosure('my string', 21)
+}
+
+//=================cmd===============
+
+task testCmd << {
+    Process p="cmd /c dir".execute();
+    println p.text
+}
+
+//================sh==================
+
+task testSh << {
+    Process p="ls".execute();
+    println p.text
+}
+
+def isWindows() {
+    return System.properties['os.name'].toString().toLowerCase().contains('windows');
+}

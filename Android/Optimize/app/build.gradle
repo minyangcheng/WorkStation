@@ -7,8 +7,8 @@ android {
         applicationId "com.min.optimize"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        versionName "2.0.0"
+        versionCode getVersionCodeByName(versionName)
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -47,4 +47,40 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.3.1'
     testCompile 'junit:junit:4.12'
+}
+
+int getVersionCodeByName(String versionName) {
+    def arr = versionName.split('\\.')
+    def versionCode = Integer.parseInt(arr[0]) * 10 * 10 + Integer.parseInt(arr[1]) * 10 + Integer.parseInt(arr[2])
+    println versionCode
+    return versionCode
+}
+
+task uploadApkToFir << {
+    def sourceFile = getLastModifyFileInDir(project.buildDir.absolutePath + "\\outputs\\apk");
+    if (sourceFile != null && sourceFile.exists()) {
+        def path = sourceFile.absolutePath
+        println "start upload path=" + path
+        def prefix = isWindows() ? "cmd /c " : "";
+        Process p = (prefix + "fir login bd45787995687b3548aec9b22cd80a6a & fir publish ${path} -s='cheguotest'").execute()
+        println "${p.text}"
+        println "end upload...."
+    }
+}
+
+def getLastModifyFileInDir(dirPath) {
+    def srcDirFile = new File(dirPath)
+    srcDirFile.exists()
+    if (srcDirFile.isDirectory()) {
+        def fileArr = srcDirFile.listFiles()
+        def sortFileArr = fileArr.sort { a, b ->
+            b.lastModified() - a.lastModified()
+        }
+        return sortFileArr[0]
+    }
+    return null
+}
+
+def isWindows() {
+    return System.properties['os.name'].toString().toLowerCase().contains('windows');
 }
