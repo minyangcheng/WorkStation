@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/windowBackground"
+    android:gravity="center_horizontal">
+
+    <com.min.ui.widget.CenterTitleToolbar
+        android:id="@+id/toolbar"
+        style="@style/ToolbarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="21dp"
+        android:paddingBottom="40dp"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="#202020"
+            android:text="交易金额" />
+
+        <TextView
+            android:id="@+id/tv_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="26sp"
+            android:textColor="#000000"
+            tools:text="￥15000.00" />
+
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:textSize="14sp"
+            android:textColor="#666666"
+            android:drawableLeft="@mipmap/ic_init_step_f"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            tools:text="收银成功" />
+
+        <LinearLayout style="@style/TransDetailInfoViews">
+
+            <TextView
+                style="@style/TransDetailInfoTitle"
+                android:text="商户名称" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                style="@style/TransDetailInfoContent"
+                tools:text="****汽车销售有限公司" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/TransDetailInfoViews">
+
+            <TextView
+                style="@style/TransDetailInfoTitle"
+                android:text="收银方式" />
+
+            <TextView
+                android:id="@+id/tv_pay_type"
+                style="@style/TransDetailInfoContent"
+                tools:text="刷卡" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/view_card"
+            style="@style/TransDetailInfoViews">
+
+            <TextView
+                style="@style/TransDetailInfoTitle"
+                android:text="卡号" />
+
+            <TextView
+                android:id="@+id/tv_card"
+                style="@style/TransDetailInfoContent"
+                tools:text="143134****2451234" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/view_order"
+            style="@style/TransDetailInfoViews">
+
+            <TextView
+                style="@style/TransDetailInfoTitle"
+                android:text="交易单号" />
+
+            <TextView
+                android:id="@+id/tv_order"
+                style="@style/TransDetailInfoContent"
+                tools:text="13541234123412341234" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/TransDetailInfoViews">
+
+            <TextView
+                style="@style/TransDetailInfoTitle"
+                android:text="交易时间" />
+
+            <TextView
+                android:id="@+id/tv_time"
+                style="@style/TransDetailInfoContent"
+                tools:text="2014-08-23 14:21" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_updo"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:background="@drawable/shape_updo"
+        android:textColor="#fc3d39"
+        android:textSize="16sp"
+        android:text="撤销" />
+
+    <TextView
+        android:id="@+id/tv_print"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:background="@drawable/selector_btn"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:text="打印" />
+
+</LinearLayout>

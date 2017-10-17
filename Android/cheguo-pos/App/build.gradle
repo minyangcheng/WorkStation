@@ -1,0 +1,192 @@
+apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'org.greenrobot.greendao'
+apply from: '../config/quality/quality.gradle'
+
+def VERSION_NAME = rootProject.ext.android["versionName"]
+
+android {
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
+
+    signingConfigs {
+        release {
+            keyAlias rootProject.ext.signingConfig["keyAlias"]
+            keyPassword rootProject.ext.signingConfig["keyPassword"]
+            storeFile file(rootProject.ext.signingConfig["storeFile"])
+            storePassword rootProject.ext.signingConfig["storePassword"]
+        }
+    }
+
+    defaultConfig {
+        applicationId "com.cheguo.pos"
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode getVersionCodeByName(VERSION_NAME)
+        versionName VERSION_NAME
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        resValue "string", "build_config_package", "com.cheguo.pos"
+
+        buildConfigField 'String', 'API_SERVER_URL', '"https://api.cheguo.com"'
+        buildConfigField 'String', 'API_UPDATE_URL', '"https://version.cgw360.com"'
+        buildConfigField 'String', 'WEB_URL', '"http://trailer.cheguo.com"'
+        buildConfigField 'String', 'SOURCE', '"1cfea82ba40a417f9d26c50b13174305"'
+        buildConfigField 'String', 'APP_SECRET', '"52b2d96bac2b42b89c8732f482b947fb"'
+        buildConfigField 'String', 'BUGLY_APPID', '"6204ca721d"'
+        buildConfigField 'String', 'YINSHENG_ID', '"5996E38127CCDB2CA00E0F9D5F363F43"'
+        buildConfigField 'String', 'GIT_VERSION', "\"${getGitVersion()}\""
+        manifestPlaceholders = ['UMENG_APPKEY': '57e1df4467e58e38250030c0',
+                                'BAIDU_KEY'   : 'UZQECZQmANsnCTwkFUV1F3nl9fSYjW4G',
+                                'APP_NAME'    : '@string/app_name']
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            debuggable false
+            minifyEnabled false
+            zipAlignEnabled true
+            shrinkResources false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    productFlavors {
+        beta_in {}
+        beta_preview {}
+        official {}
+    }
+
+    productFlavors.all { flavor ->
+        manifestPlaceholders.put("UMENG_CHANNEL_VALUE", name)
+        if (name.contentEquals("beta_in") || name.contentEquals("beta_preview")) {
+            buildConfigField 'String', 'API_SERVER_URL', '"http://10.10.13.6:8080"'
+            buildConfigField 'String', 'API_UPDATE_URL', '"http://10.10.13.7:2531"'
+            buildConfigField 'String', 'SOURCE', '"123456"'
+            buildConfigField 'String', 'APP_SECRET', '"1234567890"'
+        }
+        if (name.contentEquals("beta_in")) {
+            buildConfigField 'String', 'YINSHENG_ID', '"24B46626917A8E7DF6E4FE8EAC73B938"'
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.endsWith('.apk') && 'release'.equals(variant.buildType.name)) {
+                output.outputFile = new File(output.outputFile.parent,
+                        "${rootProject.ext.android["apkPrefixName"]}-${buildTime()}-${variant.buildType.name}-${variant.versionName}-${variant.productFlavors[0].name}.apk".toLowerCase())
+            }
+        }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'LICENSE.txt'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE'
+    }
+
+    lintOptions {
+        warning 'InvalidPackage'
+        disable 'MissingTranslation'
+        abortOnError false
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    greendao {
+        schemaVersion 1
+        daoPackage 'com.cheguo.pos.data.local.db.dao'
+        targetGenDir 'src/main/java'
+    }
+
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile(rootProject.ext.dependencies["espresso-core"], {
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.google.code.findbugs'
+    })
+    testCompile rootProject.ext.dependencies["junit"]
+
+    compile rootProject.ext.dependencies["crashreport"]
+    debugCompile rootProject.ext.dependencies["stetho"]
+
+    compile project(':CoreModel')
+    if(!isBuildModule.toBoolean()){
+        compile project(':Order')
+    }
+    compile rootProject.ext.dependencies["butterknife"]
+    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
+}
+
+def buildTime() {
+    return new Date().format("yyyyMMddHHmm")
+}
+
+def getGitVersion() {
+    return 'git rev-parse --short HEAD'.execute().text.trim()
+}
+
+int getVersionCodeByName(String versionName) {
+    def arr = versionName.split('\\.')
+    def versionCode = Integer.parseInt(arr[0]) * 10 * 10 + Integer.parseInt(arr[1]) * 10 + Integer.parseInt(arr[2])
+    println versionCode
+    return versionCode
+}
+
+def getLastModifyFileInDir(dirPath) {
+    def srcDirFile = new File(dirPath)
+    srcDirFile.exists()
+    if (srcDirFile.isDirectory()) {
+        def fileArr = srcDirFile.listFiles()
+        def sortFileArr = fileArr.sort { a, b ->
+            b.lastModified() - a.lastModified()
+        }
+        return sortFileArr[0]
+    }
+    return null
+}
+
+def isWindows() {
+    return System.properties['os.name'].toString().toLowerCase().contains('windows');
+}
+
+//preBuild.dependsOn 'checkstyle', 'findbugs', 'pmd'
+
+task uploadApkToFir(dependsOn: 'assembleBeta_inRelease') << {
+    def sourceFile = getLastModifyFileInDir(project.buildDir.absolutePath + "\\outputs\\apk");
+    if (sourceFile != null && sourceFile.exists()) {
+        def path = sourceFile.absolutePath
+        println "start upload path=" + path
+        def prefix = isWindows() ? "cmd /c " : "";
+        Process p = (prefix + "fir login bd45787995687b3548aec9b22cd80a6a & fir publish ${path} -s='AndroidCheguoPos'").execute()
+        println "${p.text}"
+        println "end upload...."
+    }
+}

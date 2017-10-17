@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">车国收银台</string>
+    <string name="system_init">系统初始化</string>
+    <string name="crash_desk">收银台</string>
+    <string name="trans_bill">交易账单</string>
+    <string name="trans_detail">交易详情</string>
+    <string name="bill">账单</string>
+    <string name="settle_info">结算方式说明：D+0&#160;实时到账&#160;&#160;&#160;&#160;T+1&#160;第二个工作日到账</string>
+</resources>

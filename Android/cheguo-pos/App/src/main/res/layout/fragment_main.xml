@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_crash_desk"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.min.ui.widget.CenterTitleToolbar
+            android:id="@+id/toolbar"
+            style="@style/ToolbarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize" />
+
+        <TextView
+            android:id="@+id/tv_wifi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:padding="12dp"
+            android:text="WIFI"
+            android:textColor="@android:color/white"
+            android:textSize="14sp" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/et_amount"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/colorPrimary"
+        android:gravity="right|bottom"
+        android:padding="@dimen/padding"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="15sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginTop="15dp"
+        android:text="结算方式"
+        android:textColor="#000000"
+        android:textSize="15sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_d0"
+            android:layout_width="160dp"
+            android:layout_height="40dp"
+            android:background="@drawable/selector_settlement"
+            android:gravity="center"
+            android:text="D+0"
+            android:textColor="@color/selector_settlement"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_t1"
+            android:layout_width="160dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/selector_settlement"
+            android:gravity="center"
+            android:text="T+1"
+            android:textColor="@color/selector_settlement"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin"
+        android:layout_marginRight="@dimen/margin"
+        android:layout_marginTop="10dp"
+        android:lineSpacingExtra="3dp"
+        android:text="@string/settle_info"
+        android:textColor="#999999"
+        android:textSize="13sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <android.support.v7.widget.GridLayout
+        android:id="@+id/gl_num"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#e6e6e6"
+        android:padding="1px"
+        app:columnCount="4"
+        app:orientation="horizontal">
+
+        <TextView
+            style="@style/GridNum"
+            android:text="1" />
+
+        <TextView
+            style="@style/GridNum"
+            android:text="2" />
+
+        <TextView
+            style="@style/GridNum"
+            android:text="3" />
+
+        <TextView
+            style="@style/GridNum"
+            android:text="清空"
+            android:textColor="#fe3131" />
+
+        <TextView
+            style="@style/GridNum"
+            android:text="4" />
+
+        <TextView
+            style="@style/GridNum"
+            android:text="5" />
+
+        <TextView
+            style="@style/GridNum"
+            android:text="6" />
+
+        <TextView
+            style="@style/GridNum"
+            android:text="退格"
+            android:textColor="#ffa801" />
+
+        <TextView
+            style="@style/GridNum"
+            android:text="7" />
+
+        <TextView
+            style="@style/GridNum"
+            android:text="8" />
+
+        <TextView
+            style="@style/GridNum"
+            android:text="9" />
+
+        <TextView
+            style="@style/GridNum"
+            android:background="@color/normalBtn"
+            android:text="确认"
+            android:textColor="@color/white"
+            app:layout_rowSpan="2"
+            app:layout_rowWeight="1" />
+
+        <TextView
+            style="@style/GridNum"
+            android:text="." />
+
+        <TextView
+            style="@style/GridNum"
+            android:text="0" />
+
+        <TextView
+            style="@style/GridNum"
+            android:text="00" />
+
+    </android.support.v7.widget.GridLayout>
+
+</LinearLayout>

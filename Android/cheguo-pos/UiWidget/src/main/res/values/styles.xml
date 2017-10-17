@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="StatelayoutStyle">
+        <item name="loading_layout">@layout/layout_load_ing</item>
+        <item name="empty_layout">@layout/layout_load_empty</item>
+        <item name="error_layout">@layout/layout_load_error</item>
+    </style>
+
+    <style name="HudStyle" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+</resources>

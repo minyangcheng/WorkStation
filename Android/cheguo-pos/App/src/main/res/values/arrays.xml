@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="orderStatusArr">
+        <item> </item>
+        <item>交易成功</item>
+        <item>交易失败</item>
+        <item>交易撤销</item>
+    </string-array>
+</resources>

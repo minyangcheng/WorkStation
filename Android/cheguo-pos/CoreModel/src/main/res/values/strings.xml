@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">CoreModel</string>
+
+    <string name="http_request_error">亲，您的网络不太顺畅喔~</string>
+    <string name="http_request_timeout">网络访问超时~</string>
+
+</resources>
