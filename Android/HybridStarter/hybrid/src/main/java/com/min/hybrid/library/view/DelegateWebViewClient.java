@@ -8,7 +8,6 @@ import android.os.Message;
 import android.view.KeyEvent;
 import android.webkit.HttpAuthHandler;
 import android.webkit.SslErrorHandler;
-import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -120,15 +119,6 @@ public abstract class DelegateWebViewClient extends WebViewClient {
         else
 
             super.onScaleChanged(view, oldScale, newScale);
-    }
-
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    @Override
-    public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
-        if (hasDelegate())
-            return getDelegate().shouldInterceptRequest(view, url);
-        else
-            return super.shouldInterceptRequest(view, url);
     }
 
     @Override

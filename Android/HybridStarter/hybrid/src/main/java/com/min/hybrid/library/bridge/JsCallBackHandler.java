@@ -10,13 +10,11 @@ import com.min.hybrid.library.util.Util;
 
 public class JsCallBackHandler {
 
-    private Bridge hybrid;
-    private WebView webView;
+    private Bridge bridge;
     private int messageId;
 
-    public JsCallBackHandler(Bridge hybrid, WebView webView, int messageId) {
-        this.hybrid = hybrid;
-        this.webView = webView;
+    public JsCallBackHandler(Bridge hybrid, int messageId) {
+        this.bridge = hybrid;
         this.messageId = messageId;
     }
 
@@ -24,7 +22,7 @@ public class JsCallBackHandler {
         Util.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                hybrid.triggerCallbackOnWebView(webView, messageId, payload);
+                bridge.triggerCallbackOnWebView(messageId, payload);
             }
         });
     }
