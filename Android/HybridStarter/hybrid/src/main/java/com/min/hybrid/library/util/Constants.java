@@ -10,6 +10,8 @@ public class Constants {
 
     public static final String BRIDGE_SCHEME = "bridge";
 
+    public static final String DIR_WEB_APP="webapp";
+
     public static final String ACTION_HYBRID_ACTIVITY = "open.hybrid.activity";
 
     public static final String API_TOAST = "toast";

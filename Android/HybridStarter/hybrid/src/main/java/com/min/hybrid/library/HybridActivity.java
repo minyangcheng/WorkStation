@@ -8,11 +8,13 @@ import android.webkit.WebViewClient;
 
 import com.min.hybrid.library.bean.HybridEvent;
 import com.min.hybrid.library.bridge.Bridge;
+import com.min.hybrid.library.util.Constants;
 import com.min.hybrid.library.util.EventUtil;
 import com.min.hybrid.library.util.L;
 import com.min.hybrid.library.util.ParseUtil;
 import com.min.hybrid.library.view.HybridWebView;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.Map;
 
@@ -33,6 +35,11 @@ public class HybridActivity extends AppCompatActivity {
         EventUtil.register(this);
         setContentView(R.layout.activity_hybrid);
         mWebView = findViewById(R.id.wv);
+        initBridge();
+        render();
+    }
+
+    private void initBridge() {
         mBridge = new Bridge.Builder()
                 .setWebView(mWebView)
                 .setWebViewClient(new WebViewClient() {
@@ -44,7 +51,6 @@ public class HybridActivity extends AppCompatActivity {
                 })
                 .addDefaultBridgeApi()
                 .build();
-        render();
     }
 
     @Override
@@ -75,8 +81,34 @@ public class HybridActivity extends AppCompatActivity {
 
     protected void loadUrl(String url) {
         if (!TextUtils.isEmpty(url)) {
+            if (intercept(url)) {
+                url = getLocalUrl(url);
+            }
             mWebView.loadUrl(url);
         }
+    }
+
+    protected boolean intercept(String url) {
+        if (url.contains("10.10.13.117")) {
+            return true;
+        }
+        return false;
+    }
+
+    protected String getLocalUrl(String url) {
+        File webAppDir = new File(getFilesDir(), Constants.DIR_WEB_APP);
+        File indexFile = new File(webAppDir, "index.html");
+        if (!indexFile.exists()) {
+            return url;
+        }
+        String pathTemplate = "file:///%s/index.html#/%s";
+        String[] arr = url.split("#");
+        String s = "";
+        if (arr.length > 1) {
+            s = arr[1].substring(1);
+        }
+        url = String.format(pathTemplate, webAppDir.getAbsolutePath(), s);
+        return url;
     }
 
     @Subscribe
