@@ -8,6 +8,7 @@ import android.webkit.WebViewClient;
 import com.min.hybrid.library.bridge.Bridge;
 import com.min.hybrid.library.bridge.Envelope;
 import com.min.hybrid.library.util.Constants;
+import com.min.hybrid.library.util.L;
 import com.min.hybrid.library.util.ParseUtil;
 
 import java.io.File;
@@ -15,6 +16,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
+import java.net.URLDecoder;
 
 public class HybridWebViewClient extends DelegateWebViewClient {
 
@@ -39,6 +41,7 @@ public class HybridWebViewClient extends DelegateWebViewClient {
             return true;
         }
         try {
+            L.d("Test","url=%s", URLDecoder.decode(url));
             URI uri = new URI(url);
             if (validateScheme(uri)) {
                 processUri(view, uri);
@@ -75,21 +78,21 @@ public class HybridWebViewClient extends DelegateWebViewClient {
 
     @Override
     public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
-        String tempUrl = url.replace("/webapp", "");
-        Uri uri = Uri.parse(tempUrl);
-        if (uri.getHost().equals(mBridge.getInterceptHost())) {
-//            File file = new File(FileUtil.getRootDir(view.getContext()).getAbsolutePath() + "/" + HybridConfig.FILE_HYBRID_DATA_PATH + "/" + uri.getPath());
-            File file = null;
-            if (file.exists()) {
-                try {
-                    InputStream localCopy = new FileInputStream(file);
-                    String mimeType = getMimeType(tempUrl);
-                    return new WebResourceResponse(mimeType, "UTF-8", localCopy);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+//        String tempUrl = url.replace("/webapp", "");
+//        Uri uri = Uri.parse(tempUrl);
+//        if (uri.getHost().equals(mBridge.getInterceptHost())) {
+////            File file = new File(FileUtil.getRootDir(view.getContext()).getAbsolutePath() + "/" + HybridConfig.FILE_HYBRID_DATA_PATH + "/" + uri.getPath());
+//            File file = null;
+//            if (file.exists()) {
+//                try {
+//                    InputStream localCopy = new FileInputStream(file);
+//                    String mimeType = getMimeType(tempUrl);
+//                    return new WebResourceResponse(mimeType, "UTF-8", localCopy);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
         return super.shouldInterceptRequest(view, url);
     }
 

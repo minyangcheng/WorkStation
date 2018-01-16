@@ -6,12 +6,17 @@ import android.text.TextUtils;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.min.hybrid.library.bean.HybridEvent;
 import com.min.hybrid.library.bridge.Bridge;
+import com.min.hybrid.library.util.EventUtil;
 import com.min.hybrid.library.util.L;
+import com.min.hybrid.library.util.ParseUtil;
 import com.min.hybrid.library.view.HybridWebView;
 
 import java.io.Serializable;
 import java.util.Map;
+
+import de.greenrobot.event.Subscribe;
 
 public class HybridActivity extends AppCompatActivity {
 
@@ -25,6 +30,7 @@ public class HybridActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EventUtil.register(this);
         setContentView(R.layout.activity_hybrid);
         mWebView = findViewById(R.id.wv);
         mBridge = new Bridge.Builder()
@@ -39,6 +45,12 @@ public class HybridActivity extends AppCompatActivity {
                 .addDefaultBridgeApi()
                 .build();
         render();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventUtil.unregister(this);
     }
 
     protected void render() {
@@ -65,6 +77,12 @@ public class HybridActivity extends AppCompatActivity {
         if (!TextUtils.isEmpty(url)) {
             mWebView.loadUrl(url);
         }
+    }
+
+    @Subscribe
+    public void onEvent(HybridEvent event) {
+        L.d("Test", "event=%s", ParseUtil.toJsonString(event));
+        mBridge.send(event.type, event.data);
     }
 
 }

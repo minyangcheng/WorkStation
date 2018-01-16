@@ -56,11 +56,11 @@ public class OpenActivityApi implements IBridgeApi {
             Class clazz = Class.forName(destination);
             Intent intent = new Intent(context, clazz);
             Bundle bundle = new Bundle();
-            String key=null;
-            String realValue=null;
+            String key = null;
+            String realValue = null;
             for (Map.Entry<String, String> entry : payload.entrySet()) {
-                key=entry.getKey();
-                realValue=getRealValue(entry.getValue());
+                key = entry.getKey();
+                realValue = getRealValue(entry.getValue());
                 switch (getValueType(entry.getValue())) {
                     case "int":
                         bundle.putInt(key, Util.formatInt(realValue));
@@ -69,7 +69,7 @@ public class OpenActivityApi implements IBridgeApi {
                         bundle.putLong(key, Util.formatLong(realValue));
                         break;
                     case "str":
-                        bundle.putString(key, entry.getValue());
+                        bundle.putString(key, realValue);
                         break;
                     case "double":
                         bundle.putDouble(key, Util.formatDouble(realValue));
@@ -92,7 +92,7 @@ public class OpenActivityApi implements IBridgeApi {
         }
     }
 
-    public String getRealValue(String value){
+    public String getRealValue(String value) {
         String[] arr = value.split("\\|");
         return arr[0];
     }

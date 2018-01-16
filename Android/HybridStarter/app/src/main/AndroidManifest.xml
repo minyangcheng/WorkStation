@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.min.hybrid.sample.NativeTwoActivity"></activity>
+        <activity android:name="com.min.hybrid.sample.NativeChildActivity"></activity>
 
         <activity android:name="com.min.hybrid.library.HybridActivity">
             <intent-filter>

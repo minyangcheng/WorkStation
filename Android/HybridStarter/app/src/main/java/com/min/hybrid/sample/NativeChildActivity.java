@@ -6,7 +6,7 @@ import android.view.View;
 
 import com.min.hybrid.library.util.L;
 
-public class NativeTwoActivity extends AppCompatActivity {
+public class NativeChildActivity extends AppCompatActivity {
 
     private static final String TAG = "NativeTwoActivity";
 

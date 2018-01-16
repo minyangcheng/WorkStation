@@ -7,7 +7,9 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.min.hybrid.library.bridge.api.IBridgeApi;
+import com.min.hybrid.library.bridge.api.NativeLogApi;
 import com.min.hybrid.library.bridge.api.OpenActivityApi;
+import com.min.hybrid.library.bridge.api.PostEventApi;
 import com.min.hybrid.library.bridge.api.ToastApi;
 import com.min.hybrid.library.util.ParseUtil;
 import com.min.hybrid.library.util.Util;
@@ -189,16 +191,11 @@ public class Bridge {
             return this;
         }
 
-        public Builder addBridgeApi(IBridgeApi bridgeApi) {
-            if (bridgeApi != null && !bridgeApiList.contains(bridgeApi)) {
-                bridgeApiList.add(bridgeApi);
-            }
-            return this;
-        }
-
         public Builder addDefaultBridgeApi() {
             bridgeApiList.add(new OpenActivityApi());
             bridgeApiList.add(new ToastApi());
+            bridgeApiList.add(new PostEventApi());
+            bridgeApiList.add(new NativeLogApi());
             return this;
         }
 
