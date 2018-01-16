@@ -1,6 +1,8 @@
 <template>
   <div class="page">
     <h1>{{ msg }}</h1>
+    <button @click="toast">toast</button>
+    <button @click="nativeLog">nativeLog</button>
     <button @click="go">go</button>
   </div>
 </template>
@@ -15,13 +17,17 @@
     },
     mixins: [LifeCycleLog],
     created(){
-      var self=this;
       this.$bridge.on('testLog', payload => {
-        console.log(payload.name)
-        self.$bridge.nativeLog({name:'minya',age:12})
+        this.$bridge.toast('this is event from other hybrid activity')
       });
     },
     methods: {
+      toast(){
+        this.$bridge.toast('nihao')
+      },
+      nativeLog(){
+        this.$bridge.nativeLog({name:'minyab'});
+      },
       go(){
         this.$bridge.openActivity('http://10.10.13.117:8080/#/ChildPage');
       }

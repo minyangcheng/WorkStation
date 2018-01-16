@@ -1,5 +1,17 @@
 var host = window.location.host;
 
+var i = 0;
+var iOS = false;
+var iDevice = ['iPad', 'iPhone', 'iPod'];
+for (; i < iDevice.length; i++) {
+  if (navigator.platform.indexOf(iDevice[i]) >= 0) {
+    iOS = true;
+    break;
+  }
+}
+var UIWebView = /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(navigator.userAgent);
+var isAndroid = navigator.userAgent.toLowerCase().indexOf("android") > -1;
+
 var Dispatcher = {
   callbacks: {},
 
@@ -26,9 +38,22 @@ var Dispatcher = {
       complete(payload);
       delete dispatcher.callbacks[envelope.id];
     };
-    alert("bridge://" + type + "/" + envelope.id + "?" + JSON.stringify(envelope))
-    window.location.href = "bridge://" + type + "/" + envelope.id + "?" + encodeURIComponent(JSON.stringify(envelope));
+    var url = "bridge://" + type + "/" + envelope.id + "?" + encodeURIComponent(JSON.stringify(envelope));
+    this.bridgePostMsg(url)
+  },
+
+  bridgePostMsg: function (url) {
+    if (isAndroid) {
+      var ifr = $('<iframe style="display: none;" src="' + url + '"/>');
+      $('body').append(ifr);
+      setTimeout(function () {
+        ifr.remove();
+      }, 1000)
+    } else {
+      window.location = url;
+    }
   }
+
 };
 
 
@@ -114,18 +139,6 @@ var nullDispatcher = {
   }
 };
 
-var i = 0,
-  iOS = false,
-  iDevice = ['iPad', 'iPhone', 'iPod'];
-
-for (; i < iDevice.length; i++) {
-  if (navigator.platform.indexOf(iDevice[i]) >= 0) {
-    iOS = true;
-    break;
-  }
-}
-var UIWebView = /(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/i.test(navigator.userAgent);
-var isAndroid = navigator.userAgent.toLowerCase().indexOf("android") > -1;
 if ((iOS && UIWebView) || isAndroid) {
   Bridge.dispatcher = Dispatcher;
 } else {

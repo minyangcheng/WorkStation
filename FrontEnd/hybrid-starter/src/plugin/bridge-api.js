@@ -4,7 +4,7 @@ export default function (Vue, defaultOptions = {}) {
 
   /**
    *
-   * @param message
+   * @param payload
    */
   Bridge.nativeLog = function (payload) {
     if (payload) {
