@@ -8,7 +8,7 @@ import android.text.TextUtils;
 import com.min.hybrid.library.bridge.Bridge;
 import com.min.hybrid.library.bridge.JsCallBackHandler;
 import com.min.hybrid.library.bridge.OnBridgeListener;
-import com.min.hybrid.library.util.Constants;
+import com.min.hybrid.library.Constants;
 import com.min.hybrid.library.util.Util;
 
 import java.util.Map;
@@ -46,7 +46,8 @@ public class OpenActivityApi implements IBridgeApi {
     private void openHybridActivity(Context context, Map<String, String> payload) {
         Intent intent = new Intent();
         intent.setAction(Constants.ACTION_HYBRID_ACTIVITY);
-        intent.putExtra("url", payload.get("destination"));
+        intent.putExtra("url", payload.get("destina" +
+                "tion"));
         context.startActivity(intent);
     }
 

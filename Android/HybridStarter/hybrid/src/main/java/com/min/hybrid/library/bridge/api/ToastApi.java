@@ -6,7 +6,7 @@ import android.widget.Toast;
 import com.min.hybrid.library.bridge.Bridge;
 import com.min.hybrid.library.bridge.JsCallBackHandler;
 import com.min.hybrid.library.bridge.OnBridgeListener;
-import com.min.hybrid.library.util.Constants;
+import com.min.hybrid.library.Constants;
 import com.min.hybrid.library.util.Util;
 
 import java.util.Map;

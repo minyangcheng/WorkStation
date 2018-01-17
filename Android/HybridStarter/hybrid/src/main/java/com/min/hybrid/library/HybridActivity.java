@@ -8,7 +8,6 @@ import android.webkit.WebViewClient;
 
 import com.min.hybrid.library.bean.HybridEvent;
 import com.min.hybrid.library.bridge.Bridge;
-import com.min.hybrid.library.util.Constants;
 import com.min.hybrid.library.util.EventUtil;
 import com.min.hybrid.library.util.L;
 import com.min.hybrid.library.util.ParseUtil;

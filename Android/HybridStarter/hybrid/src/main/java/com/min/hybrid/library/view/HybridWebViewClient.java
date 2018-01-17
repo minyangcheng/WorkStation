@@ -1,20 +1,15 @@
 package com.min.hybrid.library.view;
 
-import android.net.Uri;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.min.hybrid.library.bridge.Bridge;
 import com.min.hybrid.library.bridge.Envelope;
-import com.min.hybrid.library.util.Constants;
+import com.min.hybrid.library.Constants;
 import com.min.hybrid.library.util.L;
 import com.min.hybrid.library.util.ParseUtil;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.net.URI;
 import java.net.URLDecoder;
 

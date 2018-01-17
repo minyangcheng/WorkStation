@@ -3,7 +3,7 @@ package com.min.hybrid.library.bridge.api;
 import com.min.hybrid.library.bridge.Bridge;
 import com.min.hybrid.library.bridge.JsCallBackHandler;
 import com.min.hybrid.library.bridge.OnBridgeListener;
-import com.min.hybrid.library.util.Constants;
+import com.min.hybrid.library.Constants;
 import com.min.hybrid.library.util.L;
 import com.min.hybrid.library.util.ParseUtil;
 
