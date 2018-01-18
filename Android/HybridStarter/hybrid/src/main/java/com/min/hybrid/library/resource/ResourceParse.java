@@ -7,6 +7,7 @@ import com.min.hybrid.library.Constants;
 import com.min.hybrid.library.bean.VersionInfoBean;
 import com.min.hybrid.library.util.AssetsUtil;
 import com.min.hybrid.library.util.FileUtil;
+import com.min.hybrid.library.util.L;
 import com.min.hybrid.library.util.ParseUtil;
 import com.min.hybrid.library.util.SharePreferenceUtil;
 import com.min.hybrid.library.util.Util;
@@ -18,37 +19,34 @@ public class ResourceParse {
 
     public long prepareJsBundle(Context context) {
         long startTime = new Date().getTime();
-        if (Constants.SP.INTERCEPTOR_ACTIVE.equals(SharePreferenceUtil.getInterceptorActive(context))) {
-            if (TextUtils.isEmpty(SharePreferenceUtil.getVersion(context))) {
-                setVersion(context, AssetsUtil.getAssetsVersionInfo(context));
-            }
-            if (isCover(context)) {
-                transferInsideBundle(context);
+        if (SharePreferenceUtil.getInterceptorActive(context)) {
+            String downloadVersion = SharePreferenceUtil.getDownLoadVersion(context);
+            if (TextUtils.isEmpty(downloadVersion)) {
+                if (FileUtil.isEmptyDir(FileUtil.getBundleDir(context))) {
+                    transferInsideBundle(context);
+                    L.d(Constants.HYBRID_LOG, "prepare js bundle from assert");
+                }
             } else {
-                String downloadVersion = SharePreferenceUtil.getDownLoadVersion(context);
-                if (TextUtils.isEmpty(downloadVersion)) {
-                    checkBundleDir(context);
+                if (compareVersion(context)) {
+                    transferInsideBundle(context);
+                    L.d(Constants.HYBRID_LOG, "prepare js bundle from assert");
                 } else {
                     File zip = FileUtil.getFileInDir(FileUtil.getTempBundleDir(context), 0);
                     FileUtil.unZip(zip, FileUtil.getBundleDir(context));
                     SharePreferenceUtil.setVersion(context, SharePreferenceUtil.getDownLoadVersion(context));
                     SharePreferenceUtil.setDownLoadVersion(context, null);
+                    L.d(Constants.HYBRID_LOG, "prepare js bundle from zip file , info=%s",downloadVersion);
                 }
             }
         }
-
-        return new Date().getTime() - startTime;
-    }
-
-    private void checkBundleDir(Context context) {
-        if (FileUtil.isEmptyDir(FileUtil.getBundleDir(context))) {
-            transferInsideBundle(context);
-        }
+        long time = new Date().getTime() - startTime;
+        L.d(Constants.HYBRID_LOG, "prepare js bundle waste time=%s", time);
+        return time;
     }
 
     private void transferInsideBundle(Context context) {
-        AssetsUtil.copyAssetsFile(context, Constants.Asset.BUNDLE_NAME, new File(FileUtil.getTempBundleDir(context), Constants.Asset.BUNDLE_NAME));
-        FileUtil.unZip(new File(FileUtil.getTempBundleDir(context), Constants.Asset.BUNDLE_NAME), FileUtil.getBundleDir(context));
+        AssetsUtil.copyAssetsFile(context, Constants.Resource.BUNDLE_NAME, new File(FileUtil.getTempBundleDir(context), Constants.Resource.BUNDLE_NAME));
+        FileUtil.unZip(new File(FileUtil.getTempBundleDir(context), Constants.Resource.BUNDLE_NAME), FileUtil.getBundleDir(context));
         setVersion(context, AssetsUtil.getAssetsVersionInfo(context));
     }
 
@@ -58,27 +56,11 @@ public class ResourceParse {
         }
     }
 
-    private boolean isCover(Context context) {
-        VersionInfoBean assetsVersionInfo = AssetsUtil.getAssetsVersionInfo(context);
-        String downloadVersion = SharePreferenceUtil.getDownLoadVersion(context);
-        VersionInfoBean compareVersion = null;
-        if (TextUtils.isEmpty(downloadVersion)) {
-            String currentVersion = SharePreferenceUtil.getVersion(context);
-            compareVersion = ParseUtil.parseObject(currentVersion, VersionInfoBean.class);
-        } else {
-            compareVersion = ParseUtil.parseObject(downloadVersion, VersionInfoBean.class);
-        }
-        return isCoverByAssetsZip(context, assetsVersionInfo, compareVersion);
-    }
-
-    public boolean isCoverByAssetsZip(Context context, VersionInfoBean assets, VersionInfoBean current) {
-        if (Util.compareVersion(Util.getVersionName(context), current.androidVersion) < 0) {
-            return true;
-        }
-        if (assets.jsVersion.equals(current.jsVersion)) {
-            return true;
-        }
-        return false;
+    private boolean compareVersion(Context context) {
+        VersionInfoBean assetsVersion = AssetsUtil.getAssetsVersionInfo(context);
+        String downLoadVersionStr = SharePreferenceUtil.getDownLoadVersion(context);
+        VersionInfoBean downloadVersion = ParseUtil.parseObject(downLoadVersionStr, VersionInfoBean.class);
+        return Util.compareVersion(assetsVersion.jsVersion, downloadVersion.jsVersion) >= 0;
     }
 
 }

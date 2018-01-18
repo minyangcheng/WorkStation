@@ -1,4 +1,4 @@
-package com.min.hybrid.library.util;
+package com.min.hybrid.sample.util;
 
 import android.app.Activity;
 import android.app.Application;

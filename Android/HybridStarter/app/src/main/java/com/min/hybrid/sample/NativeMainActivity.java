@@ -19,7 +19,7 @@ public class NativeMainActivity extends AppCompatActivity {
 
     public void goToH5(View view) {
         Intent intent = new Intent("open.hybrid.activity");
-        intent.putExtra(HybridActivity.KEY_PATH, "http://10.10.13.117:8080/#/MainPage");
+        intent.putExtra(HybridActivity.KEY_URL, "http://10.10.13.117:8080/#/MainPage");
         HashMap<String, Object> map = new HashMap<>();
         map.put("name", "闵羊城");
         map.put("age", "1");

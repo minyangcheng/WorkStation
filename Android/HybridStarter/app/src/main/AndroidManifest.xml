@@ -6,15 +6,14 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name=".App">
-
-        <activity android:name="com.min.hybrid.sample.TestActivity">
+        android:theme="@style/AppTheme">
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,15 +21,18 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.min.hybrid.sample.NativeChildActivity"></activity>
+        <activity android:name=".NativeChildActivity"/>
+        <activity android:name=".NativeMainActivity" />
 
         <activity android:name="com.min.hybrid.library.HybridActivity">
             <intent-filter>
-                <action android:name="open.hybrid.activity"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="open.hybrid.activity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
+        <activity android:name=".TestActivity"></activity>
     </application>
 
 </manifest>

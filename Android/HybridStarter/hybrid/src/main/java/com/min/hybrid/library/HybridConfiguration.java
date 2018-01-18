@@ -2,16 +2,27 @@ package com.min.hybrid.library;
 
 import android.content.Context;
 
+import com.min.hybrid.library.bridge.api.IBridgeApi;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by minyangcheng on 2018/1/17.
  */
 
 public class HybridConfiguration {
 
-    //="http://10.10.13.117:8080/static/config.json";
     private Context context;
     private String updateUrl;
-    private String pageUrl;
+    private String pageHostUrl;
+    private boolean interceptActive;
+
+    private List<IBridgeApi> customBridgeApiList = new ArrayList<>();
+
+    public HybridConfiguration(Context context) {
+        this.context = context.getApplicationContext();
+    }
 
     public String getUpdateUrl() {
         return updateUrl;
@@ -22,21 +33,36 @@ public class HybridConfiguration {
         return this;
     }
 
-    public String getPageUrl() {
-        return pageUrl;
+    public String getPageHostUrl() {
+        return pageHostUrl;
     }
 
-    public HybridConfiguration setPageUrl(String pageUrl) {
-        this.pageUrl = pageUrl;
+    public HybridConfiguration setPageHostUrl(String pageHostUrl) {
+        this.pageHostUrl = pageHostUrl;
         return this;
-    }
-
-    public void setContext(Context context) {
-        this.context = context.getApplicationContext();
     }
 
     public Context getContext() {
         return context;
     }
 
+    public HybridConfiguration addCustomBridgeApi(IBridgeApi bridgeApi) {
+        if (bridgeApi != null) {
+            customBridgeApiList.add(bridgeApi);
+        }
+        return this;
+    }
+
+    public List<IBridgeApi> getCustomBridgeApiList() {
+        return customBridgeApiList;
+    }
+
+    public boolean isInterceptActive() {
+        return interceptActive;
+    }
+
+    public HybridConfiguration setInterceptActive(boolean interceptActive) {
+        this.interceptActive = interceptActive;
+        return this;
+    }
 }

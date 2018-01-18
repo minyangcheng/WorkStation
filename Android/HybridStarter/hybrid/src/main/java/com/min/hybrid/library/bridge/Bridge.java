@@ -31,8 +31,6 @@ public class Bridge {
 
     protected HybridWebViewClient mWebViewClient;
 
-    protected String mInterceptHost;
-
     protected WebView mWebView;
 
     protected int mMessageCount;
@@ -142,14 +140,6 @@ public class Bridge {
         return payload;
     }
 
-    public void setInterceptHost(String interceptHost) {
-        this.mInterceptHost = interceptHost;
-    }
-
-    public String getInterceptHost() {
-        return this.mInterceptHost;
-    }
-
     public WebView getWebView() {
         return mWebView;
     }
@@ -171,15 +161,9 @@ public class Bridge {
 
     public static class Builder {
 
-        private String interceptHost;
         private WebViewClient webViewClient;
         private WebView webView;
         private List<IBridgeApi> bridgeApiList = new ArrayList<>();
-
-        public Builder setInterceptHost(String interceptHost) {
-            this.interceptHost = interceptHost;
-            return this;
-        }
 
         public Builder setWebViewClient(WebViewClient webViewClient) {
             this.webViewClient = webViewClient;
@@ -199,12 +183,18 @@ public class Bridge {
             return this;
         }
 
+        public Builder addCustomBridgeApi(List<IBridgeApi> customBridgeApiList) {
+            if (customBridgeApiList != null && customBridgeApiList.size() > 0) {
+                bridgeApiList.addAll(customBridgeApiList);
+            }
+            return this;
+        }
+
         public Bridge build() {
             if (webView == null) {
                 throw new RuntimeException("WebView can not be null");
             }
             Bridge bridge = new Bridge(webView, webViewClient);
-            bridge.setInterceptHost(interceptHost);
             bridge.setBridgeApiList(bridgeApiList);
             return bridge;
         }

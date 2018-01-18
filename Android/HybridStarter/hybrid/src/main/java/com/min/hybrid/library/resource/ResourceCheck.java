@@ -4,11 +4,13 @@ import android.content.Context;
 import android.text.TextUtils;
 
 import com.min.hybrid.library.Constants;
+import com.min.hybrid.library.HybridManager;
 import com.min.hybrid.library.bean.VersionInfoBean;
 import com.min.hybrid.library.net.DownloadManager;
 import com.min.hybrid.library.net.FileCallBack;
 import com.min.hybrid.library.net.HttpManager;
 import com.min.hybrid.library.util.FileUtil;
+import com.min.hybrid.library.util.L;
 import com.min.hybrid.library.util.Md5Util;
 import com.min.hybrid.library.util.ParseUtil;
 import com.min.hybrid.library.util.SharePreferenceUtil;
@@ -24,8 +26,6 @@ import okhttp3.Response;
 
 public class ResourceCheck {
 
-    private static final String TAG = "VersionChecker";
-
     private String mUpdateUrl;
     private Context mContext;
     private int mCurrentStatus = Constants.Version.SLEEP;
@@ -36,19 +36,20 @@ public class ResourceCheck {
 
     public void checkVersion() {
         if (mCurrentStatus == Constants.Version.UPDATING) return;
+        this.mUpdateUrl = HybridManager.getInstance().getConfiguration().getUpdateUrl();
         readyUpdate();
     }
 
     private void readyUpdate() {
-        mUpdateUrl = "http://10.10.13.117:8080/static/config.json";
         if (TextUtils.isEmpty(mUpdateUrl) || TextUtils.isEmpty(SharePreferenceUtil.getVersion(mContext))) {
             return;
         }
-        if (Constants.SP.INTERCEPTOR_ACTIVE.equals(SharePreferenceUtil.getInterceptorActive(mContext))) {
+        if (SharePreferenceUtil.getInterceptorActive(mContext)) {
             mCurrentStatus = Constants.Version.UPDATING;
-            checkBundleUpdate(mContext, mUpdateUrl, new Callback() {
+            checkBundleUpdate(mUpdateUrl, new Callback() {
                 @Override
                 public void onFailure(Call call, IOException e) {
+                    L.e(Constants.HYBRID_LOG, e);
                     mCurrentStatus = Constants.Version.SLEEP;
                 }
 
@@ -56,6 +57,7 @@ public class ResourceCheck {
                 public void onResponse(Call call, Response response) throws IOException {
                     try {
                         VersionInfoBean remoteVersion = ParseUtil.parseObject(response.body().string(), VersionInfoBean.class);
+                        L.d(Constants.HYBRID_LOG, "check version resp=%s", ParseUtil.toJsonString(remoteVersion));
                         String localVersionStr = SharePreferenceUtil.getVersion(mContext);
                         VersionInfoBean localVersion = ParseUtil.parseObject(localVersionStr, VersionInfoBean.class);
                         if (Util.compareVersion(remoteVersion.jsVersion, localVersion.jsVersion) > 0) {
@@ -72,18 +74,7 @@ public class ResourceCheck {
         }
     }
 
-    public void checkBundleUpdate(Context context, String url, Callback callback) {
-//        String versionInfo = SharePreferenceUtil.getVersion(context);
-//        if (TextUtils.isEmpty(versionInfo)) {
-//            versionInfo = "";
-//        } else {
-//            VersionInfoBean jsVersionInfoBean = ParseUtil.parseObject(versionInfo, VersionInfoBean.class);
-//            if (jsVersionInfoBean == null) {
-//                versionInfo = "";
-//            } else {
-//                versionInfo = jsVersionInfoBean.jsVersion;
-//            }
-//        }
+    public void checkBundleUpdate(String url, Callback callback) {
         Request request = new Request.Builder()
                 .url(url)
                 .get()
@@ -95,12 +86,17 @@ public class ResourceCheck {
 
     public void download(final VersionInfoBean version) {
         try {
-            File destination = new File(FileUtil.getTempBundleDir(mContext), Constants.Asset.TEMP_BUNDLE_NAME);
+            if (hasDownloadVersion(version.jsVersion)) {
+                L.d(Constants.HYBRID_LOG, "this jsVersion=%s has been download", version.jsVersion);
+                mCurrentStatus = Constants.Version.SLEEP;
+                return;
+            }
+            File destination = new File(FileUtil.getTempBundleDir(mContext), Constants.Resource.TEMP_BUNDLE_NAME);
             DownloadManager.getInstance()
                     .downloadFile(version.dist, new FileCallBack(destination) {
                         @Override
                         public void onStart(String url) {
-
+                            L.d(Constants.HYBRID_LOG, "startDownload url=%s", url);
                         }
 
                         @Override
@@ -109,11 +105,12 @@ public class ResourceCheck {
 
                         @Override
                         public void onSuccess(String url, File file) {
-                            if (checkZipValidate(file, version.md5) && !hasDownloadVersion(version.jsVersion)) {
+                            L.d(Constants.HYBRID_LOG, "complete download url=%s", url);
+                            if (checkZipValidate(file, version.md5)) {
                                 RenameDeleteFile();
                                 SharePreferenceUtil.setDownLoadVersion(mContext, ParseUtil.toJsonString(version));
                             } else {
-                                FileUtil.deleteFile(new File(FileUtil.getTempBundleDir(mContext), Constants.Asset.TEMP_BUNDLE_NAME));
+                                FileUtil.deleteFile(new File(FileUtil.getTempBundleDir(mContext), Constants.Resource.TEMP_BUNDLE_NAME));
                             }
                             mCurrentStatus = Constants.Version.SLEEP;
                         }
@@ -142,7 +139,7 @@ public class ResourceCheck {
     }
 
     private boolean hasDownloadVersion(String version) {
-        String jsonStr = SharePreferenceUtil.getVersion(mContext);
+        String jsonStr = SharePreferenceUtil.getDownLoadVersion(mContext);
         if (!TextUtils.isEmpty(jsonStr)) {
             VersionInfoBean downloadVersion = ParseUtil.parseObject(jsonStr, VersionInfoBean.class);
             if (downloadVersion.jsVersion.equals(version)) {
@@ -153,8 +150,8 @@ public class ResourceCheck {
     }
 
     private void RenameDeleteFile() {
-        FileUtil.deleteFile(new File(FileUtil.getTempBundleDir(mContext), Constants.Asset.BUNDLE_NAME));
-        FileUtil.renameFile(FileUtil.getTempBundleDir(mContext), Constants.Asset.TEMP_BUNDLE_NAME, Constants.Asset.BUNDLE_NAME);
+        FileUtil.deleteFile(new File(FileUtil.getTempBundleDir(mContext), Constants.Resource.BUNDLE_NAME));
+        FileUtil.renameFile(FileUtil.getTempBundleDir(mContext), Constants.Resource.TEMP_BUNDLE_NAME, Constants.Resource.BUNDLE_NAME);
     }
 
 }

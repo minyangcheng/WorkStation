@@ -92,6 +92,10 @@ public class Util {
 
     /**
      * 比较版本号的大小,前者大则返回一个正数,后者大返回一个负数,相等则返回0
+     *
+     * @param version1
+     * @param version2
+     * @return
      */
     public static int compareVersion(String version1, String version2) {
         if (version1 == null || version2 == null) {
@@ -112,6 +116,22 @@ public class Util {
         //如果已经分出大小，则直接返回，如果未分出大小，则再比较位数，有子版本的为大；
         diff = (diff != 0) ? diff : versionArray1.length - versionArray2.length;
         return diff;
+    }
+
+    public static String joinMapToUrl(String url, Map<String, Object> map) {
+        if (url == null || map == null) {
+            return url;
+        }
+        if (map.size() > 0) {
+            url += "?";
+        }
+        for (Map.Entry<String, Object> entry : map.entrySet()) {
+            url = url + entry.getKey() + "=" + entry.getValue() + "&";
+        }
+        if (map.size() > 0) {
+            url = url.substring(0, url.length() - 1);
+        }
+        return url;
     }
 
 }

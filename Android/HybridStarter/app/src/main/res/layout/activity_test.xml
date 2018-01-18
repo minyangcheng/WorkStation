@@ -4,6 +4,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/tv_version_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="empty"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="setInterceptActive"
+        android:text="setInterceptActive"
+        android:textAllCaps="false" />
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,6 +30,13 @@
         android:layout_height="wrap_content"
         android:onClick="parseBundle"
         android:text="parseBundle"
+        android:textAllCaps="false" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="goToH5"
+        android:text="goToH5"
         android:textAllCaps="false" />
 
 </LinearLayout>

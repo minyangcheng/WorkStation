@@ -9,8 +9,11 @@ import android.webkit.WebViewClient;
 import com.min.hybrid.library.bean.HybridEvent;
 import com.min.hybrid.library.bridge.Bridge;
 import com.min.hybrid.library.util.EventUtil;
+import com.min.hybrid.library.util.FileUtil;
 import com.min.hybrid.library.util.L;
 import com.min.hybrid.library.util.ParseUtil;
+import com.min.hybrid.library.util.SharePreferenceUtil;
+import com.min.hybrid.library.util.Util;
 import com.min.hybrid.library.view.HybridWebView;
 
 import java.io.File;
@@ -21,12 +24,12 @@ import de.greenrobot.event.Subscribe;
 
 public class HybridActivity extends AppCompatActivity {
 
-    private static final String TAG = HybridActivity.class.getSimpleName();
-    public static final String KEY_PATH = "path";
+    public static final String KEY_URL = "url";
     public static final String KEY_DATA = "data";
 
     protected HybridWebView mWebView;
     protected Bridge mBridge;
+    protected HybridConfiguration mHybridConfiguration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,7 @@ public class HybridActivity extends AppCompatActivity {
         EventUtil.register(this);
         setContentView(R.layout.activity_hybrid);
         mWebView = findViewById(R.id.wv);
+        mHybridConfiguration = HybridManager.getInstance().getConfiguration();
         initBridge();
         render();
     }
@@ -45,10 +49,10 @@ public class HybridActivity extends AppCompatActivity {
                     @Override
                     public void onPageFinished(WebView view, String url) {
                         super.onPageFinished(view, url);
-                        L.d(TAG, "onPageFinished=%s", url);
                     }
                 })
                 .addDefaultBridgeApi()
+                .addCustomBridgeApi(mHybridConfiguration.getCustomBridgeApiList())
                 .build();
     }
 
@@ -59,54 +63,54 @@ public class HybridActivity extends AppCompatActivity {
     }
 
     protected void render() {
-        String url = getIntent().getStringExtra(KEY_PATH);
+        String url = getIntent().getStringExtra(KEY_URL);
         if (!TextUtils.isEmpty(url)) {
-            Serializable serializable = getIntent().getSerializableExtra(KEY_DATA);
-            if (serializable != null) {
-                Map<String, Object> map = (Map<String, Object>) serializable;
-                if (map.size() > 0) {
-                    url += "?";
-                }
-                for (Map.Entry<String, Object> entry : map.entrySet()) {
-                    url = url + entry.getKey() + "=" + entry.getValue() + "&";
-                }
-                if (map.size() > 0) {
-                    url = url.substring(0, url.length() - 1);
-                }
-            }
+            url = handlePath(url);
         }
         loadUrl(url);
     }
 
+    private String handlePath(String url) {
+        if (url.startsWith("/")) {
+            url = mHybridConfiguration.getPageHostUrl() + "/#" + url;
+        }
+        Serializable serializable = getIntent().getSerializableExtra(KEY_DATA);
+        if (serializable != null) {
+            Map<String, Object> map = (Map<String, Object>) serializable;
+            url = Util.joinMapToUrl(url, map);
+        }
+        if (intercept(url)) {
+            url = getLocalUrl(url);
+        }
+        return url;
+    }
+
     protected void loadUrl(String url) {
         if (!TextUtils.isEmpty(url)) {
-            if (intercept(url)) {
-                url = getLocalUrl(url);
-            }
+            L.d(Constants.HYBRID_LOG, "load url=%s", url);
             mWebView.loadUrl(url);
+        } else {
+            L.d(Constants.HYBRID_LOG, "load empty url");
         }
     }
 
     protected boolean intercept(String url) {
-        if (url.contains("10.10.13.117")) {
-            return true;
-        }
-        return false;
+        return SharePreferenceUtil.getInterceptorActive(this) && url.contains(mHybridConfiguration.getPageHostUrl());
     }
 
     protected String getLocalUrl(String url) {
-        File webAppDir = new File(getFilesDir(), Constants.DIR_WEB_APP);
+        File webAppDir = new File(FileUtil.getBundleDir(this), "bundle");
         File indexFile = new File(webAppDir, "index.html");
         if (!indexFile.exists()) {
             return url;
         }
-        String pathTemplate = "file:///%s/index.html#/%s";
+        String urlTemplate = "file:///%s/index.html#/%s";
         String[] arr = url.split("#");
         String s = "";
         if (arr.length > 1) {
             s = arr[1].substring(1);
         }
-        url = String.format(pathTemplate, webAppDir.getAbsolutePath(), s);
+        url = String.format(urlTemplate, webAppDir.getAbsolutePath(), s);
         return url;
     }
 

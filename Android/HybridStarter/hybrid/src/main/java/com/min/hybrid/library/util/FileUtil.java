@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Environment;
 
 import com.min.hybrid.library.Constants;
-import com.min.hybrid.library.util.ZipUtil;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,10 +21,10 @@ public class FileUtil {
     public static File getBasePath(Context context) {
         File appDir = null;
         if (isSDCardAvailable()) {
-            appDir = new File(context.getExternalFilesDir(null), Constants.Asset.BASE_DIR);
+            appDir = new File(context.getExternalFilesDir(null), Constants.Resource.BASE_DIR);
         }
         if (appDir == null) {
-            appDir = new File(context.getFilesDir(), Constants.Asset.BASE_DIR);
+            appDir = new File(context.getFilesDir(), Constants.Resource.BASE_DIR);
         }
         if (!appDir.exists()) {
             appDir.mkdirs();
@@ -42,11 +41,11 @@ public class FileUtil {
     }
 
     public static File getBundleDir(Context context) {
-        return getAppPath(Constants.Asset.JS_BUNDLE, context);
+        return getAppPath(Constants.Resource.JS_BUNDLE, context);
     }
 
     public static File getTempBundleDir(Context context) {
-        return getAppPath(Constants.Asset.JS_BUNDLE_ZIP, context);
+        return getAppPath(Constants.Resource.JS_BUNDLE_ZIP, context);
     }
 
     public static File getPathBundleDir(Context context, String path) {

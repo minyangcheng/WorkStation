@@ -2,6 +2,8 @@ package com.min.hybrid.library.util;
 
 import android.text.TextUtils;
 
+import com.min.hybrid.library.Constants;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -25,7 +27,7 @@ public class ZipUtil {
             }
             mkdirs(outPath);
             entryName = entry.getName();
-            System.out.println(entryName);
+            L.d(Constants.HYBRID_LOG, "unZip file=%s", entryName);
             if (entry.isDirectory()) {
                 File folder = new File(outPath + File.separator + entryName);
                 mkdirs(folder.getAbsolutePath());

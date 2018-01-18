@@ -44,20 +44,18 @@ public class SharePreferenceUtil {
     }
 
 
-    public static String getInterceptorActive(Context context) {
+    public static boolean getInterceptorActive(Context context) {
         if (context != null) {
-            SharedPreferences sharedPreferences = context.getSharedPreferences(Constants
-                    .SP.NATIVE_NAME, Context.MODE_PRIVATE);
-            return sharedPreferences.getString(Constants.SP.INTERCEPTOR_ACTIVE, "");
+            SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.SP.NATIVE_NAME, Context.MODE_PRIVATE);
+            return sharedPreferences.getBoolean(Constants.SP.INTERCEPTOR_ACTIVE, false);
         }
-        return "";
+        return false;
     }
 
-    public static void setInterceptorActive(Context context, String active) {
+    public static void setInterceptorActive(Context context, boolean active) {
         if (context != null) {
-            SharedPreferences sharedPreferences = context.getSharedPreferences(Constants
-                    .SP.NATIVE_NAME, Context.MODE_PRIVATE);
-            sharedPreferences.edit().putString(Constants.SP.INTERCEPTOR_ACTIVE, active).apply();
+            SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.SP.NATIVE_NAME, Context.MODE_PRIVATE);
+            sharedPreferences.edit().putBoolean(Constants.SP.INTERCEPTOR_ACTIVE, active).apply();
         }
     }
 

@@ -5,12 +5,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 
+import com.min.hybrid.library.Constants;
+import com.min.hybrid.library.HybridActivity;
 import com.min.hybrid.library.bridge.Bridge;
 import com.min.hybrid.library.bridge.JsCallBackHandler;
 import com.min.hybrid.library.bridge.OnBridgeListener;
-import com.min.hybrid.library.Constants;
 import com.min.hybrid.library.util.Util;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -33,7 +35,7 @@ public class OpenActivityApi implements IBridgeApi {
                 String destination = payload.get("destination");
                 if (!TextUtils.isEmpty(destination)) {
                     Context context = bridge.getContext();
-                    if (destination.startsWith("http")||destination.startsWith("file")) {
+                    if (destination.startsWith("http") || destination.startsWith("file")) {
                         openHybridActivity(context, payload);
                     } else {
                         openNativeActivity(context, payload);
@@ -46,8 +48,11 @@ public class OpenActivityApi implements IBridgeApi {
     private void openHybridActivity(Context context, Map<String, String> payload) {
         Intent intent = new Intent();
         intent.setAction(Constants.ACTION_HYBRID_ACTIVITY);
-        intent.putExtra("url", payload.get("destina" +
-                "tion"));
+        intent.putExtra(HybridActivity.KEY_URL, payload.get("destination"));
+        payload.remove("destination");
+        HashMap<String, String> map = new HashMap<>();
+        map.putAll(payload);
+        intent.putExtra(HybridActivity.KEY_DATA, map);
         context.startActivity(intent);
     }
 

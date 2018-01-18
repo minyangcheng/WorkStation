@@ -10,8 +10,6 @@ public class Constants {
 
     public static final String BRIDGE_SCHEME = "bridge";
 
-    public static final String DIR_WEB_APP = "webapp";
-
     public static final String ACTION_HYBRID_ACTIVITY = "open.hybrid.activity";
 
     public static class BridgeApi {
@@ -24,7 +22,7 @@ public class Constants {
         public static final String NATIVE_LOG = "nativeLog";
     }
 
-    public static class Asset {
+    public static class Resource {
         public static final String BASE_DIR = "WebApp";
         public static final String BUNDLE_NAME = "bundle.zip";
         public static final String TEMP_BUNDLE_NAME = "temp_bundle.zip";
