@@ -29,7 +29,9 @@
         this.$bridge.nativeLog({name:'minyab'});
       },
       go(){
-        this.$bridge.openActivity('http://10.10.13.117:8080/#/ChildPage');
+        this.$bridge.openPage('/ChildPage',this);
+//        this.$bridge.openActivity('file:///android_asset/index.html#/ChildPage');
+//        this.$bridge.openActivity('file:////data/user/0/com.min.hybrid.sample/files/webapp/index.html#/ChildPage?name=min')
       }
     }
   }

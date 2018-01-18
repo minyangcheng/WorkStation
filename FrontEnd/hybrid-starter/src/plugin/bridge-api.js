@@ -1,4 +1,4 @@
-import Bridge from './bridge'
+import Bridge from "./bridge";
 
 export default function (Vue, defaultOptions = {}) {
 
@@ -29,10 +29,30 @@ export default function (Vue, defaultOptions = {}) {
    * @param destination
    * @param payload
    */
-  Bridge.openActivity = function (destination,payload={}) {
-    if(destination){
-      payload=Object.assign(payload, {destination})
+  Bridge.openActivity = function (destination, payload = {}) {
+    if (destination) {
+      payload = Object.assign(payload, {destination})
       Bridge.send('openActivity', payload)
+    }
+  }
+
+  /**
+   * 跳转activity打开页面 或 在当前activity打开页面
+   * @param destination
+   * @param payload
+   * @param vue
+   */
+  Bridge.openPage = function (destination, payload = {}, vue) {
+    if (payload && payload.$router) {
+      vue = payload;
+      payload = {};
+    }
+    if (destination) {
+      if (vue) {
+        vue.$router.push({path: destination, query: payload})
+      } else {
+        Bridge.openActivity(destination, payload);
+      }
     }
   }
 
@@ -43,9 +63,9 @@ export default function (Vue, defaultOptions = {}) {
    * @param type
    * @param payload
    */
-  Bridge.postEvent = function (type,payload={}) {
-    if(type){
-      payload=Object.assign(payload, {type})
+  Bridge.postEvent = function (type, payload = {}) {
+    if (type) {
+      payload = Object.assign(payload, {type})
       Bridge.send('postEvent', payload)
     }
   }
