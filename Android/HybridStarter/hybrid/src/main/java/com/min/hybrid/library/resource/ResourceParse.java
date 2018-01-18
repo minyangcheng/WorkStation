@@ -1,4 +1,4 @@
-package com.min.hybrid.library.asset;
+package com.min.hybrid.library.resource;
 
 import android.content.Context;
 import android.text.TextUtils;
@@ -14,7 +14,7 @@ import com.min.hybrid.library.util.Util;
 import java.io.File;
 import java.util.Date;
 
-public class AssetParseManager {
+public class ResourceParse {
 
     public long prepareJsBundle(Context context) {
         long startTime = new Date().getTime();

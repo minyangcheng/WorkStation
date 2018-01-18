@@ -22,7 +22,7 @@ public class NativeLogApi implements IBridgeApi {
      */
     @Override
     public void setMonitor(final Bridge bridge) {
-        bridge.on(Constants.API_NATIVE_LOG, new OnBridgeListener() {
+        bridge.on(Constants.BridgeApi.NATIVE_LOG, new OnBridgeListener() {
             @Override
             public void doPerform(Map<String, String> payload, JsCallBackHandler callBackHandler) {
                 try {

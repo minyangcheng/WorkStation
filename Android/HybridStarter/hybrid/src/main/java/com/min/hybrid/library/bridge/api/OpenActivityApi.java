@@ -27,7 +27,7 @@ public class OpenActivityApi implements IBridgeApi {
      */
     @Override
     public void setMonitor(final Bridge bridge) {
-        bridge.on(Constants.API_OPEN_ACTIVITY, new OnBridgeListener() {
+        bridge.on(Constants.BridgeApi.OPEN_ACTIVITY, new OnBridgeListener() {
             @Override
             public void doPerform(Map<String, String> payload, JsCallBackHandler callBackHandler) {
                 String destination = payload.get("destination");

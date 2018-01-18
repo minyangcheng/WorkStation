@@ -1,4 +1,4 @@
-package com.min.hybrid.library.asset;
+package com.min.hybrid.library.resource;
 
 import android.content.Context;
 import android.text.TextUtils;
@@ -22,7 +22,7 @@ import okhttp3.Callback;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class AssetCheckManager {
+public class ResourceCheck {
 
     private static final String TAG = "VersionChecker";
 
@@ -30,7 +30,7 @@ public class AssetCheckManager {
     private Context mContext;
     private int mCurrentStatus = Constants.Version.SLEEP;
 
-    public AssetCheckManager(Context context) {
+    public ResourceCheck(Context context) {
         this.mContext = context;
     }
 

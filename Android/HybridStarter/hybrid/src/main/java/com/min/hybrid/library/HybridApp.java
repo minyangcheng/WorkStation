@@ -2,7 +2,7 @@ package com.min.hybrid.library;
 
 import android.app.Application;
 
-import com.min.hybrid.library.asset.AssetCheckManager;
+import com.min.hybrid.library.resource.ResourceCheck;
 import com.min.hybrid.library.util.LifecycleCallBack;
 import com.min.hybrid.library.util.Util;
 
@@ -13,14 +13,14 @@ import com.min.hybrid.library.util.Util;
 public class HybridApp extends Application {
 
     private static HybridApp mInstance;
-    private AssetCheckManager mVersionChecker;
+    private ResourceCheck mVersionChecker;
 
     @Override
     public void onCreate() {
         super.onCreate();
         if (Util.shouldInit(this)) {
             mInstance = this;
-            mVersionChecker = new AssetCheckManager(this);
+            mVersionChecker = new ResourceCheck(this);
             registerLifecycle();
         }
     }

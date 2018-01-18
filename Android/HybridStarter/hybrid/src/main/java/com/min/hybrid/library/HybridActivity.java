@@ -22,7 +22,7 @@ import de.greenrobot.event.Subscribe;
 public class HybridActivity extends AppCompatActivity {
 
     private static final String TAG = HybridActivity.class.getSimpleName();
-    public static final String KEY_URL = "url";
+    public static final String KEY_PATH = "path";
     public static final String KEY_DATA = "data";
 
     protected HybridWebView mWebView;
@@ -59,7 +59,7 @@ public class HybridActivity extends AppCompatActivity {
     }
 
     protected void render() {
-        String url = getIntent().getStringExtra(KEY_URL);
+        String url = getIntent().getStringExtra(KEY_PATH);
         if (!TextUtils.isEmpty(url)) {
             Serializable serializable = getIntent().getSerializableExtra(KEY_DATA);
             if (serializable != null) {

@@ -1,7 +1,5 @@
 package com.min.hybrid.library.bridge.api;
 
-import android.webkit.WebView;
-
 import com.min.hybrid.library.bridge.Bridge;
 
 /**

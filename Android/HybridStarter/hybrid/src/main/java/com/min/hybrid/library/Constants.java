@@ -14,15 +14,15 @@ public class Constants {
 
     public static final String ACTION_HYBRID_ACTIVITY = "open.hybrid.activity";
 
-    public static final String API_TOAST = "toast";
+    public static class BridgeApi {
+        public static final String TOAST = "toast";
 
-    public static final String API_OPEN_ACTIVITY = "openActivity";
+        public static final String OPEN_ACTIVITY = "openActivity";
 
-    public static final String API_POST_EVENT = "postEvent";
+        public static final String POST_EVENT = "postEvent";
 
-    public static final String API_NATIVE_LOG = "nativeLog";
-
-    public static final String BUNDLE_ZIP_NAME = "bundle.zip";
+        public static final String NATIVE_LOG = "nativeLog";
+    }
 
     public static class Asset {
         public static final String BASE_DIR = "WebApp";

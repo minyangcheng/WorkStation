@@ -22,7 +22,7 @@ public class PostEventApi implements IBridgeApi {
      */
     @Override
     public void setMonitor(final Bridge bridge) {
-        bridge.on(Constants.API_POST_EVENT, new OnBridgeListener() {
+        bridge.on(Constants.BridgeApi.POST_EVENT, new OnBridgeListener() {
             @Override
             public void doPerform(Map<String, String> payload, JsCallBackHandler callBackHandler) {
                 HybridEvent event = new HybridEvent();
