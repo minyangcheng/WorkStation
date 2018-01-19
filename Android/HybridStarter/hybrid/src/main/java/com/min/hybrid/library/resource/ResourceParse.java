@@ -33,9 +33,9 @@ public class ResourceParse {
                 } else {
                     File zip = FileUtil.getFileInDir(FileUtil.getTempBundleDir(context), 0);
                     FileUtil.unZip(zip, FileUtil.getBundleDir(context));
-                    SharePreferenceUtil.setVersion(context, SharePreferenceUtil.getDownLoadVersion(context));
+                    SharePreferenceUtil.setVersion(context, downloadVersion);
                     SharePreferenceUtil.setDownLoadVersion(context, null);
-                    L.d(Constants.HYBRID_LOG, "prepare js bundle from zip file , info=%s",downloadVersion);
+                    L.d(Constants.HYBRID_LOG, "prepare js bundle from zip file , info=%s", downloadVersion);
                 }
             }
         }
@@ -60,7 +60,7 @@ public class ResourceParse {
         VersionInfoBean assetsVersion = AssetsUtil.getAssetsVersionInfo(context);
         String downLoadVersionStr = SharePreferenceUtil.getDownLoadVersion(context);
         VersionInfoBean downloadVersion = ParseUtil.parseObject(downLoadVersionStr, VersionInfoBean.class);
-        return Util.compareVersion(assetsVersion.jsVersion, downloadVersion.jsVersion) >= 0;
+        return downloadVersion == null || Util.compareVersion(assetsVersion.jsVersion, downloadVersion.jsVersion) >= 0;
     }
 
 }

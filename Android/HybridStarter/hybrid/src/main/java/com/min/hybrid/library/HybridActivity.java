@@ -98,6 +98,15 @@ public class HybridActivity extends AppCompatActivity {
         return SharePreferenceUtil.getInterceptorActive(this) && url.contains(mHybridConfiguration.getPageHostUrl());
     }
 
+    @Override
+    public void onBackPressed() {
+        if (mWebView.canGoBack()) {
+            mWebView.goBack();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
     protected String getLocalUrl(String url) {
         File webAppDir = new File(FileUtil.getBundleDir(this), "bundle");
         File indexFile = new File(webAppDir, "index.html");

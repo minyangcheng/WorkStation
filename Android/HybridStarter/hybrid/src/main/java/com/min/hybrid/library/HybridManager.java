@@ -46,16 +46,13 @@ public class HybridManager {
         if (configuration.getContext() == null) {
             throw new RuntimeException("hybrid config context can not be null");
         }
-        if (TextUtils.isEmpty(configuration.getUpdateUrl())) {
-            throw new RuntimeException("hybrid config updateUrl can not be empty");
-        }
         if (TextUtils.isEmpty(configuration.getPageHostUrl())) {
             throw new RuntimeException("hybrid config pageUrl can not be empty");
         }
     }
 
     private void init() {
-        resourceCheck = new ResourceCheck(configuration.getContext());
+        resourceCheck = new ResourceCheck(configuration.getContext(), configuration.getCheckApiHandler());
         resourceParse = new ResourceParse();
         setInterceptActive(configuration.isInterceptActive());
     }

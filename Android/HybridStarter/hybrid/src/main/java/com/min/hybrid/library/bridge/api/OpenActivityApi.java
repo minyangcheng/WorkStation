@@ -35,7 +35,7 @@ public class OpenActivityApi implements IBridgeApi {
                 String destination = payload.get("destination");
                 if (!TextUtils.isEmpty(destination)) {
                     Context context = bridge.getContext();
-                    if (destination.startsWith("http") || destination.startsWith("file")) {
+                    if (destination.startsWith("http") || destination.startsWith("/")) {
                         openHybridActivity(context, payload);
                     } else {
                         openNativeActivity(context, payload);

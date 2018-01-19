@@ -1,7 +1,7 @@
 {
   "androidVersion":"1.0",
   "iosVersion":"1.0",
-  "jsVersion":"1.0",
+  "jsVersion":"v1.0",
   "dist":"http://10.10.13.117:8080/static/bundle.zip",
-  "md5":"adfasdfa"
+  "md5":"9A30768C913FD0A1847A985AA3407C25"
 }
