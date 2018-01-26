@@ -1,10 +1,15 @@
 package com.min.hybrid.library.view;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+
+import com.min.hybrid.library.util.L;
+import com.min.hybrid.library.util.Util;
 
 /**
  * Created by minyangcheng on 2018/1/11.
@@ -12,16 +17,25 @@ import android.webkit.WebView;
 
 public class HybridWebView extends WebView {
 
+    private static final String TAG = HybridWebView.class.getSimpleName();
+    private String mFirstUrl;
+
     public HybridWebView(Context context) {
-        this(context, null);
+        super(context);
+        init();
     }
 
     public HybridWebView(Context context, AttributeSet attrs) {
-        this(context, attrs, -1);
+        super(context, attrs);
+        init();
     }
 
     public HybridWebView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init();
+    }
+
+    protected void init() {
         initConfig();
     }
 
@@ -52,7 +66,31 @@ public class HybridWebView extends WebView {
             }
         });
         setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
+        addJavascriptInterface(new AndroidJSInterface(), "Android");
         requestFocus();
+    }
+
+    @Override
+    public void loadUrl(String url) {
+        super.loadUrl(url);
+        if (TextUtils.isEmpty(url)) {
+            mFirstUrl = url;
+        }
+    }
+
+    public class AndroidJSInterface {
+
+        @JavascriptInterface
+        public void refresh() {
+            Util.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    L.d(TAG, "refresh originalUrl=%s , url=%s", HybridWebView.this.getOriginalUrl(), HybridWebView.this.getUrl());
+                    HybridWebView.this.reload();
+                }
+            });
+        }
+
     }
 
 }

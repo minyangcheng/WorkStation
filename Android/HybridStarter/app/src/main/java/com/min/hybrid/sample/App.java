@@ -40,7 +40,7 @@ public class App extends Application {
     private void initHybrid() {
         HybridConfiguration configuration = new HybridConfiguration(this)
                 .setPageHostUrl("http://10.10.13.117:8080")
-                .setInterceptActive(true)
+//                .setInterceptActive(true)
                 .setCheckApiHandler(new CheckApiHandler() {
                     @Override
                     public void checkRequest(ResourceCheck resourceCheck) {
@@ -66,7 +66,9 @@ public class App extends Application {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 VersionInfoBean remoteVersion = ParseUtil.parseObject(response.body().string(), VersionInfoBean.class);
-                resourceCheck.setCheckApiSuccessResp(remoteVersion.jsVersion, remoteVersion.md5, remoteVersion.dist);
+                if(remoteVersion!=null){
+                    resourceCheck.setCheckApiSuccessResp(remoteVersion.jsVersion, remoteVersion.md5, remoteVersion.dist);
+                }
             }
         });
     }

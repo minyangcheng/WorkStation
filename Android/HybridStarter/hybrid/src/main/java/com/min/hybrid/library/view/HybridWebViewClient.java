@@ -26,6 +26,7 @@ public class HybridWebViewClient extends DelegateWebViewClient {
         mDelegate = client;
     }
 
+    @Override
     public WebViewClient getDelegate() {
         return mDelegate;
     }

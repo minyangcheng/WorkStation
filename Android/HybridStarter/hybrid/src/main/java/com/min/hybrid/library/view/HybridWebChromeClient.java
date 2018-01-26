@@ -9,14 +9,16 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
 import com.min.hybrid.library.R;
+import com.min.hybrid.library.bridge.Bridge;
 
-public class HybridWebChromeClient extends WebChromeClient {
+public class HybridWebChromeClient extends DelegateChromeClient {
 
+    private WebChromeClient delegate;
     private Context context;
 
-    public HybridWebChromeClient(Context context) {
+    public HybridWebChromeClient(Bridge bridge) {
         super();
-        this.context = context;
+        this.context = bridge.getContext();
     }
 
     @Override
@@ -80,6 +82,15 @@ public class HybridWebChromeClient extends WebChromeClient {
         builder.setPositiveButton("允许", dialogButtonOnClickListener);
         builder.setNegativeButton("拒绝", dialogButtonOnClickListener);
         builder.show();
+    }
+
+    @Override
+    protected WebChromeClient getDelegate() {
+        return delegate;
+    }
+
+    public void setDelegate(WebChromeClient chromeClient) {
+        delegate = chromeClient;
     }
 
 }

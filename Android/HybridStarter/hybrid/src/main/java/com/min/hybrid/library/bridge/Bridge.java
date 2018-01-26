@@ -3,6 +3,7 @@ package com.min.hybrid.library.bridge;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.SparseArray;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -30,22 +31,24 @@ public class Bridge {
     protected List<IBridgeApi> mBridgeApiList = new ArrayList<>();
 
     protected HybridWebViewClient mWebViewClient;
+    protected HybridWebChromeClient mChromeClient;
 
     protected WebView mWebView;
 
     protected int mMessageCount;
 
-    private Bridge(WebView webView, WebViewClient webViewClient) {
+    private Bridge(WebView webView, WebViewClient webViewClient, WebChromeClient webChromeClient) {
         mWebView = webView;
         mWebViewClient = new HybridWebViewClient(this);
         mWebViewClient.setDelegate(webViewClient);
-        initWebView();
+        mChromeClient = new HybridWebChromeClient(this);
+        mChromeClient.setDelegate(webChromeClient);
+        setClientToWebView();
     }
 
-    private void initWebView() {
-        mWebView.getSettings().setJavaScriptEnabled(true);
+    private void setClientToWebView() {
         mWebView.setWebViewClient(mWebViewClient);
-        mWebView.setWebChromeClient(new HybridWebChromeClient(mWebView.getContext()));
+        mWebView.setWebChromeClient(mChromeClient);
     }
 
     public void send(String type) {
@@ -162,11 +165,17 @@ public class Bridge {
     public static class Builder {
 
         private WebViewClient webViewClient;
+        private WebChromeClient webChromeClient;
         private WebView webView;
         private List<IBridgeApi> bridgeApiList = new ArrayList<>();
 
         public Builder setWebViewClient(WebViewClient webViewClient) {
             this.webViewClient = webViewClient;
+            return this;
+        }
+
+        public Builder setWebChromeClient(WebChromeClient webChromeClient) {
+            this.webChromeClient = webChromeClient;
             return this;
         }
 
@@ -194,7 +203,7 @@ public class Bridge {
             if (webView == null) {
                 throw new RuntimeException("WebView can not be null");
             }
-            Bridge bridge = new Bridge(webView, webViewClient);
+            Bridge bridge = new Bridge(webView, webViewClient, webChromeClient);
             bridge.setBridgeApiList(bridgeApiList);
             return bridge;
         }
