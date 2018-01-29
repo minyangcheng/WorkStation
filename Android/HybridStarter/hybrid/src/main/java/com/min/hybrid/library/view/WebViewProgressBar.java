@@ -22,6 +22,7 @@ public class WebViewProgressBar extends View {
     private int mWidth;
     private Paint mPaint;
     private int mColor;
+    private ValueAnimator mAnimator;
 
     public WebViewProgressBar(Context context) {
         this(context, null);
@@ -71,17 +72,20 @@ public class WebViewProgressBar extends View {
         if (mProgress == 100) {
             mProgress = 0;
         }
-        ValueAnimator animator = ValueAnimator.ofInt(mProgress, distProgress);
-        animator.setDuration(time);
-        animator.setInterpolator(new LinearInterpolator());
-        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        if (mAnimator != null && mAnimator.isRunning()) {
+            mAnimator.cancel();
+        }
+        mAnimator = ValueAnimator.ofInt(mProgress, distProgress);
+        mAnimator.setDuration(time);
+        mAnimator.setInterpolator(new LinearInterpolator());
+        mAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 mProgress = (int) animation.getAnimatedValue();
                 postInvalidate();
             }
         });
-        animator.addListener(new Animator.AnimatorListener() {
+        mAnimator.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationEnd(Animator animation) {
                 if (listener != null) {
@@ -101,7 +105,7 @@ public class WebViewProgressBar extends View {
             public void onAnimationRepeat(Animator animation) {
             }
         });
-        animator.start();
+        mAnimator.start();
     }
 
     public interface OnEndListener {

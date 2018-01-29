@@ -1,4 +1,4 @@
-package com.min.hybrid.library.view;
+package com.min.hybrid.library.view.webview;
 
 import android.annotation.TargetApi;
 import android.graphics.Bitmap;

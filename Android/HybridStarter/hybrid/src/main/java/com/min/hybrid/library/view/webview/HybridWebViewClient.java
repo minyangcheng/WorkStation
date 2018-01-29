@@ -1,4 +1,4 @@
-package com.min.hybrid.library.view;
+package com.min.hybrid.library.view.webview;
 
 import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
@@ -9,6 +9,7 @@ import com.min.hybrid.library.bridge.Envelope;
 import com.min.hybrid.library.Constants;
 import com.min.hybrid.library.util.L;
 import com.min.hybrid.library.util.ParseUtil;
+import com.min.hybrid.library.view.webview.DelegateWebViewClient;
 
 import java.net.URI;
 import java.net.URLDecoder;

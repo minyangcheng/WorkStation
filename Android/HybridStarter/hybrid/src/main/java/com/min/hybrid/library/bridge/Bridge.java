@@ -14,8 +14,8 @@ import com.min.hybrid.library.bridge.api.PostEventApi;
 import com.min.hybrid.library.bridge.api.ToastApi;
 import com.min.hybrid.library.util.ParseUtil;
 import com.min.hybrid.library.util.Util;
-import com.min.hybrid.library.view.HybridWebChromeClient;
-import com.min.hybrid.library.view.HybridWebViewClient;
+import com.min.hybrid.library.view.webview.HybridWebChromeClient;
+import com.min.hybrid.library.view.webview.HybridWebViewClient;
 
 import java.util.ArrayList;
 import java.util.HashMap;

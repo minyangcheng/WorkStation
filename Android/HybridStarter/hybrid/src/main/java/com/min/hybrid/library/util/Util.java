@@ -1,6 +1,8 @@
 package com.min.hybrid.library.util;
 
 
+import android.animation.Animator;
+import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.content.Context;
@@ -12,6 +14,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
 import android.util.TypedValue;
+import android.view.View;
 
 import java.util.List;
 import java.util.Map;
@@ -157,6 +160,13 @@ public class Util {
             }
         }
         return false;
+    }
+
+    public static Animator alpha(View view, int from, int to, int duration) {
+        Animator animator = ObjectAnimator.ofFloat(view, "alpha", from, to);
+        animator.setDuration(duration);
+        animator.start();
+        return animator;
     }
 
 }

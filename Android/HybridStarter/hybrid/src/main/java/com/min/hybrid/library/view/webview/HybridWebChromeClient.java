@@ -1,4 +1,4 @@
-package com.min.hybrid.library.view;
+package com.min.hybrid.library.view.webview;
 
 import android.content.Context;
 import android.content.DialogInterface;

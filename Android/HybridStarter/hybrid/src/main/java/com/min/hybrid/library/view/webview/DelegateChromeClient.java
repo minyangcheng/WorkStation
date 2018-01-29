@@ -1,4 +1,4 @@
-package com.min.hybrid.library.view;
+package com.min.hybrid.library.view.webview;
 
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;

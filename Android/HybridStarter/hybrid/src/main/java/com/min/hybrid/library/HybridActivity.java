@@ -10,7 +10,6 @@ import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.TextView;
 
 import com.min.hybrid.library.bean.HybridEvent;
 import com.min.hybrid.library.bridge.Bridge;
@@ -20,8 +19,8 @@ import com.min.hybrid.library.util.L;
 import com.min.hybrid.library.util.ParseUtil;
 import com.min.hybrid.library.util.SharePreferenceUtil;
 import com.min.hybrid.library.util.Util;
-import com.min.hybrid.library.view.HybridWebView;
 import com.min.hybrid.library.view.WebViewProgressBar;
+import com.min.hybrid.library.view.webview.HybridWebView;
 
 import java.io.File;
 import java.io.Serializable;
@@ -38,6 +37,7 @@ public class HybridActivity extends AppCompatActivity {
     protected HybridWebView mWebView;
     private WebViewProgressBar mProgressBar;
     private View mErrorContentView;
+    private View mRetryView;
 
     private boolean mContinueFlag;
     protected Bridge mBridge;
@@ -56,8 +56,9 @@ public class HybridActivity extends AppCompatActivity {
     private void findView() {
         mWebView = findViewById(R.id.wv);
         mProgressBar = (WebViewProgressBar) findViewById(R.id.pb);
-        mErrorContentView = (TextView) findViewById(R.id.view_error);
-        mErrorContentView.setOnClickListener(new View.OnClickListener() {
+        mErrorContentView =findViewById(R.id.view_error);
+        mRetryView=findViewById(R.id.view_retry);
+        mRetryView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mErrorContentView.setVisibility(View.INVISIBLE);
@@ -215,7 +216,7 @@ public class HybridActivity extends AppCompatActivity {
                 return;
             }
             mWebView.setVisibility(View.VISIBLE);
-            mProgressBar.setProgress(100, 3000, new WebViewProgressBar.OnEndListener() {
+            mProgressBar.setProgress(100, 2000, new WebViewProgressBar.OnEndListener() {
                 @Override
                 public void onEnd() {
                     mProgressBar.setVisibility(View.INVISIBLE);
