@@ -1,13 +1,16 @@
 package com.min.hybrid.library;
 
+import android.net.http.SslError;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.TextView;
 
 import com.min.hybrid.library.bean.HybridEvent;
 import com.min.hybrid.library.bridge.Bridge;
@@ -18,7 +21,7 @@ import com.min.hybrid.library.util.ParseUtil;
 import com.min.hybrid.library.util.SharePreferenceUtil;
 import com.min.hybrid.library.util.Util;
 import com.min.hybrid.library.view.HybridWebView;
-import com.min.hybrid.library.view.NumberProgressBar;
+import com.min.hybrid.library.view.WebViewProgressBar;
 
 import java.io.File;
 import java.io.Serializable;
@@ -33,8 +36,10 @@ public class HybridActivity extends AppCompatActivity {
     public static final String KEY_DATA = "data";
 
     protected HybridWebView mWebView;
-    protected NumberProgressBar mProgressBar;
+    private WebViewProgressBar mProgressBar;
+    private View mErrorContentView;
 
+    private boolean mContinueFlag;
     protected Bridge mBridge;
     protected HybridConfiguration mHybridConfiguration;
 
@@ -43,23 +48,29 @@ public class HybridActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EventUtil.register(this);
         setContentView(R.layout.activity_hybrid);
-        mWebView = findViewById(R.id.wv);
-        mProgressBar = findViewById(R.id.pb);
-        mHybridConfiguration = HybridManager.getInstance().getConfiguration();
+        findView();
         initBridge();
         render();
     }
 
+    private void findView() {
+        mWebView = findViewById(R.id.wv);
+        mProgressBar = (WebViewProgressBar) findViewById(R.id.pb);
+        mErrorContentView = (TextView) findViewById(R.id.view_error);
+        mErrorContentView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mErrorContentView.setVisibility(View.INVISIBLE);
+                mWebView.reload();
+            }
+        });
+    }
+
     private void initBridge() {
+        mHybridConfiguration = HybridManager.getInstance().getConfiguration();
         mBridge = new Bridge.Builder()
                 .setWebView(mWebView)
                 .setWebViewClient(new WebViewClient() {
-                    @Override
-                    public void onPageFinished(WebView view, String url) {
-                        super.onPageFinished(view, url);
-
-                    }
-
                     @Override
                     public void onReceivedError(WebView view, int errorCode, final String description, final String failingUrl) {
                         super.onReceivedError(view, errorCode, description, failingUrl);
@@ -70,11 +81,17 @@ public class HybridActivity extends AppCompatActivity {
                             }
                         });
                     }
+
+                    @Override
+                    public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+                        handler.proceed();
+                    }
                 })
                 .setWebChromeClient(new WebChromeClient() {
                     @Override
                     public void onProgressChanged(WebView view, final int newProgress) {
                         super.onProgressChanged(view, newProgress);
+                        L.d(TAG, "onProgressChanged=%s", newProgress);
                         Util.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -189,42 +206,39 @@ public class HybridActivity extends AppCompatActivity {
     }
 
     protected void handleProgressChanged(int newProgress) {
-        L.d(TAG, "handleProgressChanged --> newProgress=%s", newProgress);
-        if (newProgress >= 100) {
-            mProgressBar.setVisibility(View.GONE);
-        } else {
-            if (mProgressBar.getVisibility() == View.GONE) {
-                mProgressBar.setVisibility(View.VISIBLE);
+        if (!Util.isNetworkAvailable(this)) {
+            return;
+        }
+        mProgressBar.setVisibility(View.VISIBLE);
+        if (newProgress >= 80) {
+            if (mContinueFlag) {
+                return;
             }
+            mWebView.setVisibility(View.VISIBLE);
+            mProgressBar.setProgress(100, 3000, new WebViewProgressBar.OnEndListener() {
+                @Override
+                public void onEnd() {
+                    mProgressBar.setVisibility(View.INVISIBLE);
+                    mErrorContentView.setVisibility(View.INVISIBLE);
+                    mContinueFlag = false;
+                }
+            });
+            mContinueFlag = true;
+        } else {
             mProgressBar.setProgress(newProgress);
         }
     }
 
     protected void handleError(String description, String failingUrl) {
-        L.d(TAG, "handleError --> description=%s , failingUrl=%s", description, failingUrl);
-        String s = "<!DOCTYPE html>\n" +
-                "<html>\n" +
-                "<head>\n" +
-                "  <meta charset='utf-8'/>\n" +
-                "  <meta name='viewport'\n" +
-                "        content='width=device-width,height=device-height,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no'/>\n" +
-                "  <meta content='yes' name='apple-mobile-web-app-capable'/>\n" +
-                "  <meta content='black' name='apple-mobile-web-app-status-bar-style'/>\n" +
-                "  <meta content='telephone=no' name='format-detection'/>\n" +
-                "  <meta content='email=no' name='format-detection'/>\n" +
-                "  <title></title>\n" +
-                "</head>\n" +
-                "<body>\n" +
-                "<div style='position: absolute;top: 0px;left:0px;z-index: 9999;width:100%;height: 100%;background: #ffffff;' onclick='Android.refresh()'>\n" +
-                "  <div style='position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);'>\n" +
-                "    <div>网络不给力</div>\n" +
-                "    <div>点击重试</div>\n" +
-                "  </div>\n" +
-                "</div>\n" +
-                "</body>\n" +
-                "</html>\n";
-        mWebView.loadUrl("javascript:document.write(\"" + s + "\")");
-        mProgressBar.setVisibility(View.GONE);
+        mWebView.setVisibility(View.INVISIBLE);
+        mProgressBar.setVisibility(View.VISIBLE);
+        mProgressBar.setProgress(100, 3500, new WebViewProgressBar.OnEndListener() {
+            @Override
+            public void onEnd() {
+                mProgressBar.setVisibility(View.INVISIBLE);
+                mErrorContentView.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
 }
