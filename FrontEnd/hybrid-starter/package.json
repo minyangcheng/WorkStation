@@ -13,8 +13,10 @@
     "pack": "./bin/pack.js"
   },
   "dependencies": {
+    "eruda": "^1.4.1",
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vuelidate": "^0.6.1"
   },
   "devDependencies": {
     "archiver": "^2.1.1",

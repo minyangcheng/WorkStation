@@ -4,15 +4,21 @@
     <button @click="toast">toast</button>
     <button @click="nativeLog">nativeLog</button>
     <button @click="go">go</button>
+    <input type="number" style="height: 30px;width:90%;margin-top: 5px" v-model="message" placeholder="edit me"/>
+    <p>Message is: {{ message }}</p>
+    <CurrencyInput v-model='count' type="number" :decimalLength="2"></CurrencyInput>
   </div>
 </template>
 
 <script>
   import LifeCycleLog from './../mixins/mixin'
+  import CurrencyInput from './../widget/CurrencyInput'
   export default {
     data () {
       return {
-        msg: 'MainPage'
+        msg: 'MainPage',
+        message:"init",
+        count:""
       }
     },
     mixins: [LifeCycleLog],
@@ -33,7 +39,8 @@
 //        this.$bridge.openActivity('file:///android_asset/index.html#/ChildPage');
 //        this.$bridge.openActivity('file:////data/user/0/com.min.hybrid.sample/files/webapp/index.html#/ChildPage?name=min')
       }
-    }
+    },
+    components: {CurrencyInput},
   }
 </script>
 
