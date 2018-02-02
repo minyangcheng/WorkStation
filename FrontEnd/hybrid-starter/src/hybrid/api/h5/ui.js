@@ -16,7 +16,7 @@ import paddingWith0 from './muilib/paddingwith0';
 function pickerDateWithArgs(args) {
     const options = args[0];
     const resolve = args[1];
-    
+
     showDatePicter(options, (result) => {
         options.success && options.success(result);
         resolve && resolve(result);
@@ -40,6 +40,8 @@ export default function uiMixin(hybrid) {
                 rest,
                 'message',
             );
+
+            Array.from(args).forEach(v=>console.log(v))
             const options = args[0];
             const resolve = args[1];
 
@@ -195,7 +197,7 @@ export default function uiMixin(hybrid) {
             }
             options.value = datetime;
             options.type = 'date';
-            
+
             pickerDateWithArgs(args);
         },
     }, {
@@ -215,7 +217,7 @@ export default function uiMixin(hybrid) {
                 -${paddingWith0(dateNow.getMonth() + 1)}
                 -${paddingWith0(dateNow.getDate())} `;
             let datetime = options.datetime;
-            
+
             if (!datetime) {
                 // 如果不存在，默认为当前时间
                 const dateSuffix = `${paddingWith0(dateNow.getHours())}
@@ -227,7 +229,7 @@ export default function uiMixin(hybrid) {
             }
             options.value = datetime;
             options.type = 'time';
-            
+
             pickerDateWithArgs(args);
         },
     }, {
@@ -261,7 +263,7 @@ export default function uiMixin(hybrid) {
             }
             options.value = datetime;
             options.type = null;
-            
+
             pickerDateWithArgs(args);
         },
     }, {
@@ -294,7 +296,7 @@ export default function uiMixin(hybrid) {
             }
             options.value = datetime;
             options.type = 'month';
-            
+
             pickerDateWithArgs(args);
         },
     }, {

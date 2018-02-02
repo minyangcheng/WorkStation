@@ -22,7 +22,7 @@ export default function proxyMixin(hybrid) {
     Proxy.prototype.walk = function walk() {
         // 实时获取promise
         const Promise = hybridJs.getPromise();
-        
+
         // 返回一个闭包函数
         return (...rest) => {
             let args = rest;
@@ -53,7 +53,7 @@ export default function proxyMixin(hybrid) {
                     finallyCallback.apply(this, args);
                 });
             }
-            
+
             return finallyCallback && finallyCallback.apply(this, args);
         };
     };

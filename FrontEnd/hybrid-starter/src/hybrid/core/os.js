@@ -5,7 +5,7 @@ export default function osMixin(hybrid) {
     const hybridJs = hybrid;
     const detect = function detect(ua) {
         this.os = {};
-        
+
         const android = ua.match(/(Android);?[\s/]+([\d.]+)?/);
 
         if (android) {
@@ -29,7 +29,7 @@ export default function osMixin(hybrid) {
             this.os.ipad = true;
             this.os.version = ipad[2].replace(/_/g, '.');
         }
-        
+
         // quickhybrid的容器
         const quick = ua.match(/QuickHybrid/i);
 
