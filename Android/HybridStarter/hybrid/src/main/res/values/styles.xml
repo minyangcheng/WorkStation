@@ -1,3 +1,15 @@
 <resources>
 
+    <style name="ToolbarStyle">
+        <item name="theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="titleTextAppearance">@style/Toolbar_TextAppearance_White</item>
+        <item name="android:background">?attr/colorPrimary</item>
+    </style>
+
+    <style name="Toolbar_TextAppearance_White">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
 </resources>

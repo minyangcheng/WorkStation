@@ -12,6 +12,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.min.hybrid.library.bean.HybridEvent;
+import com.min.hybrid.library.bean.TitleBarBean;
 import com.min.hybrid.library.bridge.Bridge;
 import com.min.hybrid.library.util.EventUtil;
 import com.min.hybrid.library.util.FileUtil;
@@ -19,6 +20,7 @@ import com.min.hybrid.library.util.L;
 import com.min.hybrid.library.util.ParseUtil;
 import com.min.hybrid.library.util.SharePreferenceUtil;
 import com.min.hybrid.library.util.Util;
+import com.min.hybrid.library.view.CenterTitleToolbar;
 import com.min.hybrid.library.view.WebViewProgressBar;
 import com.min.hybrid.library.view.webview.HybridWebView;
 
@@ -34,6 +36,7 @@ public class HybridActivity extends AppCompatActivity {
     public static final String KEY_URL = "url";
     public static final String KEY_DATA = "data";
 
+    protected CenterTitleToolbar mToolbar;
     protected HybridWebView mWebView;
     private WebViewProgressBar mProgressBar;
     private View mErrorContentView;
@@ -49,15 +52,17 @@ public class HybridActivity extends AppCompatActivity {
         EventUtil.register(this);
         setContentView(R.layout.activity_hybrid);
         findView();
+        initView();
         initBridge();
         render();
     }
 
     private void findView() {
+        mToolbar = findViewById(R.id.toolbar);
         mWebView = findViewById(R.id.wv);
         mProgressBar = (WebViewProgressBar) findViewById(R.id.pb);
-        mErrorContentView =findViewById(R.id.view_error);
-        mRetryView=findViewById(R.id.view_retry);
+        mErrorContentView = findViewById(R.id.view_error);
+        mRetryView = findViewById(R.id.view_retry);
         mRetryView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,6 +70,28 @@ public class HybridActivity extends AppCompatActivity {
                 mWebView.reload();
             }
         });
+    }
+
+    private void initView() {
+        mToolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+//        mToolbar.setTitle(R.string.system_init);
+//        mToolbar.inflateMenu(R.menu.init);
+//        mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+//            @Override
+//            public boolean onMenuItemClick(MenuItem item) {
+//                if (item.getItemId() == R.id.action_setting) {
+//                    Util.openSettingUi(getContext());
+//                }
+//                return false;
+//            }
+//        });
     }
 
     private void initBridge() {
@@ -204,6 +231,21 @@ public class HybridActivity extends AppCompatActivity {
     public void onEvent(HybridEvent event) {
         L.d("Test", "event=%s", ParseUtil.toJsonString(event));
         mBridge.send(event.type, event.data);
+    }
+
+    @Subscribe
+    public void onEvent(TitleBarBean event) {
+        if(event.canGoBack){
+//            mToolbar.setNavigationIcon();
+        }else{
+//            mToolbar.setNavigationIcon();
+        }
+        if (!TextUtils.isEmpty(event.title)) {
+            mToolbar.setTitle(event.title);
+        }else{
+            mToolbar.setTitle("");
+        }
+
     }
 
     protected void handleProgressChanged(int newProgress) {
