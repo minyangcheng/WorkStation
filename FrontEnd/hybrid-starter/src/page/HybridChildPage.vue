@@ -1,6 +1,7 @@
 <template>
   <div class="page">
-    <button @click="toast">go</button>
+    <button @click="toast">toast</button>
+    <button @click="alert">alert</button>
   </div>
 </template>
 
@@ -12,6 +13,15 @@
         msg: 'MainPage'
       }
     },
+    created(){
+      quick.navigator.setTitle({
+        title: 'child',
+        success: function (result) {
+        },
+        error: function (err) {
+        }
+      });
+    },
     mounted(){
     },
     beforeDestroy(){
@@ -20,6 +30,12 @@
     methods: {
       toast(){
         quick.ui.toast('sd#ddd测试');
+      },
+      alert(){
+        quick.page.postEvent({
+          type:'main',
+          data:{'name':'min','age':123}
+        });
       }
     }
   }
