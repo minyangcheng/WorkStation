@@ -3,7 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/HybridStarter.iml" filepath="$PROJECT_DIR$/HybridStarter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HybridStarter.iml" filepath="$PROJECT_DIR$/HybridStarter.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hybrid/hybrid.iml" filepath="$PROJECT_DIR$/hybrid/hybrid.iml" />
       <module fileurl="file://$PROJECT_DIR$/hybrid/hybrid.iml" filepath="$PROJECT_DIR$/hybrid/hybrid.iml" />
     </modules>
   </component>
