@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class NetworkActivity extends AppCompatActivity implements IWXRenderListener {
 
-  private static String TEST_URL = "http://10.10.12.148:8081/#/";
+  private static String TEST_URL = "http://dotwe.org/raw/dist/6fe11640e8d25f2f98176e9643c08687.bundle.js";
   private WXSDKInstance mWXSDKInstance;
   private FrameLayout mContainer;
 
@@ -36,7 +36,7 @@ public class NetworkActivity extends AppCompatActivity implements IWXRenderListe
      */
     Map<String, Object> options = new HashMap<>();
     options.put(WXSDKInstance.BUNDLE_URL, TEST_URL);
-    mWXSDKInstance.renderByUrl("WXSample",TEST_URL,options,null,WXRenderStrategy.APPEND_ASYNC);
+    mWXSDKInstance.renderByUrl("WXSample",TEST_URL,options,null,WXRenderStrategy.APPEND_ONCE);
   }
 
   @Override
