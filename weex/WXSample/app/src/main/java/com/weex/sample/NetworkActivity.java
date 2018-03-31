@@ -35,7 +35,9 @@ public class NetworkActivity extends AppCompatActivity implements IWXRenderListe
      * flag:渲染策略。WXRenderStrategy.APPEND_ASYNC:异步策略先返回外层View，其他View渲染完成后调用onRenderSuccess。WXRenderStrategy.APPEND_ONCE 所有控件渲染完后后一次性返回。
      */
     Map<String, Object> options = new HashMap<>();
+    TEST_URL="http://192.168.0.103:8081/dist/index.js";
     options.put(WXSDKInstance.BUNDLE_URL, TEST_URL);
+    options.put("name","minyangcheng");
     mWXSDKInstance.renderByUrl("WXSample",TEST_URL,options,null,WXRenderStrategy.APPEND_ONCE);
   }
 
