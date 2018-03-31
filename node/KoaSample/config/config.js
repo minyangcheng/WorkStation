@@ -1,25 +1,27 @@
 var config;
 if (process.env.NODE_ENV === 'production') {
-  console.log("Load productionConfig...");
   config = {
     db: {
-      host: '10.10.12.165',
-      user: 'root',
+      dialect: 'mysql',
+      database: 'cg',
+      username: 'root',
       password: '123',
-      database: 'cg'
+      host: 'localhost',
+      port: 3306
     },
     view_path: "/dist"
   };
 } else {
-  console.log("Load localConfig...");
   config = {
     db: {
-      host: '10.10.12.165',
-      user: 'root',
+      dialect: 'mysql',
+      database: 'cg',
+      username: 'root',
       password: '123',
-      database: 'cg'
+      host: 'localhost',
+      port: 3306
     },
-    view_path: "/views-ejs"
+    view_path: "/views"
   };
 }
 

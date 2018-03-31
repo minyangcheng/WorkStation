@@ -1,16 +1,12 @@
 const userService = require('./../service/userService.js');
+const APIError = require('../middlewrae/rest').APIError;
 
-var getUserinfo = async (ctx, next) => {
-  let query = ctx.query;
-  let userId = query.id;
-  let userInfo = await userService.getUserById(userId);
-  if (userInfo) {
-    ctx.response.type = 'json';
-    ctx.response.body = userInfo;
+var getUsers = async (ctx, next) => {
+  let users = await userService.getUsers();
+  if (users) {
+    ctx.rest({users: users});
   } else {
-    var error = new Error();
-    error.body = {code: 123, message: 'sorry can find useinfo'};
-    throw error;
+    throw new APIError('product:not_found', 'product not found by id.');
   }
 };
 
@@ -20,6 +16,6 @@ var saveUserinfo = (ctx, next) => {
 };
 
 module.exports = {
-  'GET /getUserinfo': getUserinfo,
-  'POST /saveUserinfo': saveUserinfo
+  'GET /api/getUsers': getUsers,
+  'POST /api/saveUserinfo': saveUserinfo
 };

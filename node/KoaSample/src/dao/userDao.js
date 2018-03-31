@@ -1,11 +1,15 @@
-const mysql = require('../util/mysqlUtil.js');
+const model = require('../db/model');
 
-var getUserById = async (userId) => {
+let
+  Pet = model.Pet,
+  User = model.User;
+
+var getUsers = async (userId) => {
   let mysqlOptions = {
     sql: 'select * from person',
     args: [1]
   };
-  var users = await mysql.execQuery(mysqlOptions);
+  var users = await Pet.findAll();
   if (users.length == 0) {
     return null;
   } else {
@@ -14,5 +18,5 @@ var getUserById = async (userId) => {
 };
 
 module.exports = {
-  getUserById: getUserById
+  getUsers: getUsers
 };

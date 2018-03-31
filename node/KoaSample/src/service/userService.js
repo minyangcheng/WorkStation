@@ -1,10 +1,10 @@
 const userDao = require('../dao/userDao.js');
 
-var getUserById = async (userId) => {
-  var users = await userDao.getUserById(userId);
-  return users ? JSON.stringify(users) : null;
+var getUsers = async (userId) => {
+  var users = await userDao.getUsers(userId);
+  return users ? users : null;
 }
 
 module.exports = {
-  getUserById: getUserById
+  getUsers: getUsers
 };
