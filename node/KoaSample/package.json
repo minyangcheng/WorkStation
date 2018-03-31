@@ -1,0 +1,45 @@
+{
+  "name": "KoaSample",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "node bin/www",
+    "dev": "./node_modules/.bin/nodemon DEBUG=app* bin/www",
+    "pm2": "pm2 start bin/www",
+    "test": "./node_modules/.bin/mocha -u bdd"
+  },
+  "dependencies": {
+    "debug": "^2.6.3",
+    "koa": "^2.2.0",
+    "koa-bodyparser": "^3.2.0",
+    "koa-convert": "^1.2.0",
+    "koa-json": "^2.0.2",
+    "koa-logger": "^2.0.1",
+    "koa-onerror": "^1.2.1",
+    "koa-router": "^7.1.1",
+    "koa-static": "^3.0.0",
+    "koa-views": "^5.2.1",
+    "mysql": "^2.15.0",
+    "pug": "^2.0.0-rc.1",
+    "sequelize": "^4.37.5"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-changed": "^3.2.0",
+    "gulp-clean": "^0.4.0",
+    "gulp-clean-css": "^3.9.3",
+    "gulp-filter": "^5.1.0",
+    "gulp-qn": "^0.1.1",
+    "gulp-replace": "^0.6.1",
+    "gulp-rev": "^8.1.1",
+    "gulp-rev-collector": "^1.2.4",
+    "gulp-uglify": "^3.0.0",
+    "mocha": "^5.0.5",
+    "nodemon": "^1.8.1",
+    "pm2": "^2.10.2",
+    "pmx": "^1.6.4",
+    "run-sequence": "^2.2.1",
+    "should": "^13.2.1",
+    "supertest": "^3.0.0"
+  }
+}
