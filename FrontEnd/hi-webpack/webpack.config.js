@@ -6,7 +6,7 @@ var FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 var merge = require('webpack-merge')
 
 function resolve(dir) {
-  return path.join(__dirname, '..', dir)
+  return path.join(__dirname, dir)
 }
 
 var baseConfig = {
@@ -16,10 +16,11 @@ var baseConfig = {
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
+    publicPath:'/dist'
   },
   resolve: {
     extensions: ['.js', '.json'],
-    // alias: {}
+    alias: {}
   },
   module: {
     rules: [
@@ -42,7 +43,7 @@ var baseConfig = {
       'process.env.NODE_ENV': "'" + process.env.NODE_ENV + "'",
     }),
     new ExtractTextPlugin('styles.css'),
-    new HtmlWebpackPlugin({ template: './index.html', hash: true }),
+    new HtmlWebpackPlugin({template: './index.html', hash: true}),
   ]
 }
 
@@ -53,7 +54,7 @@ if (process.env.NODE_ENV == 'development') {
     devServer: {
       quiet: true,
       port: 8081,
-      host: 'localhost',
+      host: '0.0.0.0',
       historyApiFallback: true,
       noInfo: false,
     },
@@ -90,4 +91,4 @@ if (process.env.NODE_ENV == 'production') {
   })
 }
 
-module.exports = outputConfig
+module.exports = outputConfig?outputConfig:baseConfig

@@ -209,9 +209,9 @@ module.exports = outputConfig
 │
 ├─dist  //webpack生产环境下打包输出文件夹
 └─src  //项目文件夹
-        addItemOne.js  //普通js文件
-        addItemTwo.js
-        common.js
+        mobule_2.js  //普通js文件
+        module_1.js
+        util.js
         main.js
         style.css  //样式文件
 ```

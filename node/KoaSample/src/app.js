@@ -28,7 +28,7 @@ app.use(async (ctx, next) => {
   console.log(`<------------${ctx.method} ${ctx.url} - ${ms}ms`)
 });
 
-app.use(autoScanFile('/static/', __dirname + '/static'));
+app.use(autoScanFile('/static', __dirname + '/static'));
 app.use(bodyParser());
 app.use(rest.restify());
 app.use(autoScanController(__dirname + '/controller'));

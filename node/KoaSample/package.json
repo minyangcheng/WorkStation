@@ -6,7 +6,7 @@
     "start": "node bin/www",
     "dev": "./node_modules/.bin/nodemon DEBUG=app* bin/www",
     "pm2": "pm2 start bin/www",
-    "test": "./node_modules/.bin/mocha -u bdd"
+    "test": "./node_modules/.bin/mocha"
   },
   "dependencies": {
     "debug": "^2.6.3",
