@@ -7,7 +7,8 @@
     "wb": "webpack --config webpack/webpackFile.js",
     "wb-dev": "node webpack/webpackDev.js",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot",
-    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "test": "webpack --config test/webpackFile.js"
   },
   "author": "",
   "license": "ISC",
