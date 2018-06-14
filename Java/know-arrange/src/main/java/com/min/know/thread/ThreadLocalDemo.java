@@ -1,48 +1,40 @@
 package com.min.know.thread;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * Created by minyangcheng on 2017/8/14.
  * ThreadLocal是为每一个线程维护变量的副本的
  */
 public class ThreadLocalDemo {
 
-    // ①通过匿名内部类覆盖ThreadLocal的initialValue()方法，指定初始值
-    private static ThreadLocal<Integer> seqNum = new ThreadLocal<Integer>() {
-        public Integer initialValue() {
-            return 0;
+    public static void main(String []args){
+        for(int i=0;i<5;i++){
+            final Thread t = new Thread(){
+                @Override
+                public void run(){
+                    System.out.println("当前线程:"+Thread.currentThread().getId()+",已分配ID:"+ThreadId.get());
+                    System.out.println("当前线程:"+Thread.currentThread().getId()+",已分配ID:"+ThreadId.get());
+                }
+            };
+            t.start();
         }
-    };
-
-    // ②获取下一个序列值
-    public int getNextNum() {
-        seqNum.set(seqNum.get() + 1);
-        return seqNum.get();
     }
+    static   class ThreadId{
+        //一个递增的序列，使用AtomicInger原子变量保证线程安全
+        private static final AtomicInteger nextId = new AtomicInteger(0);
+        //线程本地变量，为每个线程关联一个唯一的序号
+        private static final ThreadLocal<Integer> threadId =
+                new ThreadLocal<Integer>() {
+                    @Override
+                    protected Integer initialValue() {
+                        return nextId.getAndIncrement();//相当于nextId++,由于nextId++这种操作是个复合操作而非原子操作，会有线程安全问题(可能在初始化时就获取到相同的ID，所以使用原子变量
+                    }
+                };
 
-    public static void main(String[] args) {
-        ThreadLocalDemo sn = new ThreadLocalDemo();
-        // ③ 3个线程共享sn，各自产生序列号
-        TestClient t1 = new TestClient(sn);
-        TestClient t2 = new TestClient(sn);
-        TestClient t3 = new TestClient(sn);
-        t1.start();
-        t2.start();
-        t3.start();
-    }
-
-    private static class TestClient extends Thread {
-        private ThreadLocalDemo sn;
-
-        public TestClient(ThreadLocalDemo sn) {
-            this.sn = sn;
-        }
-
-        public void run() {
-            for (int i = 0; i < 3; i++) {
-                // ④每个线程打出3个序列值
-                System.out.println("thread[" + Thread.currentThread().getName() + "] --> sn["
-                        + sn.getNextNum() + "]");
-            }
+        //返回当前线程的唯一的序列，如果第一次get，会先调用initialValue，后面看源码就了解了
+        public static int get() {
+            return threadId.get();
         }
     }
 
