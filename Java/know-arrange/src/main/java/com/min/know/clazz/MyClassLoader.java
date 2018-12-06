@@ -7,6 +7,7 @@ public class MyClassLoader extends ClassLoader {
     private String rootDir;
 
     public MyClassLoader(String rootDir) {
+        super();
         this.rootDir = rootDir;
     }
 

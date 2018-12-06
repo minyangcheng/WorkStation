@@ -1,0 +1,29 @@
+package com.min.know.logger;
+
+import okhttp3.OkHttpClient;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLSession;
+import java.util.concurrent.TimeUnit;
+
+public class OkHttpUtil {
+
+    public static OkHttpClient getOkHttpClient() {
+        HttpsUtils.SSLParams sslParams = HttpsUtils.getSslSocketFactory(null, null, null);
+        OkHttpClient okClient = new OkHttpClient.Builder()
+                .retryOnConnectionFailure(true)
+                .connectTimeout(300, TimeUnit.SECONDS)
+                .writeTimeout(300, TimeUnit.SECONDS)
+                .readTimeout(300, TimeUnit.SECONDS)
+                .hostnameVerifier(new HostnameVerifier() {
+                    @Override
+                    public boolean verify(String hostname, SSLSession session) {
+                        return true;
+                    }
+                })
+//                .sslSocketFactory(sslParams.sSLSocketFactory)  //设置可以访问所有https网站
+                .build();
+        return okClient;
+    }
+
+}

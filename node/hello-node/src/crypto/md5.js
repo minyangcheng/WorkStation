@@ -9,4 +9,4 @@ function mdFile(path) {
   return md5;
 }
 
-console.log(mdFile('./cheguoC_3.1.2_201805312330_official.apk'));
+console.log(mdFile('./cheguoC_3.1.5_315_201807191828_official_315_jiagu_sign.apk'));

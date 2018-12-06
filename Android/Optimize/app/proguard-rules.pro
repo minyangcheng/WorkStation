@@ -1,28 +1,3 @@
-#---------------------------------1.实体类---------------------------------
-
--keep class com.demo.login.bean.** { *; }
-
-#---------------------------------2.第三方包-------------------------------
-
-#eventBus
--keepattributes *Annotation*
--keepclassmembers class ** {
-    @org.greenrobot.eventbus.Subscribe <methods>;
-}
--keep enum org.greenrobot.eventbus.ThreadMode { *; }
--keepclassmembers class * extends org.greenrobot.eventbus.util.ThrowableFailureEvent {
-    <init>(java.lang.Throwable);
-}
-
-#---------------------------------3.与js互相调用的类------------------------
-
--keepclasseswithmembers class com.demo.login.bean.ui.MainActivity$JSInterface {
-      <methods>;
-}
-
-#---------------------------------4.反射相关的类和方法-----------------------
-
-
 #---------------------------------基本指令区----------------------------------
 -optimizationpasses 5
 -dontusemixedcaseclassnames
@@ -87,20 +62,35 @@
     void *(**On*Event);
 }
 
-#---------------------------------webview------------------------------------
+#---------------------------------实体类---------------------------------
+
+-keep class com.demo.login.bean.** { *; }
+
+#---------------------------------第三方包-------------------------------
+
+#eventBus
+-keepattributes *Annotation*
+-keepclassmembers class ** {
+    @org.greenrobot.eventbus.Subscribe <methods>;
+}
+-keep enum org.greenrobot.eventbus.ThreadMode { *; }
+-keepclassmembers class * extends org.greenrobot.eventbus.util.ThrowableFailureEvent {
+    <init>(java.lang.Throwable);
+}
+
+#---------------------------------webview------------------------
+
+-keepclasseswithmembers class com.demo.login.bean.ui.MainActivity$JSInterface {
+      <methods>;
+}
 -keepclassmembers class fqcn.of.javascript.interface.for.Webview {
    public *;
 }
--keepclassmembers class * extends android.webkit.WebViewClient {
-    public void *(android.webkit.WebView, java.lang.String, android.graphics.Bitmap);
-    public boolean *(android.webkit.WebView, java.lang.String);
-}
--keepclassmembers class * extends android.webkit.WebViewClient {
-    public void *(android.webkit.WebView, jav.lang.String);
-}
+
+#---------------------------------反射相关的类和方法-----------------------
 
 #---------------------------------手动启用support keep注解-----------------------
--keep,allowobfuscation @interface android.support.annotation.Keep
+-dontwarn android.support.annotation.Keep
 -keep @android.support.annotation.Keep class *
 -keepclassmembers class * {
     @android.support.annotation.Keep *;

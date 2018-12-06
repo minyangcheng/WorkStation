@@ -12,18 +12,19 @@ var successHandler = response => {
     if (response.data.code == 10000) {
       return response.data;
     } else {
-      var err = new Error(response.data.message);
-      err.code = response.data.code;
-      throw err;
+      return Promise.reject({message: response.data.message, code: response.data.code});
     }
   }
   return response.data;
 };
 
 var errorHandler = err => {
-  var resErr = new Error(err.toString());
-  resErr.code = -1;
-  throw resErr;
+  if(err instanceof Error){
+    return Promise.reject({message: '网络请求出错', code: -1, data:err});
+  }else{
+    return Promise.reject(err);
+  }
+
 };
 
 
@@ -36,7 +37,10 @@ var postConfig = {
   transformResponse: [function (data) {
     return JSON.parse(data);
   }],
-  headers: {'user-agent': 'http-client'},
+  headers: {
+    'user-agent': 'http-client',
+    'Content-Type': 'application/x-www-form-urlencoded',
+  },
 };
 
 module.exports = {
@@ -67,7 +71,7 @@ module.exports = {
     form.append('file', data);
     return instance.post(url, form, {
       headers: form.getHeaders(),
-      timeout: 20000,
+      timeout: 60000,
       baseURL,
       maxContentLength: 1024 * 1024 * 100
     }).then(successHandler)
@@ -80,7 +84,7 @@ module.exports = {
     form.append('file', data);
     return instance.post(url, form, {
       headers: form.getHeaders(),
-      timeout: 20000,
+      timeout: 60000,
       baseURL,
       maxContentLength: 1024 * 1024 * 100
     });
